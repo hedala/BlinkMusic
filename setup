@@ -1,5 +1,5 @@
 #!/bin/bash
-### Shizuka Music Bot Installer
+### Blink Music Bot Installer
 
 pprint (){
 	cred='\033[0;31m'
@@ -52,7 +52,7 @@ packages(){
 			pprint "SUCCESS.\n\n" "cgreen"
 		else
 			pprint "FAIL.\n\n" "cred"
-			pprint "You need to install ffmpeg manually in order to use ShizukaXMusic, exiting..\n" "cblue"
+			pprint "You need to install ffmpeg manually in order to use BlinkMusic, exiting..\n" "cblue"
 			exit 1
 		fi
 	fi
@@ -75,8 +75,8 @@ node(){
 
 repo(){
 	# Get git repo if the installer is runned standalone
-	[[ ! "ShizukaXMusic" == $(basename -s .git `git config --get remote.origin.url`) ]] &&
-	git clone https://github.com/its_star_boi/ShizukaXMusic &&  cd ShizukaXMusic
+	[[ ! "BlinkMusic" == $(basename -s .git `git config --get remote.origin.url`) ]] &&
+	git clone https://github.com/its_star_boi/BlinkMusic &&  cd BlinkMusic
 }
 
 
@@ -90,7 +90,7 @@ installation(){
 }
 
 clear
-pprint "Welcome to Shizuka Music Bot Setup Installer\n\n"
+pprint "Welcome to Blink Music Bot Setup Installer\n\n"
 pprint "If you see any error during Installation Process, Please refer to these files for logs: "
 pprint "\nFor node js errors , Checkout nodelog.txt"
 pprint "\nFor pypi packages errors , Checkout pypilog.txt"
@@ -103,7 +103,7 @@ packages
 node
 repo
 installation
-pprint "\n\n\n\n\nShizuka Music Bot Installation Completed!" "cgreen"
+pprint "\n\n\n\n\nBlink Music Bot Installation Completed!" "cgreen"
 sleep 4
 clear
 

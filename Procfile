@@ -1,2 +1,2 @@
 web: python -m http.server $PORT
-worker: python3 -m ShizukaXMusic
+worker: python3 -m BlinkMusic

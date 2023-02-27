@@ -1,21 +1,21 @@
-<h1 align="center"><b>❤️ SHIZUKA MUSIC ❤️</b></h1>
+<h1 align="center"><b>❤️ Blink MUSIC ❤️</b></h1>
 
-<h4 align="center">Shizuka A Powerful, Smart And Simple Bot To Play Audio And Video Song In Telegram<br> ... Written With Python and Telethon...</h4>
+<h4 align="center">Blink A Powerful, Smart And Simple Bot To Play Audio And Video Song In Telegram<br> ... Written With Python and Telethon...</h4>
 
 <p align="center"><a href="https://telegram.dog/its_star_boi"><img src="https://te.legra.ph/file/159d3f9e2d57dd02db970.jpg" width="400"></a></p>
 
 <p align="center">
-    <a href="https://github.com/its-star-boi/ShizukaXMusic"> <img src="https://img.shields.io/github/repo-size/its-star-boi/ShizukaXMusic?color=orange&logo=github&logoColor=green&style=for-the-badge" /></a>
-    <a href="https://github.com/its-star-boi/ShizukaXMusic/commits/prince"> <img src="https://img.shields.io/github/last-commit/its-star-boi/ShizukaXMusic?color=brown&logo=github&logoColor=green&style=for-the-badge" /></a>
-    <a href="https://github.com/its-star-boi/ShizukaXMusic/issues"> <img src="https://img.shields.io/github/issues/its-star-boi/ShizukaXMusic?color=blueviolet&logo=github&logoColor=green&style=for-the-badge" /></a>
-    <a href="https://github.com/its-star-boi/ShizukaXMusic/network/members"> <img src="https://img.shields.io/github/forks/its-star-boi/ShizukaXMusic?color=red&logo=github&logoColor=green&style=for-the-badge" /></a>  
+    <a href="https://github.com/Astroheda/BlinkMusic"> <img src="https://img.shields.io/github/repo-size/Astroheda/BlinkMusic?color=orange&logo=github&logoColor=green&style=for-the-badge" /></a>
+    <a href="https://github.com/Astroheda/BlinkMusic/commits/prince"> <img src="https://img.shields.io/github/last-commit/Astroheda/BlinkMusic?color=brown&logo=github&logoColor=green&style=for-the-badge" /></a>
+    <a href="https://github.com/Astroheda/BlinkMusic/issues"> <img src="https://img.shields.io/github/issues/Astroheda/BlinkMusic?color=blueviolet&logo=github&logoColor=green&style=for-the-badge" /></a>
+    <a href="https://github.com/Astroheda/BlinkMusic/network/members"> <img src="https://img.shields.io/github/forks/Astroheda/BlinkMusic?color=red&logo=github&logoColor=green&style=for-the-badge" /></a>  
     <a href="https://pypi.org/project/Telethon/"> <img src="https://img.shields.io/pypi/v/telethon?color=yellow&label=telethon&logo=python&logoColor=green&style=for-the-badge" /></a>
 </p>
 
-> ⭐️ Thanks to everyone for using Shizuka,  🤭 That is the greatest pleasure we have !
+> ⭐️ Thanks to everyone for using Blink,  🤭 That is the greatest pleasure we have !
 
 
-## Features Of Shizuka And Commands ❤️
+## Features Of Blink And Commands ❤️
 
 <details>
 <summary><b>ғᴇᴀᴛᴜʀᴇs</b></summary>
@@ -111,7 +111,7 @@
 <br>
 ɴᴏᴡ ʏᴏᴜ ᴄᴀɴ ᴅᴇᴘʟᴏʏ sʜɪᴢᴜᴋᴀ ᴍᴜsɪᴄ ᴏɴ sᴄᴀʟɪɴɢᴏ ɪɴᴛʀᴏᴅᴜᴄᴇᴅ ʙʏ 
         
-<p align="center"><a href="https://my.scalingo.com/deploy?template=https://github.com/its-star-boi/ShizukaXMusic"> <img src="https://cdn.scalingo.com/deploy/button.svg" width="220" height="38.45"/></a></p>
+<p align="center"><a href="https://my.scalingo.com/deploy?template=https://github.com/Astroheda/BlinkMusic"> <img src="https://cdn.scalingo.com/deploy/button.svg" width="220" height="38.45"/></a></p>
     
 </details>
 
@@ -139,14 +139,14 @@
 > ᴛʜᴏsᴇ ᴛᴡᴏ ᴠᴀʀs ᴀʀᴇ ɴᴏᴛ ᴍᴀɴᴅᴀᴛᴏʀʏ, ʏᴏᴜ ᴄᴀɴ ʟᴇᴀᴠᴇ ᴛʜᴇᴍ ʙʟᴀɴᴋ ᴛᴏᴏ. 
     
 <h4> ᴄʟɪᴄᴋ ᴛʜᴇ ʙᴜᴛᴛᴏɴ ʙᴇʟᴏᴡ ᴛᴏ ᴅᴇᴘʟᴏʏ ʏᴜᴋᴋɪ ᴏɴ ʜᴇʀᴏᴋᴜ</h4>    
-<p><a href="https://dashboard.heroku.com/new?template=https%3A%2F%2Fgithub.com%2Fits-star-boi%2FShizukaXMusic"><img src="https://img.shields.io/badge/Deploy%20To%20Heroku-red?style=for-the-badge&logo=heroku" width="200"/></a></p>
+<p><a href="https://dashboard.heroku.com/new?template=https%3A%2F%2Fgithub.com%2FAstroheda%2FBlinkMusic"><img src="https://img.shields.io/badge/Deploy%20To%20Heroku-red?style=for-the-badge&logo=heroku" width="200"/></a></p>
 </details>
 
 <details>
 <summary><b>ᴅᴇᴘʟᴏʏ ᴛᴏ ᴠᴘs</b></summary>
 <br>
 
-- Get your [Necessary Variables](https://github.com/its-star-boi/ShizukaXMusic/blob/main/sample.env)
+- Get your [Necessary Variables](https://github.com/Astroheda/BlinkMusic/blob/main/sample.env)
 - Upgrade and Update by :
 `sudo apt-get update && sudo apt-get upgrade -y`
 - Install Ffmpeg by :
@@ -158,7 +158,7 @@
 - Install Node js by :
 `curl -fssL https://deb.nodesource.com/setup_18.x | sudo -E bash - && sudo apt-get install nodejs -y && npm i -g npm`
 - Clone the repository by :
-`git clone https://github.com/its-star-boi/ShizukaXMusic && cd ShizukaXMusic`
+`git clone https://github.com/Astroheda/BlinkMusic && cd BlinkMusic`
 - Install requirements by :
 `pip3 install -U -r requirements.txt`
 - Fill your variables in the env by :

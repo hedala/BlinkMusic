@@ -27,10 +27,10 @@ HEROKU_APP_NAME = getenv("HEROKU_APP_NAME")
 
 UPSTREAM_REPO = getenv(
     "UPSTREAM_REPO",
-    "https://github.com/its-star-boi/ShizukaXMusic",
+    "https://github.com/Astroheda/BlinkMusic",
 )
 UPSTREAM_BRANCH = getenv("UPSTREAM_BRANCH", "main")
-GITHUB_REPO = getenv("GITHUB_REPO", "https://github.com/its-star-boi/ShizukaXMusic")
+GITHUB_REPO = getenv("GITHUB_REPO", "https://github.com/Astroheda/BlinkMusic")
 GIT_TOKEN = getenv("GIT_TOKEN", None)
 
 SUPPORT_CHANNEL = getenv("SUPPORT_CHANNEL", "https://t.me/Star_X_Network")
@@ -86,27 +86,60 @@ PING_IMG_URL = getenv(
     "https://te.legra.ph/file/159d3f9e2d57dd02db970.jpg",
 )
 
-PLAYLIST_IMG_URL = "https://te.legra.ph/file/6054be6dbfc0f654db62b.jpg"
+PLAYLIST_IMG_URL = getenv(
+    "PLAYLIST_IMG_URL",
+    "https://te.legra.ph/file/6054be6dbfc0f654db62b.jpg"
+)
 
-GLOBAL_IMG_URL = "https://te.legra.ph/file/e906c2def5afe8a9b9120.jpg"
+GLOBAL_IMG_URL = getenv(
+    "GLOBAL_IMG_URL",
+    "https://te.legra.ph/file/e906c2def5afe8a9b9120.jpg"
+)
 
-STATS_IMG_URL = "https://te.legra.ph/file/e906c2def5afe8a9b9120.jpg"
+STATS_IMG_URL = getenv(
+    "STATS_IMG_URL",
+    "https://te.legra.ph/file/e906c2def5afe8a9b9120.jpg"
+)
 
-TELEGRAM_AUDIO_URL = "https://te.legra.ph/file/6298d377ad3eb46711644.jpg"
+TELEGRAM_AUDIO_URL = getenv(
+    "TELEGRAM_AUDIO_URL",
+    "https://te.legra.ph/file/6298d377ad3eb46711644.jpg"
+)
 
-TELEGRAM_VIDEO_URL = "https://te.legra.ph/file/6298d377ad3eb46711644.jpg"
+TELEGRAM_VIDEO_URL = getenv(
+    "TELEGRAM_VIDEO_URL",
+    "https://te.legra.ph/file/6298d377ad3eb46711644.jpg"
+)
 
-STREAM_IMG_URL = "https://te.legra.ph/file/bd995b032b6bd263e2cc9.jpg"
+STREAM_IMG_URL = getenv(
+    "STREAM_IMG_URL",
+    "https://te.legra.ph/file/bd995b032b6bd263e2cc9.jpg"
+)
 
-SOUNCLOUD_IMG_URL = "https://te.legra.ph/file/bb0ff85f2dd44070ea519.jpg"
+SOUNCLOUD_IMG_URL = getenv(
+    "SOUNCLOUD_IMG_URL",
+    "https://te.legra.ph/file/bb0ff85f2dd44070ea519.jpg"
+)
 
-YOUTUBE_IMG_URL = "https://te.legra.ph/file/6298d377ad3eb46711644.jpg"
+YOUTUBE_IMG_URL = getenv(
+    "YOUTUBE_IMG_URL",
+    "https://te.legra.ph/file/6298d377ad3eb46711644.jpg"
+)
 
-SPOTIFY_ARTIST_IMG_URL = "https://te.legra.ph/file/37d163a2f75e0d3b403d6.jpg"
+SPOTIFY_ARTIST_IMG_URL = getenv(
+    "SPOTIFY_ARTIST_IMG_URL",
+    "https://te.legra.ph/file/37d163a2f75e0d3b403d6.jpg"
+)
 
-SPOTIFY_ALBUM_IMG_URL = "https://te.legra.ph/file/b35fd1dfca73b950b1b05.jpg"
+SPOTIFY_ALBUM_IMG_URL = getenv(
+    "SPOTIFY_ALBUM_IMG_URL",
+    "https://te.legra.ph/file/b35fd1dfca73b950b1b05.jpg"
+)
 
-SPOTIFY_PLAYLIST_IMG_URL = "https://te.legra.ph/file/95b3ca7993bbfaf993dcb.jpg"
+SPOTIFY_PLAYLIST_IMG_URL = getenv(
+    "SPOTIFY_PLAYLIST_IMG_URL",
+    "https://te.legra.ph/file/95b3ca7993bbfaf993dcb.jpg"
+)
 
 
 def time_to_seconds(time):
