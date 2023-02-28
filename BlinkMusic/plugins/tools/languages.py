@@ -39,7 +39,7 @@ def lanuages_keyboard(_):
             callback_data=f"languages:gu",
         ),
         InlineKeyboardButton(
-            text="🇹🇷 Türkiye Türkçesi 🇹🇷",
+            text="🇹🇷 Türkçe 🇹🇷",
             callback_data=f"languages:tr",
         ),
     )
