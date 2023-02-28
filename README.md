@@ -4,4 +4,5 @@
 
 <p align="center"><a href="https://telegram.dog/its_star_boi"><img src="https://te.legra.ph/file/0b9b6d8fa93e96560a076.jpg" width="400"></a></p>
 
-AstroHeda.t.me
+
+<h1 align="center"><b>Heda</b></h1>
