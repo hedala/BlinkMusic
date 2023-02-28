@@ -35,7 +35,7 @@ auth_7 : "**Yetkili Kullanıcılar Listesi[AUL]:**\n\n"
 auth_8 : "┗ Tarafından eklendi:-"
 
 # PLUGINS - Admins
-admin_1 : "Müzik zaten Duraklatıldı."
+admin_1 : "BLACKPINK aşkına müzik zaten uraklatıldı."
 admin_2 : "🎧 Sesli Sohbet Duraklatıldı {}!"
 admin_3 : "Müzik zaten yeniden başlatıldı."
 admin_4 : "🎧 Sesli Sohbeti Sürdüren {}!"
