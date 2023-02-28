@@ -2,7 +2,7 @@
 
 <h4 align="center">Blink A Powerful, Smart And Simple Bot To Play Audio And Video Song In Telegram<br> ... Written With Python and Telethon...</h4>
 
-<p align="center"><a href="https://telegram.dog/its_star_boi"><img src="https://te.legra.ph/file/159d3f9e2d57dd02db970.jpg" width="400"></a></p>
+<p align="center"><a href="https://telegram.dog/its_star_boi"><img src="https://te.legra.ph/file/0b9b6d8fa93e96560a076.jpg" width="400"></a></p>
 
 <p align="center">
     <a href="https://github.com/Astroheda/BlinkMusic"> <img src="https://img.shields.io/github/repo-size/Astroheda/BlinkMusic?color=orange&logo=github&logoColor=green&style=for-the-badge" /></a>
