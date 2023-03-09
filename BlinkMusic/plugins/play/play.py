@@ -37,6 +37,19 @@ PLAY_COMMAND = get_command("PLAY_COMMAND")
         PLAY_COMMAND) & filters.group & ~filters.edited & ~BANNED_USERS
 )
 @PlayWrapper
+async def _play_cmd(
+    client,
+    message: Message,
+    _,
+    chat_id,
+    video,
+    channel,
+    playmode,
+    url,
+    fplay,
+):
+    return await play_commnd(client, message, _, chat_id, video, channel, playmode, url, fplay)
+
 async def play_commnd(
     client,
     message: Message,
