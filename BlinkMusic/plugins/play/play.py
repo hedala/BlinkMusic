@@ -60,6 +60,7 @@ async def play_commnd(
     playmode,
     url,
     fplay,
+    use_userbot: bool = False,
 ):
     mystic = await message.reply_text(
         _["play_2"].format(channel) if channel else _["play_1"]
@@ -91,7 +92,7 @@ async def play_commnd(
             )
         file_path = await Telegram.get_filepath(audio=audio_telegram)
         if await Telegram.download(_, message, mystic, file_path,
-                                   use_userbot=not message.reply_to_message._client.me.is_bot):
+                                   use_userbot=use_userbot):
             message_link = await Telegram.get_link(message)
             file_name = await Telegram.get_filename(audio_telegram, audio=True)
             dur = await Telegram.get_duration(audio_telegram)
@@ -139,7 +140,7 @@ async def play_commnd(
             return await mystic.edit_text(_["play_9"])
         file_path = await Telegram.get_filepath(video=video_telegram)
         if await Telegram.download(_, message, mystic, file_path,
-                                   use_userbot=not message.reply_to_message._client.me.is_bot):
+                                   use_userbot=use_userbot):
             message_link = await Telegram.get_link(message)
             file_name = await Telegram.get_filename(video_telegram)
             dur = await Telegram.get_duration(video_telegram)
@@ -174,7 +175,7 @@ async def play_commnd(
             msg = await TeleAPI.get_message_from_link(userbot.one, url)
             if msg:
                 message.reply_to_message = msg
-                return await play_commnd(client, message, _, chat_id, video, channel, playmode, url, fplay)
+                return await play_commnd(client, message, _, chat_id, video, channel, playmode, url, fplay, use_userbot=True)
         elif await YouTube.exists(url):
             if "playlist" in url:
                 try:
