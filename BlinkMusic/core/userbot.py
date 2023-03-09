@@ -43,18 +43,6 @@ class Userbot(Client):
             no_updates=True,
         )
 
-    def get_userbot(self):
-        if config.STRING1:
-            return self.one
-        if config.STRING2:
-            return self.two
-        if config.STRING3:
-            return self.three
-        if config.STRING4:
-            return self.four
-        if config.STRING5:
-            return self.five
-
     async def start(self):
         LOGGER(__name__).info(f"Starting Assistant Clients")
         if config.STRING1:
