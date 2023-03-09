@@ -3,12 +3,14 @@ import os
 import time
 from datetime import datetime, timedelta
 from typing import Union
+from re import sub
 
-from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, Voice
+from pyrogram import Client
+from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, Voice, Message
 
 import config
 from config import MUSIC_BOT_NAME, lyrical
-from BlinkMusic import app
+from BlinkMusic import app, userbot
 
 from ..utils.formatters import convert_bytes, get_readable_time, seconds_to_min
 
@@ -84,7 +86,7 @@ class TeleAPI:
             file_name = os.path.join(os.path.realpath("downloads"), file_name)
         return file_name
 
-    async def download(self, _, message, mystic, fname):
+    async def download(self, _, message, mystic, fname, use_userbot: bool = False):
         left_time = {}
         speed_counter = {}
         if os.path.exists(fname):
@@ -140,11 +142,18 @@ class TeleAPI:
             left_time[message.message_id] = datetime.now()
 
             try:
-                await app.download_media(
-                    message.reply_to_message,
-                    file_name=fname,
-                    progress=progress,
-                )
+                if use_userbot:
+                    await userbot.download_media(
+                        message.reply_to_message,
+                        file_name=fname,
+                        progress=progress,
+                    )
+                else:
+                    await message._client.download_media(
+                        message.reply_to_message,
+                        file_name=fname,
+                        progress=progress,
+                    )
                 await mystic.edit_text(
                     "**ғɪʟᴇ sᴜᴄᴄᴇssғᴜʟʟʏ ᴅᴏᴡɴʟᴏᴀᴅᴇᴅ, ᴩʀᴏᴄᴇssɪɴɢ...**"
                 )
@@ -176,3 +185,42 @@ class TeleAPI:
             return False
         lyrical.pop(mystic.message_id)
         return True
+
+    @staticmethod
+    def validate(url: str) -> bool:
+        splx = sub('https?://', '', url)
+        spl = splx.split('/')
+
+        if len(spl) >= 3 and spl[0] in ['t.me', 'telegram.org', 'telegram.dog']:
+            plus = 1 if spl[1] in ['s', 'c'] else 0
+            return len(spl) == (3 + plus)
+
+        return False
+
+    @staticmethod
+    async def get_message_from_link(client: Client, url: str) -> Message | None:
+        splx = sub('https?://', '', url)
+        spl = splx.split('/')
+
+        if len(spl) >= 3 and spl[0] in ['t.me', 'telegram.org', 'telegram.dog']:
+            plus = 1 if spl[1] in ['s', 'c'] else 0
+            if len(spl) == (3 + plus):
+                chat = spl[1 + plus]
+                msg = spl[2 + plus]
+
+                try:
+                    chat = int(chat)  # type: ignore
+                except:
+                    pass
+
+                try:
+                    return client.get_messages(chat, int(msg))  # type: ignore
+                except BaseException as e:
+                    if type(chat) == int:
+                        chat = int(f'-100{chat}')  # type: ignore
+                    else:
+                        raise e
+
+                    return client.get_messages(chat, int(msg))  # type: ignore
+
+        return None
