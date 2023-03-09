@@ -143,7 +143,7 @@ class TeleAPI:
 
             try:
                 if use_userbot:
-                    await userbot.download_media(
+                    await userbot.get_userbot().download_media(
                         message.reply_to_message,
                         file_name=fname,
                         progress=progress,
