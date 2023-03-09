@@ -214,13 +214,15 @@ class TeleAPI:
                     pass
 
                 try:
-                    return client.get_messages(chat, int(msg))  # type: ignore
+                    return await client.get_messages(
+                        chat, int(msg))  # type: ignore
                 except BaseException as e:
                     if type(chat) == int:
                         chat = int(f'-100{chat}')  # type: ignore
                     else:
                         raise e
 
-                    return client.get_messages(chat, int(msg))  # type: ignore
+                    return await client.get_messages(
+                        chat, int(msg))  # type: ignore
 
         return None
