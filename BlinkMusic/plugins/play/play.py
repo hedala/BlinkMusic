@@ -161,8 +161,6 @@ async def play_commnd(
             msg = await TeleAPI.get_message_from_link(userbot.one, url)
             if msg:
                 message.reply_to_message = msg
-                message.reply_to_message_id = msg.id
-                message.reply_to_top_message_id = msg.id
                 return await play_commnd(client, message, _, chat_id, video, channel, playmode, url, fplay)
         elif await YouTube.exists(url):
             if "playlist" in url:
