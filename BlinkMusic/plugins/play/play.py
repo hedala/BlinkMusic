@@ -158,7 +158,7 @@ async def play_commnd(
         return
     elif url:
         if TeleAPI.validate(url):
-            msg: Message | None = await TeleAPI.get_message_from_link(userbot, url)
+            msg = await TeleAPI.get_message_from_link(userbot, url)
             if msg:
                 message.reply_to_message = msg
                 message.reply_to_message_id = msg.id

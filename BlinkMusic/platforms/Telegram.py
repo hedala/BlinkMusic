@@ -198,7 +198,7 @@ class TeleAPI:
         return False
 
     @staticmethod
-    async def get_message_from_link(client: Client, url: str) -> Message | None:
+    async def get_message_from_link(client: Client, url: str):
         splx = sub('https?://', '', url)
         spl = splx.split('/')
 
