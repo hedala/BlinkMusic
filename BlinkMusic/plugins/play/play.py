@@ -175,6 +175,12 @@ async def play_commnd(
             msg = await TeleAPI.get_message_from_link(userbot.one, url)
             if msg:
                 message.reply_to_message = msg
+
+                try:
+                    await mystic.delete(True)
+                except:
+                    pass
+
                 return await play_commnd(client, message, _, chat_id, video, channel, playmode, url, fplay, use_userbot=True)
         elif await YouTube.exists(url):
             if "playlist" in url:
