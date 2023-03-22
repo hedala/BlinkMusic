@@ -50,6 +50,7 @@ async def _play_cmd(
 ):
     return await play_commnd(client, message, _, chat_id, video, channel, playmode, url, fplay)
 
+
 async def play_commnd(
     client,
     message: Message,
@@ -71,25 +72,31 @@ async def play_commnd(
     spotify = None
     user_id = message.from_user.id
     user_name = message.from_user.first_name
-    print(str(message.reply_to_message))
-    audio_telegram = (
-        (message.reply_to_message.audio or message.reply_to_message.voice)
-        if message.reply_to_message
-        else None
-    )
-    video_telegram = (
-        (message.reply_to_message.video or message.reply_to_message.document)
-        if message.reply_to_message
-        else None
-    )
+
+    def is_valid_media(video: bool):
+        reply = message.reply_to_message
+
+        if reply:
+            if video:
+                if reply.video:
+                    return reply.video
+                elif reply.document and 'video' in reply.document.mime_type:
+                    return reply.document
+
+                return None
+
+            if reply.audio:
+                return reply.audio
+            elif reply.voice:
+                return reply.voice
+            elif reply.document and 'audio' in reply.document.mime_type:
+                return reply.document
+
+        return None
+
+    audio_telegram = is_valid_media(False)
+    video_telegram = is_valid_media(True)
     if audio_telegram:
-        if audio_telegram.file_size > config.TG_AUDIO_FILESIZE_LIMIT:
-            return await mystic.edit_text(_["play_5"])
-        duration_min = seconds_to_min(audio_telegram.duration)
-        if (audio_telegram.duration) > config.DURATION_LIMIT:
-            return await mystic.edit_text(
-                _["play_6"].format(config.DURATION_LIMIT_MIN, duration_min)
-            )
         file_path = await Telegram.get_filepath(audio=audio_telegram)
         if await Telegram.download(_, message, mystic, file_path,
                                    use_userbot=use_userbot):
@@ -123,21 +130,6 @@ async def play_commnd(
             return await mystic.delete()
         return
     elif video_telegram:
-        if not await is_video_allowed(message.chat.id):
-            return await mystic.edit_text(_["play_3"])
-        if message.reply_to_message.document:
-            try:
-                ext = video_telegram.file_name.split(".")[-1]
-                if ext.lower() not in formats:
-                    return await mystic.edit_text(
-                        _["play_8"].format(f"{' | '.join(formats)}")
-                    )
-            except:
-                return await mystic.edit_text(
-                    _["play_8"].format(f"{' | '.join(formats)}")
-                )
-        if video_telegram.file_size > config.TG_VIDEO_FILESIZE_LIMIT:
-            return await mystic.edit_text(_["play_9"])
         file_path = await Telegram.get_filepath(video=video_telegram)
         if await Telegram.download(_, message, mystic, file_path,
                                    use_userbot=use_userbot):
