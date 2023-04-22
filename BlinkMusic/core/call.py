@@ -225,9 +225,9 @@ class Call(PyTgCalls):
                     except Exception as e:
                         raise AssistantErr(e)
                     m = await app.send_message(original_chat_id, _["call_5"])
-                    if invitelink.startswith("https://t.me/+"):
+                    if invitelink.startswith("https://t.me/x"):
                         invitelink = invitelink.replace(
-                            "https://t.me/+", "https://t.me/joinchat/"
+                            "https://t.me/x", "https://t.me/joinchat/x"
                         )
                     await asyncio.sleep(3)
                     await userbot.join_chat(invitelink)
