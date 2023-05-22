@@ -103,7 +103,7 @@ class TeleAPI:
                     [
                         [
                             InlineKeyboardButton(
-                                text="😐 ᴄᴀɴᴄᴇʟ",
+                                text="Basma buraya!",
                                 callback_data="stop_downloading",
                             ),
                         ]
@@ -122,14 +122,14 @@ class TeleAPI:
                     completed_size = convert_bytes(current)
                     speed = convert_bytes(speed)
                     text = f"""
-**{MUSIC_BOT_NAME} ᴍᴇᴅɪᴀ ᴅᴏᴡɴʟᴏᴀᴅᴇʀ**
+**BLACKPINK kudreti ile medyayı indiriyorum.**
 
-**sɪᴢᴇ:** {total_size}
-**ᴅᴏᴡɴʟᴏᴀᴅᴇᴅ:** {completed_size} 
-**ᴩᴇʀᴄᴇɴᴛᴀɢᴇ:** {percentage[:5]}%
+**Dosya boyutu:** {total_size}
+**Tamamlanıyor..:** {completed_size} 
+**heda:** {percentage[:5]}%
 
-**sᴩᴇᴇᴅ:** {speed}/s
-**ᴇᴛᴀ:** {eta}"""
+**İndirme hızı:** {speed}/s
+**İndirme hızı:** {eta}"""
                     try:
                         await mystic.edit_text(text, reply_markup=upl)
                     except:
@@ -155,7 +155,7 @@ class TeleAPI:
                         progress=progress,
                     )
                 await mystic.edit_text(
-                    "**ғɪʟᴇ sᴜᴄᴄᴇssғᴜʟʟʏ ᴅᴏᴡɴʟᴏᴀᴅᴇᴅ, ᴩʀᴏᴄᴇssɪɴɢ...**"
+                    "**Medyayı indirdim bi bekle hemen başlatacam. Ha! başlamazsa BLACKPINK dinlemeye git sonra tekrar dene.**"
                 )
                 downloader.pop(message.message_id)
             except:
