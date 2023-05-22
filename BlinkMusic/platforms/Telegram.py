@@ -126,7 +126,7 @@ class TeleAPI:
 
 **Dosya boyutu:** {total_size}
 **Tamamlanıyor..:** {completed_size} 
-**heda:** {percentage[:5]}%
+**Tamamlanan yüzde:** {percentage[:5]}%
 
 **İndirme hızı:** {speed}/s
 **Kalan süre (Süre çok kalmışssa BLACKPINK dinlemeye git.):** {eta}"""
