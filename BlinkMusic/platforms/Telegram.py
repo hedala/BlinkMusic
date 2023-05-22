@@ -129,7 +129,7 @@ class TeleAPI:
 **heda:** {percentage[:5]}%
 
 **İndirme hızı:** {speed}/s
-**İndirme hızı:** {eta}"""
+**Kalan süre (Süre çok kalmışssa BLACKPINK dinlemeye git.):** {eta}"""
                     try:
                         await mystic.edit_text(text, reply_markup=upl)
                     except:
