@@ -27,10 +27,10 @@ HEROKU_APP_NAME = getenv("HEROKU_APP_NAME")
 
 UPSTREAM_REPO = getenv(
     "UPSTREAM_REPO",
-    "https://github.com/Astroheda/BlinkMusic",
+    "https://github.com/hedala/BlinkMusic",
 )
 UPSTREAM_BRANCH = getenv("UPSTREAM_BRANCH", "main")
-GITHUB_REPO = getenv("GITHUB_REPO", "https://github.com/Astroheda/BlinkMusic")
+GITHUB_REPO = getenv("GITHUB_REPO", "https://github.com/hedala/BlinkMusic")
 GIT_TOKEN = getenv("GIT_TOKEN", None)
 
 SUPPORT_CHANNEL = getenv("SUPPORT_CHANNEL", "https://t.me/hedala")
