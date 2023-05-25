@@ -24,7 +24,7 @@ for filename in os.listdir(r"./strings"):
 
 
 for filename in os.listdir(r"./strings/langs/tr.yml"):
-    if "en" not in languages:
+    if "tr" not in languages:
         languages["tr"] = yaml.safe_load(
             open(r"./strings/langs/tr.yml", encoding="utf8")
         )
