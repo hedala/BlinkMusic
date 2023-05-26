@@ -26,7 +26,7 @@ selections = [
 
 
 def stream_markup_timer(_, videoid, chat_id, played, dur):
-    bar = choice(selections)
+    bar = random.choice(selections)
     buttons = [
         [
             InlineKeyboardButton(
