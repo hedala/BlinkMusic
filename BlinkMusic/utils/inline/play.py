@@ -6,19 +6,19 @@ import random
 
 
 selections = [
-    "▁▄▂▇▄▅▄▅▃",
-    "▁▃▇▂▅▇▄▅▃",
-    "▃▁▇▂▅▃▄▃▅",
-    "▃▄▂▄▇▅▃▅▁",
-    "▁▃▄▂▇▃▄▅▃",
-    "▃▁▄▂▅▃▇▃▅",
-    "▁▇▄▂▅▄▅▃▄",
-    "▁▃▅▇▂▅▄▃▇",
-    "▃▅▂▅▇▁▄▃▁",
-    "▇▅▂▅▃▄▃▁▃",
-    "▃▇▂▅▁▅▄▃▁",
-    "▅▄▇▂▅▂▄▇▁",
-    "▃▅▂▅▃▇▄▅▃",
+    "BLACKPINK akışı başlasın!",
+    "Lisa",
+    "Rose",
+    "Jennie",
+    "Jisoo",
+    "YerYüzünün kraliçeleri!",
+    "Dİnle dinle dinle!",
+    "BLACKPINK dinle!",
+    "Nirvanaya ulaş!",
+    "BLACKPINK devrimdir!",
+    "Kraliçeleri dinle dinle dinle!",
+    ".....................",
+    "@BlinkHeda",
 ]
 
 
