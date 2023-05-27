@@ -26,6 +26,7 @@ selection = 0
 
 
 def stream_markup_timer(_, videoid, chat_id, played, dur):
+    global selection
     bar = selections[selection % len(selections)]
     selection += 1
     buttons = [
@@ -56,6 +57,7 @@ def stream_markup_timer(_, videoid, chat_id, played, dur):
 
 
 def telegram_markup_timer(_, chat_id, played, dur):
+    global selection
     bar = selections[selection % len(selections)]
     selection += 1
     buttons = [
