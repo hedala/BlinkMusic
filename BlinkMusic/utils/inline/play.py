@@ -69,7 +69,7 @@ def telegram_markup_timer(_, chat_id, played, dur):
                 text=_["PL_B_2"],
                 callback_data=f"add_playlist {videoid}",
             ),
-            InlineKeyboardButton(text="heda", url=f"heda", url=f"https://t.me/hedala"),
+            InlineKeyboardButton(text="heda", url=f"https://t.me/hedala"),
         ],
         [
             InlineKeyboardButton(
