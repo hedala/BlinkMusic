@@ -56,7 +56,7 @@ def stream_markup_timer(_, videoid, chat_id, played, dur):
 
 def telegram_markup_timer(_, chat_id, played, dur):
     bar = selections[selection % len(selections)]
-selection += 1
+    selection += 1
     buttons = [
         [
             InlineKeyboardButton(
