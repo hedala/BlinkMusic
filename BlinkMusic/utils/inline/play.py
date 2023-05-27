@@ -14,10 +14,10 @@ selections = [
     "YerYüzünün kraliçeleri!",
     "Dinle dinle dinle!",
     "BLACKPINK dinle!",
-    "Nirvanaya ulaş!",
+    "BLACKPINK in your area! ",
     "BLACKPINK devrimdir!",
     "Kraliçeleri dinle dinle dinle!",
-    ".....................",
+    ".................",
     "@BlinkHeda",
 ]
 selection = 0
