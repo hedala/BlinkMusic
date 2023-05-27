@@ -6,24 +6,27 @@ import random
 
 
 selections = [
-    "BLACKPINK akışı başlasın!",
-    "Lisa",
-    "Rose",
-    "Jennie",
-    "Jisoo",
-    "YerYüzünün kraliçeleri!",
-    "Dinle dinle dinle!",
-    "BLACKPINK dinle!",
-    "Nirvanaya ulaş!",
-    "BLACKPINK devrimdir!",
-    "Kraliçeleri dinle dinle dinle!",
-    ".....................",
-    "@BlinkHeda",
+    "▁▄▂▇▄▅▄▅▃",
+    "▁▃▇▂▅▇▄▅▃",
+    "▃▁▇▂▅▃▄▃▅",
+    "▃▄▂▄▇▅▃▅▁",
+    "▁▃▄▂▇▃▄▅▃",
+    "▃▁▄▂▅▃▇▃▅",
+    "▁▇▄▂▅▄▅▃▄",
+    "▁▃▅▇▂▅▄▃▇",
+    "▃▅▂▅▇▁▄▃▁",
+    "▇▅▂▅▃▄▃▁▃",
+    "▃▇▂▅▁▅▄▃▁",
+    "▅▄▇▂▅▂▄▇▁",
+    "▃▅▂▅▃▇▄▅▃",
 ]
 
 
+## After Edits with Timer Bar
+
+
 def stream_markup_timer(_, videoid, chat_id, played, dur):
-    bar = selections[played % len(selections)]
+    bar = random.choice(selections)
     buttons = [
         [
             InlineKeyboardButton(
@@ -37,8 +40,7 @@ def stream_markup_timer(_, videoid, chat_id, played, dur):
                 callback_data=f"add_playlist {videoid}",
             ),
             InlineKeyboardButton(
-                text="heda",
-                url="https://t.me/hedala"
+                text="🌹 sᴏᴜʀᴄᴇ 🌹", url=f"https://github.com/itz-star-boi/ShizukaXMusic"
             ),
         ],
         [
@@ -46,23 +48,14 @@ def stream_markup_timer(_, videoid, chat_id, played, dur):
                 text=_["PL_B_3"],
                 callback_data=f"PanelMarkup {videoid}|{chat_id}",
             ),
-            InlineKeyboardButton(
-                text="BLACKPINK devrimdir!",
-                url="https://t.me/BlinkHeda"
-            ),
-        ],
-        [
-            InlineKeyboardButton(
-                text="Buraya bas!",
-                url="https://t.me/bioHEDA",
-            )
+            InlineKeyboardButton(text="sᴜᴘᴘᴏʀᴛ ɢʀᴏᴜᴘ 💌", url=f"{SUPPORT_GROUP}"),
         ],
     ]
     return buttons
 
 
 def telegram_markup_timer(_, chat_id, played, dur):
-    bar = selections[played % len(selections)]
+    bar = random.choice(selections)
     buttons = [
         [
             InlineKeyboardButton(
@@ -75,20 +68,50 @@ def telegram_markup_timer(_, chat_id, played, dur):
                 text=_["PL_B_2"],
                 callback_data=f"add_playlist {videoid}",
             ),
-            InlineKeyboardButton(
-                text="heda",
-                url="https://t.me/hedala"
-            ),
+            InlineKeyboardButton(text="🌹 sᴏᴜʀᴄᴇ 🌹", url=f"https://github.com/itz-star-boi/ShizukaXMusic"),
         ],
         [
             InlineKeyboardButton(
                 text=_["PL_B_3"],
                 callback_data=f"PanelMarkup None|{chat_id}",
             ),
+            InlineKeyboardButton(text="sᴜᴘᴘᴏʀᴛ ɢʀᴏᴜᴘ 💌", url=f"{SUPPORT_GROUP}"),
+        ],
+    ]
+    return buttons
+
+
+## Inline without Timer Bar
+
+
+def stream_markup(_, videoid, chat_id):
+    buttons = [
+        [
             InlineKeyboardButton(
-                text="BLACKPINK devrimdir!",
-                url="https://t.me/BlinkHeda"
+                text=_["PL_B_2"],
+                callback_data=f"add_playlist {videoid}",
             ),
+            InlineKeyboardButton(text="heda", url=f"https://t.me/hedala"),
+        ],
+        [
+            InlineKeyboardButton(
+                text=_["PL_B_3"],
+                callback_data=f"PanelMarkup None|{chat_id}",
+            ),
+            InlineKeyboardButton(text="BLACKPINK devrimdir!", url=f"https://t.me/BlinkHeda"),
+        ],
+    ]
+    return buttons
+
+
+def telegram_markup(_, chat_id):
+    buttons = [
+        [
+            InlineKeyboardButton(
+                text=_["PL_B_3"],
+                callback_data=f"PanelMarkup None|{chat_id}",
+            ),
+            InlineKeyboardButton(text=_["CLOSEMENU_BUTTON"], callback_data="close"),
         ],
     ]
     return buttons
