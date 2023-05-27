@@ -20,7 +20,7 @@ selections = [
     ".....................",
     "@BlinkHeda",
 ]
-
+selection = 0
 
 ## After Edits with Timer Bar
 
