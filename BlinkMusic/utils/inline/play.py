@@ -12,7 +12,7 @@ selections = [
     "Jennie",
     "Jisoo",
     "YerYüzünün kraliçeleri!",
-    "Dİnle dinle dinle!",
+    "Dinle dinle dinle!",
     "BLACKPINK dinle!",
     "Nirvanaya ulaş!",
     "BLACKPINK devrimdir!",
@@ -22,11 +22,8 @@ selections = [
 ]
 
 
-## After Edits with Timer Bar
-
-
 def stream_markup_timer(_, videoid, chat_id, played, dur):
-    bar = random.choice(selections)
+    bar = selections[played % len(selections)]
     buttons = [
         [
             InlineKeyboardButton(
@@ -40,7 +37,8 @@ def stream_markup_timer(_, videoid, chat_id, played, dur):
                 callback_data=f"add_playlist {videoid}",
             ),
             InlineKeyboardButton(
-                text=" heda", url=f"https://t.me/hedala"
+                text="heda",
+                url="https://t.me/hedala"
             ),
         ],
         [
@@ -48,12 +46,15 @@ def stream_markup_timer(_, videoid, chat_id, played, dur):
                 text=_["PL_B_3"],
                 callback_data=f"PanelMarkup {videoid}|{chat_id}",
             ),
-            InlineKeyboardButton(text="BLACKPINK devrimdir!", url=f"https://t.me/Blinkheda"),
+            InlineKeyboardButton(
+                text="BLACKPINK devrimdir!",
+                url="https://t.me/BlinkHeda"
+            ),
         ],
         [
             InlineKeyboardButton(
-                text=f"Buraya bas!",
-                url=f"https://t.me/bioHEDA",
+                text="Buraya bas!",
+                url="https://t.me/bioHEDA",
             )
         ],
     ]
@@ -61,7 +62,7 @@ def stream_markup_timer(_, videoid, chat_id, played, dur):
 
 
 def telegram_markup_timer(_, chat_id, played, dur):
-    bar = random.choice(selections)
+    bar = selections[played % len(selections)]
     buttons = [
         [
             InlineKeyboardButton(
@@ -74,14 +75,20 @@ def telegram_markup_timer(_, chat_id, played, dur):
                 text=_["PL_B_2"],
                 callback_data=f"add_playlist {videoid}",
             ),
-            InlineKeyboardButton(text="heda", url=f"https://t.me/hedala"),
+            InlineKeyboardButton(
+                text="heda",
+                url="https://t.me/hedala"
+            ),
         ],
         [
             InlineKeyboardButton(
                 text=_["PL_B_3"],
                 callback_data=f"PanelMarkup None|{chat_id}",
             ),
-            InlineKeyboardButton(text="BLACKPINK devrimdir!", url=f"https://t.me/BlinkHeda"),
+            InlineKeyboardButton(
+                text="BLACKPINK devrimdir!",
+                url="https://t.me/BlinkHeda"
+            ),
         ],
     ]
     return buttons
