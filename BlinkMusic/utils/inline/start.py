@@ -2,15 +2,15 @@ from typing import Union
 
 from pyrogram.types import InlineKeyboardButton
 
-from config import GITHUB_REPO, SUPPORT_CHANNEL, SUPPORT_GROUP
-from BlinkMusic import app
+from config import SUPPORT_CHANNEL, SUPPORT_GROUP, GITHUB_REPO, OWNER_ID as OWNER
+from ShizukaXMusic import app
 
 
 def start_pannel(_):
     buttons = [
         [
             InlineKeyboardButton(
-                text=_["Genel komutlar"],
+                text=_["S_B_1"],
                 url=f"https://t.me/{app.username}?start=help",
             ),
             InlineKeyboardButton(text=_["S_B_2"], callback_data="settings_helper"),
@@ -67,14 +67,14 @@ def private_panel(_, BOT_USERNAME, OWNER: Union[bool, int] = None):
         buttons.append(
             [
                 InlineKeyboardButton(text=_["S_B_7"], user_id=OWNER),
-                InlineKeyboardButton(text=_["heda"], url=f"https://t.me/hedala"),
+                InlineKeyboardButton(text=_["S_B_6"], url=f"https://github.com/itz-star-boi/ShizukaXMusic"),
             ]
         )
     else:
         if GITHUB_REPO:
             buttons.append(
                 [
-                    InlineKeyboardButton(text=_["heda"], url=f"https://t.me/hedala"),
+                    InlineKeyboardButton(text=_["S_B_6"], url=f"https://github.com/itz-star-boi/ShizukaXMusic"),
                 ]
             )
         if OWNER:
@@ -83,5 +83,5 @@ def private_panel(_, BOT_USERNAME, OWNER: Union[bool, int] = None):
                     InlineKeyboardButton(text=_["S_B_7"], user_id=OWNER),
                 ]
             )
-    buttons.append([InlineKeyboardButton(text=_["Diller"], callback_data="LG")])
+    buttons.append([InlineKeyboardButton(text=_["ST_B_6"], callback_data="LG")])
     return buttons
