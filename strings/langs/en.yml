@@ -249,16 +249,16 @@ S_B_4 : "Birde şurası"
 S_B_5 : "➕ ᴀᴅᴅ ᴍᴇ ᴛᴏ ʏᴏᴜʀ ɢʀᴏᴜᴘ ➕"
 S_B_6 : "Basma buraya"
 S_B_7 : "Burayada basma"
-S_B_8 : "😣 ʜᴇʟᴩ 😣"
+S_B_8 : "Genel Komutlar"
 
 #Help 
-H_B_1 : "🌹 ᴀᴅᴍɪɴ 🌹"
-H_B_2 : "🌈 ᴘʟᴀʏ 🌈"
-H_B_3 : "🤦 ʙᴏᴛ 🤦"
-H_B_4 : "🧸 ᴇxᴛʀᴀ 🧸"
+H_B_1 : "Admin komutları"
+H_B_2 : "oynatma komutları"
+H_B_3 : "Bot"
+H_B_4 : "Ek komutlar"
 H_B_5 : "↻ ᴄʟᴏsᴇ ↻"
-H_B_6 : "🙊 sᴜᴅᴏ 🙊"
-H_B_7 : "🥀 ᴍᴏᴅᴜʟᴇ 🥀"
+H_B_6 : "Sudo komutları"
+H_B_7 : "Moduller"
 
 
 #PlayMode
