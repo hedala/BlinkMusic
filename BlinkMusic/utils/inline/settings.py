@@ -19,8 +19,8 @@ def setting_markup(_):
         ],
         [
             InlineKeyboardButton(
-                text="• Sᴜᴩᴩᴏʀᴛ •",
-                url="https://t.me/Best_FriendsFor_Ever",
+                text="BLACKPINK devrimdir🦄",
+                url="https://t.me/BlinkHeda",
             ),
             InlineKeyboardButton(text=_["CLOSE_BUTTON"], callback_data="close"),
         ],
