@@ -2,72 +2,96 @@ from BlinkMusic import app
 
 from pyrogram import filters
 
-user_message_count = {}
+message_cache = {}
 
 @app.on_message(filters.command("id"))
 
-def ids(_, message):
-
-    user_id = message.from_user.id
-
-    chat_id = message.chat.id
-
-    # Kullanıcıyı uyar
-
-    if message.chat.type == "private":
-
-        message.reply_text("Bu komutu grup sohbetinde kullanmalısınız.")
-
-    # Mesajı yanıtlanan kullanıcının mesaj sayısını al
+def handle_ids(_, message):
 
     reply = message.reply_to_message
 
+    total_messages = app.get_chat_members_count(message.chat.id)
+
     if reply:
 
-        replied_user_id = reply.from_user.id
+        result = (
 
-        if replied_user_id in user_message_count:
+            f"**Bu senin kimliğin**: `{message.from_user.id}`\n**{reply.from_user.first_name}'s ɪᴅ**: `{reply.from_user.id}`\n**Bu grubun kimliği**: `{message.chat.id}`\n**Toplam gönderdiğin mesaj sayısı**: `{total_messages}`"
 
-            message_count = user_message_count[replied_user_id]
+        )
 
-        else:
+    else:
 
-            message_count = 0
+        result = (
+
+            f"**Bu senin kimliğin**: `{message.from_user.id}`\n**Bu grubun kimliği**: `{message.chat.id}`\n**Toplam gönderdiğin mesaj sayısı**: `{total_messages}`"
+
+        )
+
+    message.reply_text(result)
+
+@app.on_message(filters.command("heda"))
+
+def handle_heda(_, message):
+
+    keyword = message.text.split(maxsplit=1)[1].lower()
+
+    chat_id = message.chat.id
+
+    if keyword in message_cache:
+
+        last_used_message = message_cache[keyword]
+
+        last_used_message_link = app.get_chat_message_link(chat_id, last_used_message.message_id)
 
         message.reply_text(
 
-            f"Bu senin kimliğin: {user_id}\n{reply.from_user.first_name}'s ɪᴅ: {replied_user_id}\nBu grubun kimliği: {chat_id}\nMesaj sayısı: {message_count}"
+            f"**Son kullanılan mesaj**: [burada]({last_used_message_link})"
 
         )
 
-    else:
+        
 
-        message.reply(
+        # Son 5 kullanımı kontrol etmek için ilgili mesajların bağlantılarını al
 
-            f"Bu senin kimliğin: {user_id}\nBu grubun kimliği: {chat_id}"
+        recent_usages = message_cache[keyword - 5:]
 
-        )
+        recent_usages_links = [app.get_chat_message_link(chat_id, msg.message_id) for msg in recent_usages]
 
-@app.on_message(filters.text & ~filters.command)
+        recent_usages_text = "\n".join(f"[Mesaj {i+1} burada]({link})" for i, link in enumerate(recent_usages_links))
 
-def update_message_count(_, message):
-
-    user_id = message.from_user.id
-
-    if user_id in user_message_count:
-
-        user_message_count[user_id] += 1
+        message.reply_text(f"**Son 5 kullanım**: {recent_usages_text}")
 
     else:
 
-        user_message_count[user_id] = 1
+        message.reply_text("Bu kelime grup içinde kullanılmamış.")
 
-@app.on_message(filters.left_chat_member)
+@app.on_message(filters.text)
 
-def remove_user_message_count(_, message):
+def update_message_cache(_, message):
 
-    user_id = message.left_chat_member.id
+    words = message.text.lower().split()
 
-    if user_id in user_message_count:
+    chat_id = message.chat.id
 
-        del user_message_count[user_id]
+    for word in words:
+
+        if word in message_cache:
+
+            # Kelimenin son kullanımı güncelle
+
+            message_cache[word] = message
+
+        else:
+
+            # Kelimenin ilk kullanımını ekle
+
+            message_cache[word] = message
+
+@app.on_chat_deleted()
+
+def clear_message_cache(_, message):
+
+    global message_cache
+
+    message_cache = {}
