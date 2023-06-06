@@ -88,10 +88,16 @@ def update_message_cache(_, message):
 
             message_cache[word] = message
 
-@app.on_chat_deleted()
+@app.on_deleted_messages()
 
-def clear_message_cache(_, message):
+def clear_message_cache(_, messages):
 
     global message_cache
 
-    message_cache = {}
+    for message in messages:
+
+        for word, cached_message in message_cache.copy().items():
+
+            if cached_message.message_id == message.message_id:
+
+                del message_cache[word]
