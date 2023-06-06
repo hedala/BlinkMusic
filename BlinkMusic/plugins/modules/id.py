@@ -1,4 +1,4 @@
-from BlinkMusic import app, db
+from BlinkMusic import app
 
 from pyrogram import filters
 
