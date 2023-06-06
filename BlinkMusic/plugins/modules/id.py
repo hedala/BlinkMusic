@@ -40,7 +40,7 @@ def handle_heda(_, message):
 
     if keyword in message_cache:
 
-        last_used_message = message_cache[keyword]
+        last_used_message = message_cache[keyword][-1]
 
         last_used_message_link = f"https://t.me/{message.chat.username}/{last_used_message.message_id}"
 
