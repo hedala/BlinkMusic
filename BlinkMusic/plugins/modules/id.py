@@ -42,7 +42,7 @@ def handle_heda(_, message):
 
         last_used_message = message_cache[keyword]
 
-        last_used_message_link = app.get_chat_message_link(chat_id, last_used_message.message_id)
+        last_used_message_link = f"https://t.me/{message.chat.username}/{last_used_message.message_id}"
 
         message.reply_text(
 
@@ -54,9 +54,9 @@ def handle_heda(_, message):
 
         # Son 5 kullanımı kontrol etmek için ilgili mesajların bağlantılarını al
 
-        recent_usages = message_cache[keyword - 5:]
+        recent_usages = message_cache[keyword][-5:]
 
-        recent_usages_links = [app.get_chat_message_link(chat_id, msg.message_id) for msg in recent_usages]
+        recent_usages_links = [f"https://t.me/{message.chat.username}/{msg.message_id}" for msg in recent_usages]
 
         recent_usages_text = "\n".join(f"[Mesaj {i+1} burada]({link})" for i, link in enumerate(recent_usages_links))
 
@@ -80,13 +80,13 @@ def update_message_cache(_, message):
 
             # Kelimenin son kullanımı güncelle
 
-            message_cache[word] = message
+            message_cache[word].append(message)
 
         else:
 
             # Kelimenin ilk kullanımını ekle
 
-            message_cache[word] = message
+            message_cache[word] = [message]
 
 @app.on_deleted_messages()
 
@@ -96,8 +96,14 @@ def clear_message_cache(_, messages):
 
     for message in messages:
 
-        for word, cached_message in message_cache.copy().items():
+        for word, cached_messages in message_cache.copy().items():
 
-            if cached_message.message_id == message.message_id:
+            for cached_message in cached_messages:
+
+                if cached_message.message_id == message.message_id:
+
+                    cached_messages.remove(cached_message)
+
+            if not cached_messages:
 
                 del message_cache[word]
