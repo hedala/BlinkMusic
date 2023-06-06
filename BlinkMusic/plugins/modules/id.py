@@ -38,11 +38,25 @@ def handle_heda(_, message):
 
     chat_id = message.chat.id
 
+    chat_username = message.chat.username
+
     if keyword in message_cache:
 
         last_used_message = message_cache[keyword][-1]
 
-        last_used_message_link = f"https://t.me/{message.chat.username}/{last_used_message.message_id}"
+        last_used_message_id = last_used_message.message_id
+
+        
+
+        if chat_username:
+
+            last_used_message_link = f"https://t.me/{chat_username}/{last_used_message_id}"
+
+        else:
+
+            last_used_message_link = f"https://t.me/c/{chat_id}/{last_used_message_id}"
+
+        
 
         message.reply_text(
 
@@ -56,7 +70,27 @@ def handle_heda(_, message):
 
         recent_usages = message_cache[keyword][-5:]
 
-        recent_usages_links = [f"https://t.me/{message.chat.username}/{msg.message_id}" for msg in recent_usages]
+        recent_usages_links = []
+
+        
+
+        for msg in recent_usages:
+
+            message_id = msg.message_id
+
+            if chat_username:
+
+                link = f"https://t.me/{chat_username}/{message_id}"
+
+            else:
+
+                link = f"https://t.me/c/{chat_id}/{message_id}"
+
+            
+
+            recent_usages_links.append(link)
+
+        
 
         recent_usages_text = "\n".join(f"[Mesaj {i+1} burada]({link})" for i, link in enumerate(recent_usages_links))
 
@@ -65,6 +99,8 @@ def handle_heda(_, message):
     else:
 
         message.reply_text("Bu kelime grup içinde kullanılmamış.")
+
+
 
 @app.on_message(filters.text)
 
