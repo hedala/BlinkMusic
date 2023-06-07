@@ -54,7 +54,7 @@ def handle_heda(_, message):
 
         else:
 
-            last_used_message_link = f"https://t.me/c/{chat_id}/{last_used_message_id}"
+            last_used_message_link = f"https://t.me/c/{group_id}/{last_used_message_id}"
 
         
 
