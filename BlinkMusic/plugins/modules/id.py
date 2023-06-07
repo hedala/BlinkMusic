@@ -84,7 +84,7 @@ def handle_heda(_, message):
 
             else:
 
-                link = f"https://t.me/c/{chat_id}/{message_id}"
+                link = f"https://t.me/c/{group_id}/{message_id}"
 
             
 
