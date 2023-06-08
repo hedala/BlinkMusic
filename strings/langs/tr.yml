@@ -54,7 +54,7 @@ admin_16 : "Belirli bir parçaya geçilemedi.\n\nSırayı /queue göre kontrol e
 admin_17 : "{0}.. Lütfen bekleyin"
 admin_18 : "Yönetici Listesi Bulunamadı\n\nLütfen yönetici listesini /admincache veya /reload yoluyla yeniden yükleyin"
 admin_19 : "Bunu gerçekleştirmek için sesli sohbet haklarına sahip yönetici olmanız gerekir.\nZaten yöneticiyseniz, /admincache aracılığıyla admincache'i yeniden yükleyin "
-admin_20 : "Yönetici önbelleği başarıyla yeniden yüklendi."
+admin_20 : "Yönetici listesini güncelledim. Tanrıça Jennnie'e sonsuz şükranlar.."
 admin_21 : "Sırada karıştırılacak bir şey yok"
 admin_22 : "Karıştırılamadı.\n\nSırayı kontrol edin: /queue"
 admin_23 : "**Sıra Karıştırıldı: {0}**\n\nKarıştırılan sırayı kontrol edin: /queue"
