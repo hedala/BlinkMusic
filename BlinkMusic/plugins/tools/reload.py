@@ -36,7 +36,7 @@ async def reload_admin_cache(client, message: Message, _):
         await message.reply_text(_["admin_20"])
     except:
         await message.reply_text(
-            "ғᴀɪʟᴇᴅ ᴛᴏ ʀᴇғʀᴇsʜ ᴀᴅᴍɪɴs ʟɪsᴛ, ᴍᴀᴋᴇ sᴜʀᴇ ʏᴏᴜ ᴩʀᴏᴍᴏᴛᴇᴅ ᴛʜᴇ ʙᴏᴛ."
+            "Admin listesi alamadım ki. Ben yönetici değilim."
         )
 
 
