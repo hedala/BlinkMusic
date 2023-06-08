@@ -188,9 +188,9 @@ tracks_2 : "**Hata**\n\nBot'un sunucularında **{0} En İyi 10 Oynatma Listesi**
 # TOOLS
 
 #Lyrics
-lyrics_1 : "**Kullanım:**\n\n/lyrics [ Şarkı ADı]"
-lyrics_2 : "Şarkı Sözleri Arama"
-lyrics_3 : "❌ Şarkı sözleri getirilemedi😭.\n\n💡**Aramaya çalışıldı:** {0}"
+lyrics_1 : "**Kullanım:**\n\n/lyrics <şarkı>"
+lyrics_2 : "Tamam bekle arıyorum."
+lyrics_3 : "Şarkı sözünü bulamadım. lütfen yazımda yanlışlık olmadığına dikkat et."
 lyrics_5 : 
 lyrics_4 : "Uzun spam türlerinde şarkı sözü aramasından kaçınmak için aşağıdaki düğmeyi tıklayın ve aranılan şarkı sözlerini alın."
 
