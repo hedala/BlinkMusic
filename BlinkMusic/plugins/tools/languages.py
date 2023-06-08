@@ -15,37 +15,37 @@ def lanuages_keyboard(_):
     keyboard = InlineKeyboard(row_width=2)
     keyboard.row(
         InlineKeyboardButton(
-            text="🇦🇺 ᴇɴɢʟɪsʜ 🇦🇺",
+            text="İngilizce",
             callback_data=f"languages:en",
         ),
         InlineKeyboardButton(
-            text="🇮🇳 हिन्दी 🇮🇳",
+            text="Hintçe",
             callback_data=f"languages:hi",
         ),
     )
     keyboard.row(
         InlineKeyboardButton(
-            text="🇱🇰 සිංහල 🇱🇰",
+            text="Garip bir dil",
             callback_data=f"languages:si",
         ),
         InlineKeyboardButton(
-            text="🇦🇿 Azərbaycan 🇦🇿",
+            text="Azerice",
             callback_data=f"languages:az",
         ),
     )
     keyboard.row(
         InlineKeyboardButton(
-            text="🇮🇳 ગુજરાતી 🇮🇳",
+            text="Bu dahada garip",
             callback_data=f"languages:gu",
         ),
         InlineKeyboardButton(
-            text="🇹🇷 Türkçe 🇹🇷",
+            text="Türkçe",
             callback_data=f"languages:tr",
         ),
     )
     keyboard.row(
         InlineKeyboardButton(
-            text="🐕 ᴄʜᴇᴇᴍs 🐕",
+            text="Buna basma",
             callback_data=f"languages:cheems",
         ),
     )
@@ -92,12 +92,12 @@ async def language_markup(client, CallbackQuery, _):
     old = await get_lang(CallbackQuery.message.chat.id)
     if str(old) == str(langauge):
         return await CallbackQuery.answer(
-            "ʏᴏᴜ'ʀᴇ ᴀʟʀᴇᴀᴅʏ ᴜsɪɴɢ sᴀᴍᴇ ʟᴀɴɢᴜᴀɢᴇ ғᴏʀ ᴛʜɪs ᴄʜᴀᴛ.", show_alert=True
+            "Zaten bu dili kullanıyorsunuz.", show_alert=True
         )
     try:
         _ = get_string(langauge)
         await CallbackQuery.answer(
-            "sᴜᴄᴄᴇssғᴜʟʟʏ ᴄʜᴀɴɢᴇᴅ ʏᴏᴜʀ ʟᴀɴɢᴜᴀɢᴇ.", show_alert=True
+            "Diliniz değiştirildi.", show_alert=True
         )
     except:
         return await CallbackQuery.answer(
