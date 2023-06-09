@@ -66,10 +66,10 @@ admin_27 : "ʟᴏᴏᴘ ᴘʟᴀʏ ʜᴀs ʙᴇᴇɴ ᴅɪsᴀʙʟᴇᴅ ᴍʏ �
 admin_28 : "**ᴜsᴀɢᴇ:**\n/seek ᴏʀ /seekback [ᴅᴜʀᴀᴛɪᴏɴ ɪɴ sᴇᴄᴏɴᴅs]"
 admin_29 : "ᴩʟᴇᴀsᴇ ᴜsᴇ ɴᴜᴍʙᴇʀ ғᴏʀ sᴇᴇᴋɪɴɢ ɪɴ sᴇᴄᴏɴᴅs."
 admin_30 : "Bot sesli sohbette birşey oynatmıyor."
-admin_31 : "Lütfen verilen sürenin oynatılan parçanın dışına çıkmadığına emin olun.\n\nŞu süredeyiz şuan ** {0}**Ama video süresi**{1}** dakikadır."
-admin_32 : "İleriye sarıyorum.."
-admin_33 : " {0} Süresini oynatıyorum şuan"
-admin_34 : "İleriye sarma başarısız"
+admin_31 : "Lütfen verilen sürenin oynatılan parçanın dışına çıkmadığına emin olun.\n\nŞu süredeyiz şuan ** {0}** Ama video süresi **{1}** dakikadır."
+admin_32 : "**Hemen hallediyorum..**"
+admin_33 : " {0} Süresini oynatıyorum şuan."
+admin_34 : "İleriye sarma başarısız."
 
 # Bot 
 
