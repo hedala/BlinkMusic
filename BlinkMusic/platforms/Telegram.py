@@ -103,7 +103,7 @@ class TeleAPI:
                     [
                         [
                             InlineKeyboardButton(
-                                text="Basma buraya!",
+                                text="Pişman oldum indirmeyi iptal et.",
                                 callback_data="stop_downloading",
                             ),
                         ]
