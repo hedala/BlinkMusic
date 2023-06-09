@@ -1,20 +1,20 @@
 HELP_1 = """Admin komutları**
 
-/pause : Akışı durdurur.
-/resume : Akışı devam ettirir.
-/mute : Akışı sessize alır.
-/unmute : Akışı sessizden çıkarır.
-/skip : Oynatılan akışı atlar başka parçaya geçer eğer.
-/end veya /stop : Akışı sonlandırır.
-/shuffle : sʜᴜғғʟᴇ ᴛʜᴇ ǫᴜᴇᴜᴇᴅ ᴛʀᴀᴄᴋs.
-/seek : Akışı ileri sarar.
-/seekback : Akışı geriye sarar.
-/reboot : ʀᴇʙᴏᴏᴛs ᴛʜᴇ ʙᴏᴛ ғᴏʀ ʏᴏᴜʀ ᴄʜᴀᴛ.
+/pause : Şu anda çalınan yayını duraklatır.
+/resume : Duraklatılan yayını devam ettirir.
+/mute : Şu anda çalınan yayının sesini kapatır.
+/unmute : Kapatılan sesi açar.
+/skip : Şu anda çalınan yayını atlar ve sıradaki şarkıya geçer.
+/end veya /stop : Çalınan yayını sonlandırır.
+/shuffle : Sıradaki şarkıları karıştırır.
+/seek : Yayını belirtilen süreye ilerletir.
+/seekback : Yayını belirtilen süre kadar geri sarar.
+/reboot : Sohbetinizdeki botu yeniden başlatır.
 
-🥴<u>**ʟᴏᴏᴩ ᴩʟᴀʏ :**</u>
+<u>**Loop :**</u>
 
-/loop [ᴅɪsᴀʙʟᴇ/ᴇɴᴀʙʟᴇ] ᴏʀ [ʙᴇᴛᴡᴇᴇɴ 1:10] 
-    : ᴡʜᴇɴ ᴀᴄᴛɪᴠᴀᴛᴇᴅ ʙᴏᴛ ᴡɪʟʟ ᴩʟᴀʏ ᴛʜᴇ ᴄᴜʀʀᴇɴᴛ ᴩʟᴀʏɪɴɢ sᴛʀᴇᴀᴍ ɪɴ ʟᴏᴏᴩ ғᴏʀ 10 ᴛɪᴍᴇs ᴏʀ ᴛʜᴇ ɴᴜᴍʙᴇʀ ᴏғ ʀᴇǫᴜᴇsᴛᴇᴅ ʟᴏᴏᴩs.
+/loop [Disable/Enable] veya [Sayı 1:10] 
+    : 
 
 😜<u>**ᴀᴜᴛʜ ᴜsᴇʀs :**</u>
 
