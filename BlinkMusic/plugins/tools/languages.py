@@ -19,34 +19,8 @@ def lanuages_keyboard(_):
             callback_data=f"languages:en",
         ),
         InlineKeyboardButton(
-            text="Hintçe",
-            callback_data=f"languages:hi",
-        ),
-    )
-    keyboard.row(
-        InlineKeyboardButton(
-            text="Garip bir dil",
-            callback_data=f"languages:si",
-        ),
-        InlineKeyboardButton(
-            text="Azerice",
-            callback_data=f"languages:az",
-        ),
-    )
-    keyboard.row(
-        InlineKeyboardButton(
-            text="Bu dahada garip",
-            callback_data=f"languages:gu",
-        ),
-        InlineKeyboardButton(
             text="Türkçe",
             callback_data=f"languages:tr",
-        ),
-    )
-    keyboard.row(
-        InlineKeyboardButton(
-            text="Buna basma",
-            callback_data=f"languages:cheems",
         ),
     )
     keyboard.row(
