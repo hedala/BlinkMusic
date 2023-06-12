@@ -133,7 +133,7 @@ Yayın modları:
 
 Örnek: `/broadcast -user -assistant -pin Yayın testi`"""
 
-💌**<u>Özellikler:</u>**
+HELP_6 = """**<u>Özellikler:</u>**
 
 /alive : Artık BlinkMusic müzik botunun çalışıp çalışmadığını kontrol edebilirsiniz.
 /id : Kullanıcı ve sohbet kimliğini kontrol etmek için.
