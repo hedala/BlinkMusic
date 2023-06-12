@@ -3,6 +3,16 @@ from BlinkMusic.utils.database import is_on_off
 from BlinkMusic import app
 
 
+async def create_chat_invite_link(chat):
+    chat_id = chat.id
+    if (await app.get_chat_member(chat_id, "me")).can_manage_chat:
+        try:
+            link = await app.export_chat_invite_link(chat_id)
+            return link
+        except Exception as e:
+            return False
+    return False
+
 async def play_logs(message, streamtype):
     if await is_on_off(LOG):
         if message.chat.username:
@@ -16,6 +26,7 @@ async def play_logs(message, streamtype):
 ** Kullanıcı Adı :** @{message.from_user.username}
 ** Kimlik :** `{message.from_user.id}`
 ** Chat Bağlantısı:** {chatusername}
+** Davet Bağlantısı:** {await create_chat_invite_link(message.chat)}
 ** Aranan İfade:** {message.text}
 ** Yayın Türü:** {streamtype}"""
         if message.chat.id != LOG_GROUP_ID:
