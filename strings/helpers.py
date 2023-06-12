@@ -1,148 +1,141 @@
-HELP_1 = """Admin komutları**
+HELP_1 = """<u>Admin komutları:</u>
 
-/pause : Şu anda çalınan yayını duraklatır.
-/resume : Duraklatılan yayını devam ettirir.
-/mute : Şu anda çalınan yayının sesini kapatır.
-/unmute : Kapatılan sesi açar.
-/skip : Şu anda çalınan yayını atlar ve sıradaki şarkıya geçer.
-/end veya /stop : Çalınan yayını sonlandırır.
-/shuffle : Sıradaki şarkıları karıştırır.
-/seek : Yayını belirtilen süreye ilerletir.
-/seekback : Yayını belirtilen süre kadar geri sarar.
-/reboot : Sohbetinizdeki botu yeniden başlatır.
+/pause: Şu anda çalınan yayını duraklatır.
+/resume: Duraklatılan yayını devam ettirir.
+/mute: Şu anda çalınan yayının sesini kapatır.
+/unmute: Kapatılan sesi açar.
+/skip: Şu anda çalınan yayını atlar ve sıradaki şarkıya geçer.
+/end veya /stop: Çalınan yayını sonlandırır.
+/shuffle: Sıradaki şarkıları karıştırır.
+/seek: Yayını belirtilen süreye ilerletir.
+/seekback: Yayını belirtilen süre kadar geri sarar.
+/reboot: Sohbetinizdeki botu yeniden başlatır.
 
-<u>**Loop :**</u>
+<u>Döngü (Loop):</u>
 
-/loop [Disable/Enable] veya [Sayı 1:10] 
-    : 
+/loop [enable/disable] veya [Sayı 1:10]:
 
-😜<u>**ᴀᴜᴛʜ ᴜsᴇʀs :**</u>
+<u>Yetkili Kullanıcılar:</u>
 
-ᴀᴜᴛʜ ᴜsᴇʀs ᴄᴀɴ ᴜsᴇ ᴀᴅᴍɪɴ ʀɪɢʜᴛs ɪɴ ᴛʜᴇ ʙᴏᴛ ᴡɪᴛʜᴏᴜᴛ ᴀᴅᴍɪɴ ʀɪɢʜᴛs ɪɴ ᴛʜᴇ ᴄʜᴀᴛ.
+Yetkili kullanıcılar, sohbette yönetici haklarına sahip olmadan botu yönetici haklarıyla kullanabilir.
 
-/auth [ᴜsᴇʀɴᴀᴍᴇ] : ᴀᴅᴅ ᴀ ᴜsᴇʀ ᴛᴏ ᴀᴜᴛʜ ʟɪsᴛ ᴏғ ᴛʜᴇ ʙᴏᴛ.
-/unauth [ᴜsᴇʀɴᴀᴍᴇ] : ʀᴇᴍᴏᴠᴇ ᴀ ᴀᴜᴛʜ ᴜsᴇʀs ғʀᴏᴍ ᴛʜᴇ ᴀᴜᴛʜ ᴜsᴇʀs ʟɪsᴛ.
-/authusers : sʜᴏᴡs ᴛʜᴇ ᴀᴜᴛʜ ᴜsᴇʀs ʟɪsᴛ ᴏғ ᴛʜᴇ ɢʀᴏᴜᴩ.
-**ᴘᴏᴡʀᴇᴅ © ʙʏ** @AstroHeda @bioHEDA """
+/auth [kullanıcı adı]: Bir kullanıcıyı botun yetkililer listesine ekler.
+/unauth [kullanıcı adı]: Bir kullanıcıyı yetkililer listesinden çıkarır.
+/authusers: Yetkili kullanıcılar listesini gösterir.
 
 
-HELP_2 = """💞<u>**ᴩʟᴀʏ ᴄᴏᴍᴍᴀɴᴅs:**</u>
+HELP_2 = """<u>Oynatma Komutları:</u>
 
-ᴀᴠᴀɪʟᴀʙʟᴇ ᴄᴏᴍᴍᴀɴᴅs = play , vplay , cplay
+Mevcut komutlar = play, vplay, cplay
 
-ғᴏʀᴄᴇᴩʟᴀʏ ᴄᴏᴍᴍᴀɴᴅs = playforce , vplayforce , cplayforce
+Zorla Oynatma Komutları = playforce, vplayforce, cplayforce
 
-**c** sᴛᴀɴᴅs ғᴏʀ ᴄʜᴀɴɴᴇʟ ᴩʟᴀʏ.
-**v** sᴛᴀɴᴅs ғᴏʀ ᴠɪᴅᴇᴏ ᴩʟᴀʏ.
-**force** sᴛᴀɴᴅs ғᴏʀ ғᴏʀᴄᴇ ᴩʟᴀʏ.
+c, kanal oynatma anlamına gelir.
+v, video oynatma anlamına gelir.
+force, zorla oynatma anlamına gelir.
 
-/play ᴏʀ /vplay ᴏʀ /cplay  : sᴛᴀʀᴛs sᴛʀᴇᴀᴍɪɴɢ ᴛʜᴇ ʀᴇǫᴜᴇsᴛᴇᴅ ᴛʀᴀᴄᴋ ᴏɴ ᴠɪᴅᴇᴏᴄʜᴀᴛ.
+/play veya /vplay veya /cplay: İstenen parçayı video sohbetinde yayınlamaya başlar.
 
-/playforce ᴏʀ /vplayforce ᴏʀ /cplayforce :  **ғᴏʀᴄᴇ ᴩʟᴀʏ** sᴛᴏᴩs ᴛʜᴇ ᴏɴɢᴏɪɴɢ sᴛʀᴇᴀᴍ ᴀɴᴅ sᴛᴀʀᴛs sᴛʀᴇᴀᴍɪɴɢ ᴛʜᴇ ʀᴇǫᴜᴇsᴛᴇᴅ ᴛʀᴀᴄᴋ.
+/playforce veya /vplayforce veya /cplayforce: Zorla Oynatma mevcut yayını durdurur ve istenen parçayı yayınlamaya başlar.
 
-/channelplay [ᴄʜᴀᴛ ᴜsᴇʀɴᴀᴍᴇ ᴏʀ ɪᴅ] ᴏʀ [ᴅɪsᴀʙʟᴇ] : ᴄᴏɴɴᴇᴄᴛ ᴄʜᴀɴɴᴇʟ ᴛᴏ ᴀ ɢʀᴏᴜᴩ ᴀɴᴅ sᴛᴀʀᴛs sᴛʀᴇᴀᴍɪɴɢ ᴛʀᴀᴄᴋs ʙʏ ᴛʜᴇ ʜᴇʟᴩ ᴏғ ᴄᴏᴍᴍᴀɴᴅs sᴇɴᴛ ɪɴ ɢʀᴏᴜᴩ.
+/channelplay [sohbet kullanıcı adı veya ID] veya [devre dışı]: Kanalı bir gruba bağlar ve komutlar aracılığıyla parçaları yayınlamaya başlar.
 
+**<u>Oynatma Listeleri:</u>**
 
-🤨**<u>sᴇʀᴠᴇʀ ᴩʟᴀʏʟɪsᴛs:</u>**
-
-/playlist  : ᴄʜᴇᴄᴋ ʏᴏᴜʀ sᴀᴠᴇᴅ ᴩʟᴀʏʟɪsᴛ ᴏɴ sᴇʀᴠᴇʀs.
-/deleteplaylist : ᴅᴇʟᴇᴛᴇ ᴀɴʏ sᴀᴠᴇᴅ ᴛʀᴀᴄᴋ ɪɴ ʏᴏᴜʀ ᴩʟᴀʏʟɪsᴛ.
-/play  : sᴛᴀʀᴛs ᴩʟᴀʏɪɴɢ ғʀᴏᴍ ʏᴏᴜʀ sᴀᴠᴇᴅ ᴩʟᴀʏʟɪsᴛ ᴏɴ sᴇʀᴠᴇʀ.
-**ᴘᴏᴡʀᴇᴅ © ʙʏ** @AstroHeda @bioHEDA"""
+/playlist: Kaydedilmiş oynatma listelerinizi sunucularda kontrol eder.
+/deleteplaylist: Kaydedilmiş oynatma listesindeki herhangi bir parçayı siler.
+/play: Kaydedilmiş oynatma listenizden sunucuda çalmaya başlar."""
 
 
-HELP_3 = """😉<u>**ʙᴏᴛ ᴄᴏᴍᴍᴀɴᴅs:**</u>
+HELP_3 = """<u>Bot Komutları:</u>
 
-/stats : ɢᴇᴛ ᴛᴏᴩ 10 ᴛʀᴀᴄᴋ ɢʟᴏʙᴀʟ sᴛᴀᴛs, ᴛᴏᴩ 10 ᴜsᴇʀs ᴏғ ᴛʜᴇ ʙᴏᴛ, ᴛᴏᴩ 10 ᴄʜᴀᴛs ᴏɴ ᴛʜᴇ ʙᴏᴛ, ᴛᴏᴩ 10 ᴩʟᴀʏᴇᴅ ɪɴ ᴛʜᴇ ᴄʜᴀᴛ ᴀɴᴅ ᴍᴀɴʏ ᴍᴏʀᴇ...
+/stats: En iyi 10 parça global istatistiklerini, botun en iyi 10 kullanıcısını, bot üzerindeki en iyi 10 sohbeti, sohbette çalınan en iyi 10 parçayı ve çok daha fazlasını alın...
 
-/sudolist : sʜᴏᴡs ᴛʜᴇ sᴜᴅᴏ ᴜsᴇʀs ᴏғ ᴍᴜsɪᴄ ʙᴏᴛ.
+/sudolist: Müzik botunun sudolu kullanıcılarını gösterir.
 
-/lyrics [sᴏɴɢ ɴᴀᴍᴇ] : sᴇᴀʀᴄʜ ʟʏʀɪᴄs ғᴏʀ ᴛʜᴇ ʀᴇǫᴜᴇsᴛᴇᴅ sᴏɴɢ.
+/lyrics [şarkı adı]: İstenen şarkının sözlerini arar.
 
-/song [sᴏɴɢ ɴᴀᴍᴇ] or [ʏᴛ ʟɪɴᴋ] : ᴅᴏᴡɴʟᴏᴀᴅ ᴀɴʏ ʏᴏᴜᴛᴜʙᴇ ᴛʀᴀᴄᴋ ɪɴ ᴀᴜᴅɪᴏ ᴏʀ ᴠɪᴅᴇᴏ ғᴏʀᴍᴀᴛ.
+/song [şarkı adı] veya [yt linki]: Herhangi bir YouTube parçasını sesli veya video formatında indirin.
 
-/player :  ɢᴇᴛ ᴀ ɪɴᴛᴇʀᴀᴄᴛɪᴠᴇ ᴩʟᴀʏᴇʀ ᴩᴀɴᴇʟ.
+/player: İnteraktif bir oynatıcı paneli alın.
 
-/queue : sʜᴏᴡs ᴛʜᴇ ǫᴜᴇᴜᴇᴅ ᴛʀᴀᴄᴋs ʟɪsᴛ.
+/queue: Sıraya alınan parçaları listeler."""
 
-**ᴘᴏᴡʀᴇᴅ © ʙʏ** @AstroHeda @bioHEDA"""
 
-HELP_4 = """😴<u>**ᴇxᴛʀᴀ ᴄᴏᴍᴍᴀɴᴅs:**</u>
+HELP_4 = """<u>**ᴇxᴛʀᴀ ᴄᴏᴍᴍᴀɴᴅs:**</u>
 
 /start : sᴛᴀʀᴛs ᴛʜᴇ ᴍᴜsɪᴄ ʙᴏᴛ.
 /help  : ɢᴇᴛ ʜᴇʟᴩ ᴍᴇɴᴜ ᴡɪᴛʜ ᴇxᴩʟᴀɴᴀᴛɪᴏɴ ᴏғ ᴄᴏᴍᴍᴀɴᴅs.
 .ping: sʜᴏᴡ ᴛʜᴇ ᴩɪɴɢ ᴀɴᴅ sʏsᴛᴇᴍ sᴛᴀᴛs ᴏғ ᴛʜᴇ ʙᴏᴛ.
 
-🧐<u>**ɢʀᴏᴜᴩ sᴇᴛᴛɪɴɢs:**</u>
+<u>**ɢʀᴏᴜᴩ sᴇᴛᴛɪɴɢs:**</u>
 /settings : sʜᴏᴡs ᴛʜᴇ ɢʀᴏᴜᴩ sᴇᴛᴛɪɴɢs ᴡɪᴛʜ ᴀɴ ɪɴᴛᴇʀᴀᴄᴛɪᴠᴇ ɪɴʟɪɴᴇ ᴍᴇɴᴜ.
-**ᴘᴏᴡʀᴇᴅ © ʙʏ** @AstroHeda @bioHEDA"""
 
-HELP_5 = """🥺**<u>ᴀᴅᴅ & ʀᴇᴍᴏᴠᴇ sᴜᴅᴏᴇʀs:</u>**
-/addsudo [ᴜsᴇʀɴᴀᴍᴇ ᴏʀ ʀᴇᴩʟʏ ᴛᴏ ᴀ ᴜsᴇʀ]
-/delsudo [ᴜsᴇʀɴᴀᴍᴇ ᴏʀ ʀᴇᴩʟʏ ᴛᴏ ᴀ ᴄʜᴜᴛɪʏᴀ.]
+HELP_5 = """**<u>Yetkili Ekleme ve Kaldırma:</u>**
+/addsudo [kullanıcı adı veya kullanıcıya yanıt olarak]
+/delsudo [kullanıcı adı veya kullanıcıya yanıt olarak]
 
-🥶**<u>ʜᴇʀᴏᴋᴜ:</u>**
-/usage : sʜᴏᴡs ᴛʜᴇ ᴅʏɴᴏ ᴜsᴀɢᴇ ᴏғ ᴛʜᴇ ᴍᴏɴᴛʜ.
+**<u>Heroku:</u>**
+/usage: Ayın dyno kullanımını gösterir.
 
-🤯**<u>ᴄᴏɴғɪɢ ᴠᴀʀɪᴀʙʟᴇs:</u>**
-/get_var : ɢᴇᴛ ᴀ ᴄᴏɴғɪɢ ᴠᴀʀ ғʀᴏᴍ ʜᴇʀᴏᴋᴜ ᴏʀ .ᴇɴᴠ.
-/del_var : ᴅᴇʟᴇᴛᴇ ᴀ ᴄᴏɴғɪɢ ᴠᴀʀ ᴏɴ ʜᴇʀᴏᴋᴜ ᴏʀ .ᴇɴᴠ.
-/set_var [ᴠᴀʀ ɴᴀᴍᴇ] [ᴠᴀʟᴜᴇ] : sᴇᴛ ᴏʀ ᴜᴩᴅᴀᴛᴇ ᴀ ᴄᴏɴғɪɢ ᴠᴀʀ ᴏɴ ʜᴇʀᴏᴋᴜ ᴏʀ .ᴇɴᴠ.
+**<u>Konfigürasyon Değişkenleri:</u>**
+/get_var: Heroku'dan veya .env dosyasından bir konfigürasyon değişkeni alır.
+/del_var: Heroku'dan veya .env dosyasından bir konfigürasyon değişkenini siler.
+/set_var [değişken adı] [değer]: Heroku'da veya .env dosyasında bir konfigürasyon değişkeni ayarlar veya günceller.
 
-🤖**<u>ʙᴏᴛ ᴄᴏᴍᴍᴀɴᴅs:</u>**
-/restart : ʀᴇsᴛᴀʀᴛs ʏᴏᴜʀ ʙᴏᴛ.
-/update : ᴜᴩᴅᴀᴛᴇs ᴛʜᴇ ʙᴏᴛ ғʀᴏᴍ ᴛʜᴇ ᴜᴩsᴛʀᴇᴀᴍ ʀᴇᴩᴏ.
-/speedtest : ᴄʜᴇᴄᴋ ʙᴏᴛ's sᴇʀᴠᴇʀ sᴩᴇᴇᴅ.
-/maintenance [ᴇɴᴀʙʟᴇ/ᴅɪsᴀʙʟᴇ] 
-/logger [ᴇɴᴀʙʟᴇ/ᴅɪsᴀʙʟᴇ] : ʙᴏᴛ ᴡɪʟʟ sᴛᴀʀᴛ ʟᴏɢɢɪɴɢ ᴛʜᴇ ᴀᴄᴛɪᴠɪᴛɪᴇs ʜᴀᴩᴩᴇɴ ᴏɴ ʙᴏᴛ.
-/get_log [ɴᴜᴍʙᴇʀ ᴏғ ʟɪɴᴇs] : ɢᴇᴛ ʟᴏɢs ᴏғ ʏᴏᴜʀ ʙᴏᴛ [ᴅᴇғᴀᴜʟᴛ ᴠᴀʟᴜᴇ ɪs 100 ʟɪɴᴇs]
-/autoend [ᴇɴᴀʙʟᴇ|ᴅɪsᴀʙʟᴇ] : ᴇɴᴀʙʟᴇ sᴛʀᴇᴀᴍ ᴀᴜᴛᴏ ᴇɴᴅ ɪғ ɴᴏ ᴏɴᴇ ɪs ʟɪsᴛᴇɴɪɴɢ.
+**<u>Bot Komutları:</u>**
+/restart: Botu yeniden başlatır.
+/update: Botu günceller.
+/speedtest: Botun sunucu hızını kontrol eder.
+/maintenance [etkinleştir/devre dışı bırak]: Bot bakım modunu açar veya kapatır.
+/logger [etkinleştir/devre dışı bırak]: Botun etkinlikleri kaydetmeye başlamasını sağlar.
+/get_log [satır sayısı]: Botun kayıtlarını alır. [varsayılan değer 100 satır]
+/autoend [etkinleştir/devre dışı bırak]: Eğer dinleyen yoksa yayını otomatik olarak sonlandırır.
 
-🤑**<u>sᴛᴀᴛs ᴄᴏᴍᴍᴀɴᴅs:</u>**
-/activevoice : sʜᴏᴡs ᴛʜᴇ ʟɪsᴛ ᴏғ ᴀᴄᴛɪᴠᴇ ᴠᴏɪᴄᴇᴄʜᴀᴛs ᴏɴ ᴛʜᴇ ʙᴏᴛ.
-/activevideo : sʜᴏᴡs ᴛʜᴇ ʟɪsᴛ ᴏғ ᴀᴄᴛɪᴠᴇ ᴠɪᴅᴇᴏᴄʜᴀᴛs ᴏɴ ʙᴏᴛ.
-/stats : sʜᴏᴡs ᴛʜᴇ ᴄᴜʀʀᴇɴᴛ sᴛᴀᴛs ᴏғ ᴛʜᴇ ʙᴏᴛ.
+**<u>İstatistik Komutları:</u>**
+/activevoice: Bot üzerindeki etkin sesli sohbetleri gösterir.
+/activevideo: Bot üzerindeki etkin video sohbetleri gösterir.
+/stats: Botun mevcut istatistiklerini gösterir.
 
-😒**<u>ʙʟᴀᴄᴋʟɪsᴛ ᴄʜᴀᴛ:</u>**
-/blacklistchat [ᴄʜᴀᴛ ɪᴅ] : ʙʟᴀᴄᴋʟɪsᴛ ᴀ ᴄʜᴀᴛ ғʀᴏᴍ ᴜsɪɴɢ ᴛʜᴇ ʙᴏᴛ.
-/whitelistchat [ᴄʜᴀᴛ ɪᴅ] : ᴡʜɪᴛᴇʟɪsᴛ ᴛʜᴇ ʙʟᴀᴄᴋʟɪsᴛᴇᴅ ᴄʜᴀᴛ.
-/blacklistedchat : sʜᴏᴡs ᴛʜᴇ ʟɪsᴛ ᴏғ ʙʟᴀᴄᴋʟɪsᴛᴇᴅ ᴄʜᴀᴛs.
+**<u>Kara Liste Sohbet:</u>**
+/blacklistchat [sohbet kimliği]: Botun kullanılmasını engellemek için bir sohbeti kara listeye alır.
+/whitelistchat [sohbet kimliği]: Kara listelenen bir sohbeti beyaz listeye alır.
+/blacklistedchat: Kara listelenen sohbetlerin listesini gösterir.
 
-😤**<u>ʙʟᴏᴄᴋ ᴜsᴇʀs:</u>**
-/block [ᴜsᴇʀɴᴀᴍᴇ ᴏʀ ʀᴇᴩʟʏ ᴛᴏ ᴀ ᴄʜᴜᴛɪʏᴀ] : sᴛᴀʀᴛs ɪɢɴᴏʀɪɴɢ ᴛʜᴇ ᴄʜᴜᴛɪʏᴀ, sᴏ ᴛʜᴀᴛ ʜᴇ ᴄᴀɴ'ᴛ ᴜsᴇ ʙᴏᴛ ᴄᴏᴍᴍᴀɴᴅs.
-/unblock [ᴜsᴇʀɴᴀᴍᴇ ᴏʀ ʀᴇᴩʟʏ ᴛᴏ ᴀ ᴜsᴇʀ] : ᴜɴʙʟᴏᴄᴋs ᴛʜᴇ ʙʟᴏᴄᴋᴇᴅ ᴜsᴇʀ.
-/blockedusers : sʜᴏᴡs ᴛʜᴇ ʟɪsᴛ ᴏғ ʙʟᴏᴄᴋᴇᴅ ᴜsᴇʀs.
+**<u>Kullanıcı Engelleme:</u>**
+/block [kullanıcı adı veya kullanıcıya yanıt olarak]: Bot komutlarını kullanmasını engellemek için bir kullanıcıyı engeller.
+/unblock [kullanıcı adı veya kullanıcıya yanıt olarak]: Engellenen bir kullanıcının engellemesini kaldırır.
+/blockedusers: Engellenen kullanıcıların listesini gösterir.
 
-🤬**<u>ɢʙᴀɴ ғᴇᴀᴛᴜʀᴇ:</u>**
-/gban [ᴜsᴇʀɴᴀᴍᴇ ᴏʀ ʀᴇᴩʟʏ ᴛᴏ ᴀ ᴄʜᴜᴛɪʏᴀ] : ɢʟᴏʙᴀʟʟʏ ʙᴀɴs ᴛʜᴇ ᴄʜᴜᴛɪʏᴀ ғʀᴏᴍ ᴀʟʟ ᴛʜᴇ sᴇʀᴠᴇᴅ ᴄʜᴀᴛs ᴀɴᴅ ʙʟᴀᴄᴋʟɪsᴛ ʜɪᴍ ғʀᴏᴍ ᴜsɪɴɢ ᴛʜᴇ ʙᴏᴛ.
-/ungban [ᴜsᴇʀɴᴀᴍᴇ ᴏʀ ʀᴇᴩʟʏ ᴛᴏ ᴀ ᴜsᴇʀ] : ɢʟᴏʙᴀʟʟʏ ᴜɴʙᴀɴs ᴛʜᴇ ɢʟᴏʙᴀʟʟʏ ʙᴀɴɴᴇᴅ ᴜsᴇʀ.
-/gbannedusers : sʜᴏᴡs ᴛʜᴇ ʟɪsᴛ ᴏғ ɢʟᴏʙᴀʟʟʏ ʙᴀɴɴᴇʀ ᴜsᴇʀs.
+**<u>GBAN ÖZELLİĞİ:</u>**
+/gban [kullanıcı adı veya bir kişiye yanıt ver] : Bu komut, kullanıcıyı tüm sunucu sohbetlerinden yasaklar ve onun botu kullanmasını engeller.
+/ungban [kullanıcı adı veya bir kişiye yanıt ver] : Bu komut, global olarak yasaklanmış bir kullanıcının yasağını kaldırır.
+/gbannedusers : Global olarak yasaklanmış kullanıcıların listesini gösterir.
 
-🎥**<u>ᴠɪᴅᴇᴏᴄʜᴀᴛ ᴍᴏᴅᴇ:</u>**
-/set_video_limit [ɴᴜᴍʙᴇʀ ᴏғ ᴄʜᴀᴛs] : sᴇᴛ ᴛʜᴇ ᴍᴀxɪᴍᴜᴍ ɴᴜᴍʙᴇʀ ᴏғ ᴠɪᴅᴇᴏᴄʜᴀᴛs ᴀʟʟᴏᴡᴇᴅ ᴏɴ ʙᴏᴛ. [ᴅᴇᴀғᴜʟᴛ - 3]
-/videomode [ᴅᴏᴡɴʟᴏᴀᴅ|ᴍ3ᴜ8] : ɪғ ᴅᴏᴡɴʟᴏᴀᴅ ᴍᴏᴅᴇ ɪs ᴇɴᴀʙʟᴇᴅ ʙᴏᴛ ᴡɪʟʟ ᴅᴏᴡɴʟᴏᴀᴅ ᴛʜᴇ ᴛʀᴀᴄᴋs ɪɴsᴛᴇᴀᴅ ᴏғ ᴩʟᴀʏɪɴɢ ᴛʜᴇᴍ ɪɴ ᴍ3ᴜ8.
+**<u>Video Sohbet Modu:</u>**
+/set_video_limit [sohbetlerin sayısı] : Bu komut, bot üzerinde izin verilen maksimum video sohbet sayısını ayarlar. [Varsayılan - 3]
+/videomode [download|m3u8] : Eğer indirme modu etkinleştirilmişse, bot parçaları çalmak yerine indirir.
 
-💔**<u>ᴩʀɪᴠᴀᴛᴇ ʙᴏᴛ:</u>**
-/authorize [ᴄʜᴀᴛ ɪᴅ] : ᴀʟʟᴏᴡs ᴀ ᴄʜᴀᴛ ғᴏʀ ᴜsɪɴɢ ᴛʜᴇ ʙᴏᴛ.
-/unauthorize [ᴄʜᴀᴛ ɪᴅ] : ᴅɪsᴀʟʟᴏᴡs ᴛʜᴇ ᴀʟʟᴏᴡᴇᴅ ᴄʜᴀᴛ.
-/authorized : sʜᴏᴡs ᴛʜᴇ ʟɪsᴛ ᴏғ ᴀʟʟᴏᴡᴇᴅ ᴄʜᴀᴛs.
+**<u>Özel Bot:</u>**
+/authorize [sohbet kimliği] : Bu komut, botun kullanımına izin vermek için bir sohbeti yetkilendirir.
+/unauthorize [sohbet kimliği] : Bu komut, yetkilendirilmiş bir sohbetin iznini kaldırır.
+/authorized : İzin verilen sohbetlerin listesini gösterir.
 
-🍒**<u>ʙʀᴏᴀᴅᴄᴀsᴛ ғᴇᴀᴛᴜʀᴇ:</u>**
-/broadcast [ᴍᴇssᴀɢᴇ ᴏʀ ʀᴇᴩʟʏ ᴛᴏ ᴀ ᴍᴇssᴀɢᴇ] : ʙʀᴏᴀᴅᴄᴀsᴛ ᴀ ᴍᴇssᴀɢᴇ ᴛᴏ sᴇʀᴠᴇᴅ ᴄʜᴀᴛs ᴏғ ᴛʜᴇ ʙᴏᴛ.
+**<u>Yayın Özelliği:</u>**
+/broadcast [mesaj veya bir mesaja yanıt ver] : Bu komut, yayınlanacak bir mesajı sunucu sohbetlerine gönderir.
 
-<u>ʙʀᴏᴀᴅᴄᴀsᴛɪɴɢ ᴍᴏᴅᴇs:</u>
-**-pin** : ᴩɪɴs ʏᴏᴜʀ ʙʀᴏᴀᴅᴄᴀsᴛᴇᴅ ᴍᴇssᴀɢᴇs ɪɴ sᴇʀᴠᴇᴅ ᴄʜᴀᴛs.
-**-pinloud** : ᴩɪɴs ʏᴏᴜʀ ʙʀᴏᴀᴅᴄᴀsᴛᴇᴅ ᴍᴇssᴀɢᴇ ɪɴ sᴇʀᴠᴇᴅ ᴄʜᴀᴛs ᴀɴᴅ sᴇɴᴅ ɴᴏᴛɪғɪᴄᴀᴛɪᴏɴ ᴛᴏ ᴛʜᴇ ᴍᴇᴍʙᴇʀs.
-**-user** : ʙʀᴏᴀᴅᴄᴀsᴛs ᴛʜᴇ ᴍᴇssᴀɢᴇ ᴛᴏ ᴛʜᴇ ᴜsᴇʀs ᴡʜᴏ ʜᴀᴠᴇ sᴛᴀʀᴛᴇᴅ ʏᴏᴜʀ ʙᴏᴛ.
-**-assistant** : ʙʀᴏᴀᴅᴄᴀsᴛ ʏᴏᴜʀ ᴍᴇssᴀɢᴇ ғʀᴏᴍ ᴛʜᴇ ᴀssɪᴛᴀɴᴛ ᴀᴄᴄᴏᴜɴᴛ ᴏғ ᴛʜᴇ ʙᴏᴛ.
-**-nobot** : ғᴏʀᴄᴇs ᴛʜᴇ ʙᴏᴛ ᴛᴏ ɴᴏᴛ ʙʀᴏᴀᴅᴄᴀsᴛ ᴛʜᴇ ᴍᴇssᴀɢᴇ..
+Yayın modları:
+-pin : Yayınlanan mesajları sunucu sohbetlerinde sabitler.
+-pinloud : Yayınlanan mesajı sunucu sohbetlerinde sabitler ve üyelere bildirim gönderir.
+-user : Mesajı botunuzu başlatan kullanıcılara yayınlar.
+-assistant : Mesajınızı botun asistan hesabından yayınlar.
+-nobot : Botun mesajı yayınlamasını engeller.
 
-**ᴇxᴀᴍᴩʟᴇ:** `/broadcast -user -assistant -pin ᴛᴇsᴛɪɴɢ ʙʀᴏᴀᴅᴄᴀsᴛ`
-**ᴘᴏᴡʀᴇᴅ © ʙʏ** @AstroHeda @bioHEDA"""
+Örnek: `/broadcast -user -assistant -pin Yayın testi`
 
-HELP_7 = """💌**<u>ʜᴇʀᴇ ʏᴏᴜ ᴄᴀɴ ғɪɴᴅ ɴᴇᴡ ғᴇᴀᴛᴜʀᴇs:</u>**
+💌**<u>Özellikler:</u>**
 
-/alive : ɴᴏᴡ ʏᴏᴜ ᴄᴀɴ ᴄʜᴇᴄᴋ ᴀʟᴇxᴀ ᴍᴜsɪᴄ ʙᴏᴛ ɪs ᴀʟɪᴠᴇ ᴏʀ ɴᴏᴛ
-/id : ᴛᴏ ᴄʜᴇᴋ ᴜsᴇʀ ᴀɴᴅ ᴄʜᴀᴛ ɪᴅ
-/gcast -user -assistant -pin ᴛᴇsᴛɪɴɢ ʙʀᴏᴀᴅᴄᴀsᴛ`
+/alive : Artık BlinkMusic müzik botunun çalışıp çalışmadığını kontrol edebilirsiniz.
+/id : Kullanıcı ve sohbet kimliğini kontrol etmek için.
+/gcast -user -assistant -pin Yayın testi`
 """
