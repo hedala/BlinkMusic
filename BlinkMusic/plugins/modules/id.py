@@ -18,6 +18,7 @@ def ids(_, message):
 def count_messages(_, message):
     user_id = message.from_user.id
     group_id = message.chat.id
-    message_count = app.get_chat_member_count(group_id, user_id)
+    member = app.get_chat_member(group_id, user_id)
+    message_count = member.user.status.mesaj_gönderme_sayısı
     message.reply_text(f"**Bu kullanıcının grup içinde gönderdiği mesaj sayısı:** {message_count}")
 
