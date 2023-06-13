@@ -12,7 +12,7 @@ def ids(_, message):
 
         message.reply_text(
 
-            f"Bu senin kimliğin: {message.from_user.id}`\n**{reply.from_user.first_name}'s ɪᴅ**: {reply.from_user.id}\n**Bu grubun kimliği**: {message.chat.id}`"
+            f"**Bu senin kimliğin:** {message.from_user.id}`\n**{reply.from_user.first_name}'s ɪᴅ**: {reply.from_user.id}\n **Bu grubun kimliği:** {message.chat.id}`"
 
         )
 
@@ -20,6 +20,6 @@ def ids(_, message):
 
         message.reply(
 
-            f"Bu senin kimliğin: {message.from_user.id}`\n**Bu grubun kimliği**: {message.chat.id}`"
+            f"**Bu senin kimliğin:** {message.from_user.id}`\n **Bu grubun kimliği:** {message.chat.id}`"
 
         )
