@@ -69,11 +69,11 @@ class Userbot(Client):
             )
             try:
                 await self.one.send_message(
-                    config.LOG_GROUP_ID, f"**» {config.MUSIC_BOT_NAME} ᴀssɪsᴛᴀɴᴛ ᴏɴᴇ sᴛᴀʀᴛᴇᴅ :**\n\n✨ ɪᴅ : `{self.one.id}`\n❄ ɴᴀᴍᴇ : {self.one.name}\n💫 ᴜsᴇʀɴᴀᴍᴇ : @{self.one.username}"
+                    config.LOG_GROUP_ID, f"**» {config.MUSIC_BOT_NAME} 1. Yardımcı Hesap Başlatıldı :**\n\n✨ ID : `{self.one.id}`\n❄️ İsim : {self.one.name}\n💫 Kullanıcı Adı : @{self.one.username}"
                 )
             except:
-                LOGGER(__name__).error(
-                    f"Assistant Account 1 has failed to access the log Group. Make sure that you have added your assistant to your log group and promoted as admin ! "
+                LOGGER(name).error(
+                    f"1. Yardımcı Hesap, log Grubuna erişmeyi başaramadı. Yardımcınızı günlük kanalınıza eklediğinizden ve yönetici olarak atadığınızdan emin olun ! "
                 )
                 sys.exit()
         if config.STRING2:
