@@ -6,7 +6,6 @@
 
 
 <h1 align="center"><b>Heda</b></h1>
----
 
 ## Deploy on Heroku
  
