@@ -1,7 +1,7 @@
 {
-    "name": "Blink Music Bot",
+    "name": "BlinkMusic Bot",
     "description": "Blink Is A Telegram Telegram Group Calls streaming bot with some useful features, written in Python with Pyrogram and Py-Tgcalls.",
-    "logo": "https://te.legra.ph/file/798b7275e58d09ac6b095.jpg",
+    "logo": "https://graph.org/file/475ca5fcdb73b6cfcb5f7.png",
     "keywords": [
     "python3",
     "telegram",
