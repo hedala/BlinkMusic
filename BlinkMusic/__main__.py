@@ -23,7 +23,7 @@ async def init():
         and not config.STRING4
         and not config.STRING5
     ):
-        LOGGER("BlinkMusic").error("Add Pyrogram string session and then try...")
+        LOGGER("BlinkMusic").error("Pyrogram oturum dizisi ekleyin ve tekrar deneyin...")
     try:
         users = await get_gbanned()
         for user_id in users:
@@ -36,14 +36,14 @@ async def init():
     await app.start()
     for all_module in ALL_MODULES:
         importlib.import_module("BlinkMusic.plugins" + all_module)
-    LOGGER("BlinkMusic.plugins").info("Necessary Modules Imported Successfully.")
+    LOGGER("BlinkMusic.plugins").info("Gerekli Modüller Başarıyla İçe Aktarıldı.")
     await userbot.start()
     await Blink.start()
     await Blink.decorators()
-    LOGGER("BlinkMusic").info("Music Bot Started Successfully")
+    LOGGER("BlinkMusic").info("Müzik Botu Başarıyla Başlatıldı.")
     await idle()
 
 
 if __name__ == "__main__":
     loop.run_until_complete(init())
-    LOGGER("BlinkMusic").info("Stopping Music Bot")
+    LOGGER("BlinkMusic").info("Müzik Botu Durduruldu.")
