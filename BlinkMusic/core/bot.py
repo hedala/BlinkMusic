@@ -9,7 +9,7 @@ from ..logging import LOGGER
 class BlinkBot(Client):
     def init(self):
         LOGGER(name).info(f"Bot Başlatılıyor...")
-        super().init(
+        super().__init__(
             "Müzik",
             api_id=config.API_ID,
             api_hash=config.API_HASH,
