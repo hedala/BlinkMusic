@@ -22,7 +22,7 @@ heroku()
 sudo()
 
 # Bot Client
-app = BlinkBot(session_name)
+app = BlinkBot()
 
 # Assistant Client
 userbot = Userbot()
