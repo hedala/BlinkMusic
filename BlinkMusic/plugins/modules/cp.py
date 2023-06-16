@@ -11,10 +11,14 @@ def get_crypto_price(_, message):
     
     crypto_id = None
     
-    for crypto in response:
-        if crypto.get("symbol") == crypto_symbol:
-            crypto_id = crypto["id"]
-            break
+    if isinstance(response, list):  # Response'ın liste olup olmadığını kontrol ediyoruz
+        for crypto in response:
+            if crypto.get("symbol") == crypto_symbol:
+                crypto_id = crypto["id"]
+                break
+    else:
+        message.reply_text("Hata: Geçersiz API yanıtı!")
+        return
     
     if crypto_id:
         url = f"https://api.coingecko.com/api/v3/simple/price?ids={crypto_id}&vs_currencies=usd"
