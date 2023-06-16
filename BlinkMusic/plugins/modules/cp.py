@@ -2,6 +2,8 @@ import requests
 from BlinkMusic import app
 from pyrogram import filters
 import locale
+from datetime import datetime
+import pytz
 
 @app.on_message(filters.command("cp"))
 def get_crypto_price(_, message):
@@ -50,6 +52,11 @@ def get_crypto_price(_, message):
             if formatted_volume:
                 reply_text += f"{crypto_name} 24 saatlik işlem hacmi: {formatted_volume} USD"
 
+            # Anlık zamanı al ve mesajın sonuna ekle (Türkiye saati)
+            istanbul_tz = pytz.timezone("Europe/Istanbul")
+            current_time = datetime.now(istanbul_tz).strftime("%Y-%m-%d %H:%M:%S")
+            reply_text += f"\n\nGüncelleme Zamanı: {current_time}"
+
             message.reply_text(reply_text)
         else:
             message.reply_text("Hata: Fiyat bilgisi bulunamadı!")
@@ -66,6 +73,6 @@ def format_large_number(number):
     elif abs(number) >= 1_000_000:
         formatted_number = f"{number / 1_000_000:.2f}M"
     else:
-        formatted_number = locale.format_string("%.2f", number, grouping=True)
+        formatted_number = f"{number:,.2f}"
 
     return formatted_number
