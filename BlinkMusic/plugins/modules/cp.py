@@ -5,8 +5,6 @@ from pyrogram import filters
 @app.on_message(filters.command("cp"))
 def get_crypto_price(_, message):
     crypto_symbol = message.text.split(" ", 1)[1].lower()  # İlk kelimeyi alıyoruz ve küçük harfe çeviriyoruz
-    if crypto_symbol == "btc":
-        crypto_symbol = "bitcoin"
     
     url = f"https://api.coingecko.com/api/v3/simple/price?ids={crypto_symbol}&vs_currencies=usd"
     response = requests.get(url).json()
