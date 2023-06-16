@@ -73,7 +73,6 @@ def get_crypto_price(_, message):
 
 
 def update_crypto_prices():
-    # 5 dakika boyunca her 10 saniyede bir fiyatları güncelle
     start_time = time.time()
     while time.time() - start_time < 300 and len(crypto_prices) > 0:
         price_url = "https://api.coingecko.com/api/v3/simple/price"
@@ -88,7 +87,7 @@ def update_crypto_prices():
                 current_time = datetime.now().strftime("%H:%M:%S")
 
                 # Mesajı güncelle
-                app.edit_message_text(message_id, f"**Güncel fiyat:** {formatted_price} USD\n\n**Güncelleme Zamanı:** {current_time}")
+                app.edit_message_text(message.chat.id, message_id, f"**Güncel fiyat:** {formatted_price} USD\n\n**Güncelleme Zamanı:** {current_time}")
 
         # 5 dakika süresi dolduktan sonra takip edilen kripto birimlerini sil
         if time.time() - start_time >= 300:
