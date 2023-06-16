@@ -89,7 +89,7 @@ def update_crypto_prices():
                 current_time = datetime.now().strftime("%H:%M:%S")
 
                 # Mesajı güncelle
-                app.edit_message_text(message_id, f"**Güncel fiyat:** {formatted_price} USD\n\n**Güncelleme Zamanı:** {current_time}")
+                app.edit_message_text(message_id, text=f"**Güncel fiyat:** {formatted_price} USD\n\n**Güncelleme Zamanı:** {current_time}")
 
         # 5 dakika süresi dolduktan sonra takip edilen kripto birimlerini sil
         if time.time() - start_time >= 300:
