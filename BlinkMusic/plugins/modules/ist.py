@@ -5,7 +5,7 @@ from pyrogram import filters
 async def statistics(_, message):
     # İstatistikleri hesaplayın ve bir yanıt oluşturun
     sp_count = 0
-    full_name = inline_mention(message.client.me)
+    full_name = (await app.get_me()).mention
     response = f"🔸 {full_name} İstatistikleri\n\n"
     response += f"Özel Sohbetler: {private_chats}\n"
     response += f"  •• Kullanıcılar: {private_chats - bots}\n"
@@ -24,4 +24,3 @@ async def statistics(_, message):
     response += f"Toplam Yapıştırıcı Paketi Yüklendi: `{sp_count}`\n\n"
     response += f"__Geçen Süre:__ {stop_time:.02f}s\n"
     await message.reply(response)
-
