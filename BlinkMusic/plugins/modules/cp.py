@@ -5,7 +5,7 @@ import locale
 from datetime import datetime
 import pytz
 
-@app.on_message(filters.command("cp"))
+@app.on_message(filters.command("coin"))
 def get_crypto_price(_, message):
     crypto_symbol = message.text.split(" ", 1)[1].lower()
 
@@ -46,16 +46,16 @@ def get_crypto_price(_, message):
             formatted_market_cap = format_large_number(market_cap) if market_cap else None
             formatted_volume = format_large_number(volume) if volume else None
 
-            reply_text = f"{crypto_name} anlık fiyatı: {formatted_price} USD\n"
+            reply_text = f"**{crypto_name} anlık fiyatı:** {formatted_price} USD\n"
             if formatted_market_cap:
-                reply_text += f"{crypto_name} piyasa değeri: {formatted_market_cap} USD\n"
+                reply_text += f"**{crypto_name} **piyasa değeri:** {formatted_market_cap} USD\n"
             if formatted_volume:
-                reply_text += f"{crypto_name} 24 saatlik işlem hacmi: {formatted_volume} USD"
+                reply_text += f"**{crypto_name} 24 saatlik işlem hacmi:** {formatted_volume} USD"
 
             # Anlık zamanı al ve mesajın sonuna ekle (Türkiye saati)
             istanbul_tz = pytz.timezone("Europe/Istanbul")
-            current_time = datetime.now(istanbul_tz).strftime("%Y-%m-%d %H:%M:%S")
-            reply_text += f"\n\nGüncelleme Zamanı: {current_time}"
+            current_time = datetime.now(istanbul_tz).strftime("%H:%M:%S")
+            reply_text += f"\n\n**Güncelleme Zamanı:** {current_time}"
 
             message.reply_text(reply_text)
         else:
