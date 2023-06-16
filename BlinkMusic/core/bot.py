@@ -1,16 +1,11 @@
 import sys
-
 from pyrogram import Client
-
 import config
-
 from ..logging import LOGGER
-
-
 
 class BlinkBot(Client):
     def __init__(self):
-        LOGGER(__name__).info(f"Starting Bot...")
+        LOGGER(__name__).info("Bot Başlatılıyor...")
         super().__init__(
             "Music",
             api_id=config.API_ID,
@@ -30,16 +25,16 @@ class BlinkBot(Client):
         a = await self.get_chat_member(config.LOG_GROUP_ID, self.id)
         if a.status != "administrator":
             LOGGER(__name__).error(
-                "Please promote Bot as Admin in Logger Group"
+                "Lütfen Bot'u Logger Grubunda Admin olarak yetkilendirin"
             )
             sys.exit()
-        LOGGER(__name__).info(f"MusicBot Started as {self.name}")
+        LOGGER(__name__).info(f"MusicBot, {self.name} olarak başlatıldı")
         try:
             await self.send_message(
-                config.LOG_GROUP_ID, f"**» {config.MUSIC_BOT_NAME} ʙᴏᴛ sᴛᴀʀᴛᴇᴅ :**\n\n✨ ɪᴅ : `{self.id}`\n❄ ɴᴀᴍᴇ : {self.name}\n💫 ᴜsᴇʀɴᴀᴍᴇ : @{self.username}"
+                config.LOG_GROUP_ID, f"**» {config.MUSIC_BOT_NAME} ʙᴏᴛ Başlatıldı :**\n\n✨ ɪᴅ : `{self.id}`\n❄ ɴᴀᴍᴇ : {self.name}\n💫 ᴜsᴇʀɴᴀᴍᴇ : @{self.username}"
             )
         except:
             LOGGER(__name__).error(
-                "Bot has failed to access the log Group. Make sure that you have added your bot to your log channel and promoted as admin!"
+                "Bot, log grubuna erişmekte başarısız oldu. Lütfen botunuzu log kanalınıza eklediğinizden ve admin olarak yetkilendirdiğinizden emin olun!"
             )
             sys.exit()
