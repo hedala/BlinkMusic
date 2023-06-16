@@ -48,7 +48,7 @@ def get_crypto_price(_, message):
 
             reply_text = f"**{crypto_name} anlık fiyatı:** {formatted_price} USD\n"
             if formatted_market_cap:
-                reply_text += f"**{crypto_name} **piyasa değeri:** {formatted_market_cap} USD\n"
+                reply_text += f"**{crypto_name} piyasa değeri:** {formatted_market_cap} USD\n"
             if formatted_volume:
                 reply_text += f"**{crypto_name} 24 saatlik işlem hacmi:** {formatted_volume} USD"
 
