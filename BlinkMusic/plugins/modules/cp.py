@@ -29,7 +29,8 @@ def get_crypto_price(_, message):
         
         if crypto_id in response:
             crypto_price = response[crypto_id]["usd"]
-            message.reply_text(f"{crypto_id.upper()} anlık fiyatı: {crypto_price} USD")
+            crypto_name = crypto_symbol.upper()
+            message.reply_text(f"{crypto_name} anlık fiyatı: {crypto_price} USD")
         else:
             message.reply_text("Hata: Fiyat bilgisi bulunamadı!")
     else:
