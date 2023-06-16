@@ -27,17 +27,17 @@ class BlinkBot(Client):
             self.name = get_me.first_name
         a = await self.get_chat_member(config.LOG_GROUP_ID, self.id)
         if a.status != "administrator":
-            LOGGER(name).error(
+            LOGGER(__name__).error(
                 "Lütfen Logger Grubunda Bot'u yönetici olarak atayın"
             )
             sys.exit()
-        LOGGER(name).info(f"{self.name} Olarak MüzikBot'u Başlattı")
+        LOGGER(__name__).info(f"{self.name} Olarak MüzikBot'u Başlattı")
         try:
             await self.send_message(
                 config.LOG_GROUP_ID, f"**» {config.MUSIC_BOT_NAME} Bot Başlatıldı:**\n\n✨ ID : `{self.id}`\n❄️ İsim : {self.name}\n💫 Kullanıcı Adı : @{self.username}"
             )
         except:
-            LOGGER(name).error(
+            LOGGER(__name__).error(
                 "Bot, log Grubuna erişmeyi başaramadı. Botunuzu günlük kanalınıza eklediğinizden ve yönetici olarak atadığınızdan emin olun!"
             )
             sys.exit()
