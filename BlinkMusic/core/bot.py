@@ -7,7 +7,7 @@ import config
 from ..logging import LOGGER
 
 class BlinkBot(Client):
-    def init(self):
+    def __init__(self):
         LOGGER(name).info(f"Bot Başlatılıyor...")
         super().__init__(
             "Müzik",
