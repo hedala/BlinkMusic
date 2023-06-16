@@ -21,6 +21,9 @@ def get_crypto_price(_, message):
         return
     
     if crypto_id:
+        if crypto_id.startswith("binance-peg-"):
+            crypto_id = crypto_id.replace("binance-peg-", "")
+        
         url = f"https://api.coingecko.com/api/v3/simple/price?ids={crypto_id}&vs_currencies=usd"
         response = requests.get(url).json()
         
