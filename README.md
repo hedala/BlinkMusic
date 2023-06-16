@@ -10,3 +10,4 @@
 ## Deploy on Heroku
  
 [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/hedala/BlinkMusic)
+Eğer bot birinci dağıtımda deploy hatası verirse tekrar yeni bir app ile dağıtın.
