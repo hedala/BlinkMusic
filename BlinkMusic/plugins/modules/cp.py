@@ -39,7 +39,7 @@ def get_crypto_price(_, message):
             volume = stats_response.get("market_data", {}).get("total_volume", {}).get("usd")
 
             # Sayıları okunaklı bir şekilde formatla
-            locale.setlocale(locale.LC_ALL, "en_US.UTF-8")
+            locale.setlocale(locale.LC_ALL, "C")
             formatted_price = locale.format_string("%.2f", crypto_price, grouping=True)
             formatted_market_cap = format_large_number(market_cap) if market_cap else None
             formatted_volume = format_large_number(volume) if volume else None
