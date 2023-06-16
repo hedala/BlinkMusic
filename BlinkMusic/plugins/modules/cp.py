@@ -65,14 +65,14 @@ async def get_crypto_price(_, message):
 
             # Kripto biriminin fiyatını takip etmek için sözlüğe ekle
             crypto_prices[crypto_id] = message.message_id
-            update_crypto_prices()
+            update_crypto_prices(message)
         else:
             await message.reply_text("Hata: Fiyat bilgisi bulunamadı!")
     else:
         await message.reply_text("Hata: Kripto birimi bulunamadı!")
 
 
-def update_crypto_prices():
+def update_crypto_prices(message):
     start_time = time.time()
     while time.time() - start_time < 300 and len(crypto_prices) > 0:
         price_url = "https://api.coingecko.com/api/v3/simple/price"
