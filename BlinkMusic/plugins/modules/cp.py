@@ -10,7 +10,7 @@ import time
 crypto_prices = {}
 
 @app.on_message(filters.command("coin"))
-def get_crypto_price(_, message):
+async def get_crypto_price(_, message):
     crypto_symbol = message.text.split(" ", 1)[1].lower()
 
     url = "https://api.coingecko.com/api/v3/coins/list"
@@ -24,7 +24,7 @@ def get_crypto_price(_, message):
                 crypto_id = crypto["id"]
                 break
     else:
-        message.reply_text("Hata: Geçersiz API yanıtı!")
+        await message.reply_text("Hata: Geçersiz API yanıtı!")
         return
 
     if crypto_id:
@@ -61,15 +61,15 @@ def get_crypto_price(_, message):
             current_time = datetime.now(istanbul_tz).strftime("%H:%M:%S")
             reply_text += f"\n\n**Güncelleme Zamanı:** {current_time}"
 
-            message.reply_text(reply_text)
+            await message.reply_text(reply_text)
 
             # Kripto biriminin fiyatını takip etmek için sözlüğe ekle
             crypto_prices[crypto_id] = message.message_id
             update_crypto_prices()
         else:
-            message.reply_text("Hata: Fiyat bilgisi bulunamadı!")
+            await message.reply_text("Hata: Fiyat bilgisi bulunamadı!")
     else:
-        message.reply_text("Hata: Kripto birimi bulunamadı!")
+        await message.reply_text("Hata: Kripto birimi bulunamadı!")
 
 
 def update_crypto_prices():
