@@ -11,7 +11,7 @@ def get_crypto_price(_, message):
     
     crypto_id = None
     
-    if isinstance(response, list):  # Response'ın liste olup olmadığını kontrol ediyoruz
+    if isinstance(response, list):
         for crypto in response:
             if crypto.get("symbol") == crypto_symbol:
                 crypto_id = crypto["id"]
@@ -24,27 +24,27 @@ def get_crypto_price(_, message):
         if crypto_id.startswith("binance-peg-"):
             crypto_id = crypto_id.replace("binance-peg-", "")
         
-        # Kripto para birimi fiyatını al
         price_url = f"https://api.coingecko.com/api/v3/simple/price?ids={crypto_id}&vs_currencies=usd"
+        stats_url = f"https://api.coingecko.com/api/v3/coins/{crypto_id}"
+        
         price_response = requests.get(price_url).json()
+        stats_response = requests.get(stats_url).json()
         
         if crypto_id in price_response:
             crypto_price = price_response[crypto_id]["usd"]
             crypto_name = crypto_symbol.upper()
-            message.reply_text(f"{crypto_name} anlık fiyatı: {crypto_price} USD")
+            
+            market_cap = stats_response.get("market_data", {}).get("market_cap", {}).get("usd")
+            volume = stats_response.get("market_data", {}).get("total_volume", {}).get("usd")
+            
+            reply_text = f"{crypto_name} anlık fiyatı: {crypto_price} USD\n"
+            if market_cap:
+                reply_text += f"{crypto_name} piyasa değeri: {market_cap} USD\n"
+            if volume:
+                reply_text += f"{crypto_name} 24 saatlik işlem hacmi: {volume} USD"
+            
+            message.reply_text(reply_text)
         else:
             message.reply_text("Hata: Fiyat bilgisi bulunamadı!")
-        
-        # Kripto para birimi piyasa istatistiklerini al
-        stats_url = f"https://api.coingecko.com/api/v3/coins/{crypto_id}/market_statistics"
-        stats_response = requests.get(stats_url).json()
-        
-        if "market_cap" in stats_response and "volume" in stats_response:
-            market_cap = stats_response["market_cap"]["usd"]
-            volume = stats_response["volume"]["usd"]
-            message.reply_text(f"{crypto_name} piyasa değeri: {market_cap} USD\n"
-                               f"{crypto_name} 24 saatlik işlem hacmi: {volume} USD")
-        else:
-            message.reply_text("Hata: Piyasa istatistikleri bulunamadı!")
     else:
         message.reply_text("Hata: Kripto birimi bulunamadı!")
