@@ -12,7 +12,7 @@ def get_crypto_price(_, message):
     crypto_id = None
     
     for crypto in response:
-        if crypto["symbol"] == crypto_symbol:
+        if crypto.get("symbol") == crypto_symbol:
             crypto_id = crypto["id"]
             break
     
