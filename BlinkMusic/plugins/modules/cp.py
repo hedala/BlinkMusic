@@ -29,9 +29,11 @@ def get_crypto_price(_, message):
 
         price_url = f"https://api.coingecko.com/api/v3/simple/price?ids={crypto_id}&vs_currencies=usd"
         stats_url = f"https://api.coingecko.com/api/v3/coins/{crypto_id}"
+        chart_url = f"https://api.coingecko.com/api/v3/coins/{crypto_id}/market_chart"
 
         price_response = requests.get(price_url).json()
         stats_response = requests.get(stats_url).json()
+        chart_response = requests.get(chart_url, params={"vs_currency": "usd", "days": "7"}).json()
 
         if crypto_id in price_response:
             crypto_price = price_response[crypto_id]["usd"]
@@ -50,12 +52,20 @@ def get_crypto_price(_, message):
             if formatted_market_cap:
                 reply_text += f"{crypto_name} piyasa değeri: {formatted_market_cap} USD\n"
             if formatted_volume:
-                reply_text += f"{crypto_name} 24 saatlik işlem hacmi: {formatted_volume} USD"
+                reply_text += f"{crypto_name} 24 saatlik işlem hacmi: {formatted_volume} USD\n"
+
+            # Değişim yüzdelerini al ve yanıta ekle
+            price_data = chart_response.get("prices", [])
+            if len(price_data) > 1:
+                start_price = price_data[0][1]
+                end_price = price_data[-1][1]
+                price_change_percentage = ((end_price - start_price) / start_price) * 100
+                reply_text += f"{crypto_name} son 7 gün değişim yüzdesi: {price_change_percentage:.2f}%\n"
 
             # Anlık zamanı al ve mesajın sonuna ekle (Türkiye saati)
             istanbul_tz = pytz.timezone("Europe/Istanbul")
             current_time = datetime.now(istanbul_tz).strftime("%H:%M:%S")
-            reply_text += f"\n\n**Güncelleme Zamanı:** {current_time}"
+            reply_text += f"\n**Güncelleme Zamanı:** {current_time}"
 
             message.reply_text(reply_text)
         else:
