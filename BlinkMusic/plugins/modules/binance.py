@@ -1,4 +1,4 @@
-/eval from BlinkMusic import app
+from BlinkMusic import app
 from pyrogram import filters
 import requests
 
