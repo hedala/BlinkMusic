@@ -2,8 +2,8 @@ from BlinkMusic import app
 from pyrogram import filters
 import requests
 
-@app.on_message(filters.command("cz"))
-def cz_command(_, message):
+@app.on_message(filters.command("coin"))
+def coin_command(_, message):
     symbol = "BTCUSDT"  # Örnek olarak BTCUSDT sembolünü kullanıyoruz, dilediğiniz sembolü burada belirtebilirsiniz
     interval = "1d"  # Örnek olarak 1 günlük (1d) veri alıyoruz, dilediğiniz aralığı burada belirtebilirsiniz
     
