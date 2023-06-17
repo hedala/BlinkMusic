@@ -25,6 +25,6 @@ def coin_command(_, message):
     
     message.reply_text(
         f"**{symbol} Coin Bilgileri**\n"
-        f"Anlık Fiyat: {current_price}\n"
+        f"Anlık Fiyat: {price}\n"
         f"Fiyat Değişimi: {price_change}"
     )
