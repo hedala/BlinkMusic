@@ -7,7 +7,7 @@ import pytz
 
 binance_api_url = "https://api.binance.com/api/v3"
 
-@app.on_message(filters.command("cz"))
+@app.on_message(filters.command("coin"))
 def get_crypto_price(_, message):
     crypto_symbol = message.text.split(" ", 1)[1].upper()
 
@@ -25,7 +25,7 @@ def get_crypto_price(_, message):
         # Sayıları okunaklı bir şekilde formatla
         formatted_price = locale.format_string("%.2f", crypto_price, grouping=True)
 
-        reply_text = f"{crypto_name} anlık fiyatı: {formatted_price} USD\n"
+        reply_text = f"{crypto_name} anlık fiyatı: {formatted_price} USDT\n"
         reply_text += f"{crypto_name} son 1 saatlik değişim yüzdesi: {hour_change_percentage:.2f}%\n"
         reply_text += f"{crypto_name} son 1 dakikalık değişim yüzdesi: {minute_change_percentage:.2f}%\n"
 
@@ -48,7 +48,15 @@ def get_binance_price(symbol):
     if "price" in response:
         return response
     else:
-        return None
+        # Özel sembolle tekrar deneyin
+        custom_symbol = f"{symbol}USDT"
+        params = {"symbol": custom_symbol}
+        response = requests.get(url, params=params).json()
+
+        if "price" in response:
+            return response
+        else:
+            return None
 
 
 def get_binance_change_percentage(symbol, interval):
