@@ -5,7 +5,7 @@ import locale
 from datetime import datetime
 import pytz
 
-@app.on_message(filters.command("coin"))
+@app.on_message(filters.command("coinnn"))
 def get_crypto_price(_, message):
     crypto_symbol = message.text.split(" ", 1)[1].lower()
 
