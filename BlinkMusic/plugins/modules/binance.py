@@ -8,16 +8,14 @@ def coin_command(_, message):
     interval = "1d"  # Örnek olarak 1 günlük (1d) veri alıyoruz, dilediğiniz aralığı burada belirtebilirsiniz
     
     # Anlık fiyatı çekmek için API'yi kullanıyoruz
-    price_url = "https://api3.binance.com/api/v3/ticker/price"
-    price_params = {"symbol": symbol}
-    price_response = requests.get(price_url, params=price_params)
+    price_url = f"https://api3.binance.com/api/v3/ticker/price?symbol={symbol}"
+    price_response = requests.get(price_url)
     price_data = price_response.json()
     current_price = float(price_data.get("price", 0))
     
     # Fiyat değişimini çekmek için API'yi kullanıyoruz
-    klines_url = "https://api.binance.com/api/v3/klines"
-    klines_params = {"symbol": symbol, "interval": interval}
-    klines_response = requests.get(klines_url, params=klines_params)
+    klines_url = f"https://api.binance.com/api/v3/klines?symbol={symbol}&interval={interval}"
+    klines_response = requests.get(klines_url)
     klines_data = klines_response.json()
     
     if isinstance(klines_data, list) and len(klines_data) > 0:
