@@ -33,7 +33,7 @@ def get_crypto_price(_, message):
 
         price_response = requests.get(price_url).json()
         stats_response = requests.get(stats_url).json()
-        chart_response = requests.get(chart_url, params={"vs_currency": "usd", "days": "7"}).json()
+        chart_response = requests.get(chart_url, params={"vs_currency": "usd", "days": "1"}).json()
 
         if crypto_id in price_response:
             crypto_price = price_response[crypto_id]["usd"]
@@ -60,7 +60,23 @@ def get_crypto_price(_, message):
                 start_price = price_data[0][1]
                 end_price = price_data[-1][1]
                 price_change_percentage = ((end_price - start_price) / start_price) * 100
-                reply_text += f"{crypto_name} son 7 gün değişim yüzdesi: {price_change_percentage:.2f}%\n"
+                reply_text += f"{crypto_name} son 24 saatlik değişim yüzdesi: {price_change_percentage:.2f}%\n"
+
+            chart_response = requests.get(chart_url, params={"vs_currency": "usd", "hours": "1"}).json()
+            price_data = chart_response.get("prices", [])
+            if len(price_data) > 1:
+                start_price = price_data[0][1]
+                end_price = price_data[-1][1]
+                price_change_percentage = ((end_price - start_price) / start_price) * 100
+                reply_text += f"{crypto_name} son 1 saatlik değişim yüzdesi: {price_change_percentage:.2f}%\n"
+
+            chart_response = requests.get(chart_url, params={"vs_currency": "usd", "minutes": "1"}).json()
+            price_data = chart_response.get("prices", [])
+            if len(price_data) > 1:
+                start_price = price_data[0][1]
+                end_price = price_data[-1][1]
+                price_change_percentage = ((end_price - start_price) / start_price) * 100
+                reply_text += f"{crypto_name} son 1 dakikalık değişim yüzdesi: {price_change_percentage:.2f}%\n"
 
             # Anlık zamanı al ve mesajın sonuna ekle (Türkiye saati)
             istanbul_tz = pytz.timezone("Europe/Istanbul")
