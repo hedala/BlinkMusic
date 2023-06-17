@@ -33,7 +33,9 @@ def get_crypto_price(_, message):
 
         price_response = requests.get(price_url).json()
         stats_response = requests.get(stats_url).json()
-        chart_response = requests.get(chart_url, params={"vs_currency": "usd", "days": "1"}).json()
+        chart_response_24h = requests.get(chart_url, params={"vs_currency": "usd", "days": "1"}).json()
+        chart_response_1h = requests.get(chart_url, params={"vs_currency": "usd", "hours": "1"}).json()
+        chart_response_1m = requests.get(chart_url, params={"vs_currency": "usd", "minutes": "1"}).json()
 
         if crypto_id in price_response:
             crypto_price = price_response[crypto_id]["usd"]
@@ -55,28 +57,26 @@ def get_crypto_price(_, message):
                 reply_text += f"{crypto_name} 24 saatlik işlem hacmi: {formatted_volume} USD\n"
 
             # Değişim yüzdelerini al ve yanıta ekle
-            price_data = chart_response.get("prices", [])
-            if len(price_data) > 1:
-                start_price = price_data[0][1]
-                end_price = price_data[-1][1]
-                price_change_percentage = ((end_price - start_price) / start_price) * 100
-                reply_text += f"{crypto_name} son 24 saatlik değişim yüzdesi: {price_change_percentage:.2f}%\n"
+            price_data_24h = chart_response_24h.get("prices", [])
+            if len(price_data_24h) > 1:
+                start_price = price_data_24h[0][1]
+                end_price = price_data_24h[-1][1]
+                price_change_percentage_24h = ((end_price - start_price) / start_price) * 100
+                reply_text += f"{crypto_name} son 24 saatlik değişim yüzdesi: {price_change_percentage_24h:.2f}%\n"
 
-            chart_response = requests.get(chart_url, params={"vs_currency": "usd", "hours": "1"}).json()
-            price_data = chart_response.get("prices", [])
-            if len(price_data) > 1:
-                start_price = price_data[0][1]
-                end_price = price_data[-1][1]
-                price_change_percentage = ((end_price - start_price) / start_price) * 100
-                reply_text += f"{crypto_name} son 1 saatlik değişim yüzdesi: {price_change_percentage:.2f}%\n"
+            price_data_1h = chart_response_1h.get("prices", [])
+            if len(price_data_1h) > 1:
+                start_price = price_data_1h[0][1]
+                end_price = price_data_1h[-1][1]
+                price_change_percentage_1h = ((end_price - start_price) / start_price) * 100
+                reply_text += f"{crypto_name} son 1 saatlik değişim yüzdesi: {price_change_percentage_1h:.2f}%\n"
 
-            chart_response = requests.get(chart_url, params={"vs_currency": "usd", "minutes": "1"}).json()
-            price_data = chart_response.get("prices", [])
-            if len(price_data) > 1:
-                start_price = price_data[0][1]
-                end_price = price_data[-1][1]
-                price_change_percentage = ((end_price - start_price) / start_price) * 100
-                reply_text += f"{crypto_name} son 1 dakikalık değişim yüzdesi: {price_change_percentage:.2f}%\n"
+            price_data_1m = chart_response_1m.get("prices", [])
+            if len(price_data_1m) > 1:
+                start_price = price_data_1m[0][1]
+                end_price = price_data_1m[-1][1]
+                price_change_percentage_1m = ((end_price - start_price) / start_price) * 100
+                reply_text += f"{crypto_name} son 1 dakikalık değişim yüzdesi: {price_change_percentage_1m:.2f}%\n"
 
             # Anlık zamanı al ve mesajın sonuna ekle (Türkiye saati)
             istanbul_tz = pytz.timezone("Europe/Istanbul")
