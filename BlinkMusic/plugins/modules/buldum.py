@@ -10,7 +10,7 @@ def search(_, message):
     member_count = app.get_chat_members_count(chat_id)
 
     if member_count > 0:
-        messages = app.get_chat_messages(chat_id, limit=member_count)
+        messages = app.get_chat_history(chat_id, limit=member_count)
 
     found_messages = []
 
