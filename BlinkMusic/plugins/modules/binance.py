@@ -1,19 +1,17 @@
-import requests
 from BlinkMusic import app
 from pyrogram import filters
+import requests
 
-
-@app.on_message(filters.command("price"))
-def get_price(_, message):
-    symbol = message.text.split()[1].upper()
-    url = f"https://api3.binance.com/api/v3/ticker/price?symbol={symbol}USDT"
+def get_crypto_price(symbol):
+    url = f"https://api.binance.com/api/v3/ticker/price?symbol={symbol.upper()}USDT"
     response = requests.get(url)
-    if response.status_code == 200:
-        data = response.json()
-        if 'price' in data:
-            price = data['price']
-            message.reply_text(f"{symbol} fiyatı: {price}")
-            return
-    message.reply_text(f"{symbol} fiyatı bulunamadı.")
+    data = response.json()
+    price = float(data["price"])
+    return price
 
-
+@app.on_message(filters.command("coin"))
+def coin(_, message):
+    symbol = message.text.split(" ")[1]
+    price = get_crypto_price(symbol)
+    reply_text = f"{symbol.upper()} fiyatı: {price} USDT"
+    message.reply_text(reply_text)
