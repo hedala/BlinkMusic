@@ -6,7 +6,7 @@ from pyrogram import filters
 def search(_, message):
     keyword = message.text.split(maxsplit=1)[1]  # Alınan kelimeyi elde ediyoruz
     chat_id = message.chat.id
-    messages = app.get_chat_history(chat_id)  # Tüm mesajları alıyoruz
+    messages = app.get_chat_history(chat_id, limit=None)  # Tüm mesajları alıyoruz
     found_messages = []
 
     for msg in messages:
@@ -23,4 +23,5 @@ def search(_, message):
         message.reply_text(f"Grup içerisinde aratılan '{keyword}' kelimesine ilişkin bir sonuç bulunamadı.")
 
 
-app.run()
+if __name__ == "__main__":
+    app.run()
