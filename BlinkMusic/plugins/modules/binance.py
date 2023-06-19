@@ -2,7 +2,7 @@ from BlinkMusic import app
 from pyrogram import filters
 import requests
 
-   def get_crypto_price(symbol):
+def get_crypto_price(symbol):
        url = f"https://api.binance.com/api/v3/ticker/price?symbol={symbol.upper()}USDT"
        response = requests.get(url)
        data = response.json()
