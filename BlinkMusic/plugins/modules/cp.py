@@ -5,21 +5,6 @@ import locale
 from datetime import datetime
 import pytz
 
-# Kripto fiyatlarını önbellekte saklamak için bir sözlük kullanalım
-cache = {}
-
-# Kripto fiyatını önbelleğe ekleyen yardımcı fonksiyon
-def add_price_to_cache(crypto_symbol, crypto_price):
-    cache[crypto_symbol] = crypto_price
-
-# Önbellekten fiyatı alıp döndüren yardımcı fonksiyon
-def get_cached_price(crypto_symbol):
-    return cache.get(crypto_symbol)
-
-# Mesaj yanıtını gönderen yardımcı fonksiyon
-def send_reply_message(message, crypto_symbol, reply_text):
-    message.reply_text(reply_text)
-
 @app.on_message(filters.command("coin"))
 def get_crypto_price(_, message):
     crypto_symbol = message.text.split(" ", 1)[1].lower()
@@ -35,7 +20,7 @@ def get_crypto_price(_, message):
                 crypto_id = crypto["id"]
                 break
     else:
-        send_reply_message(message, crypto_symbol, "Hata: Geçersiz API yanıtı!")
+        message.reply_text("Hata: Geçersiz API yanıtı!")
         return
 
     if crypto_id:
@@ -70,11 +55,24 @@ def get_crypto_price(_, message):
             # Anlık zamanı al ve mesajın sonuna ekle (Türkiye saati)
             istanbul_tz = pytz.timezone("Europe/Istanbul")
             current_time = datetime.now(istanbul_tz).strftime("%H:%M:%S")
-            reply_text += f"\n\nGüncellenme zamanı: {current_time}"
+            reply_text += f"\n\n**Güncelleme Zamanı:** {current_time}"
 
-            add_price_to_cache(crypto_symbol, crypto_price)
-            send_reply_message(message, crypto_symbol, reply_text)
+            message.reply_text(reply_text)
         else:
-            send_reply_message(message, crypto_symbol, "Hata: Geçersiz API yanıtı!")
+            message.reply_text("Hata: Fiyat bilgisi bulunamadı!")
     else:
-        send_reply_message(message, crypto_symbol, f"{crypto_symbol.upper()} simgesi bulunamadı!")
+        message.reply_text("Hata: Kripto birimi bulunamadı!")
+
+
+def format_large_number(number):
+    if number is None:
+        return None
+
+    if abs(number) >= 1_000_000_000:
+        formatted_number = f"{number / 1_000_000_000:.2f}B"
+    elif abs(number) >= 1_000_000:
+        formatted_number = f"{number / 1_000_000:.2f}M"
+    else:
+        formatted_number = f"{number:,.2f}"
+
+    return formatted_number
