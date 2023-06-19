@@ -6,7 +6,12 @@ from pyrogram import filters
 def search(_, message):
     keyword = message.text.split(maxsplit=1)[1]  # Alınan kelimeyi elde ediyoruz
     chat_id = message.chat.id
-    messages = app.get_chat_history(chat_id, limit=None)  # Tüm mesajları alıyoruz
+    messages = []
+    message_count = app.get_chat_history_count(chat_id)
+
+    if message_count > 0:
+        messages = app.get_chat_messages(chat_id, limit=message_count)
+
     found_messages = []
 
     for msg in messages:
