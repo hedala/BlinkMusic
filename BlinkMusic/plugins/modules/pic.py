@@ -11,7 +11,7 @@ def send_profile_photo(_, message):
         if member and member.user and member.user.photo:
             photo = member.user.photo.big_file_id
             downloaded_photo = app.download_media(photo)
-            caption = f"{reply.from_user.first_name}'ın profil fotoğrafı:"
+            caption = f"{reply.from_user.first_name}'nın profil fotoğrafı:"
             app.send_photo(chat_id, downloaded_photo, caption=caption)
         else:
             app.send_message(chat_id, "Bu kullanıcının profil fotoğrafı bulunamadı.")
@@ -26,12 +26,13 @@ def send_all_profile_photos(_, message):
         chat_id = message.chat.id
         member = app.get_chat_member(chat_id, user_id)
         if member and member.user and member.user.photo:
-            photos = app.get_user_profile_photos(user_id).photos
-            if photos:
-                app.send_message(chat_id, f"{len(photos)} adet fotoğraf buldum. Hemen indirip iletiyorum efendi {reply.from_user.first_name}.")
-                for index, photo in enumerate(photos):
-                    downloaded_photo = app.download_media(photo.file_id)
-                    caption = f"{reply.from_user.first_name}'ın {index+1}. profil fotoğrafı:"
+            photos = app.get_user_profile_photos(user_id)
+            if photos.total_count > 0:
+                app.send_message(chat_id, f"{photos.total_count} adet fotoğraf buldum. Hemen indirip iletiyorum efendi {reply.from_user.first_name}.")
+                for photo in photos.photos:
+                    file_id = photo[0].file_id
+                    downloaded_photo = app.download_media(file_id)
+                    caption = f"{reply.from_user.first_name}'ın profil fotoğrafı:"
                     app.send_photo(chat_id, downloaded_photo, caption=caption)
             else:
                 app.send_message(chat_id, "Bu kullanıcının profil fotoğrafı bulunamadı.")
