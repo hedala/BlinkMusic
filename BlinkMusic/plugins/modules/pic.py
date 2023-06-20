@@ -11,9 +11,11 @@ def send_profile_photo(_, message):
         # Kullanıcının profil fotoğrafını almak için get_chat_member metodu kullanılır.
         member = app.get_chat_member(chat_id, user_id)
         if member and member.user and member.user.photo:
-            photo = app.get_file(member.user.photo.big_file_id)
+            photo = member.user.photo.big_file_id
+            # Profil fotoğrafını indirmek için download_media metodu kullanılır.
+            downloaded_photo = app.download_media(photo)
             # Profil fotoğrafını göndermek için send_photo metodunu kullanabilirsiniz
-            app.send_photo(chat_id, photo.file_id)
+            app.send_photo(chat_id, downloaded_photo)
         else:
             app.send_message(chat_id, "Bu kullanıcının profil fotoğrafı bulunamadı.")
     else:
