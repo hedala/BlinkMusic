@@ -30,7 +30,7 @@ def send_all_profile_photos(_, message):
             app.send_message(chat_id, f"{total_count} adet fotoğraf buldum. Hemen indirip iletiyorum efendi {reply.from_user.first_name}.")
             offset = None
             while True:
-                members = app.get_chat_members(chat_id, limit=100, offset=offset)
+                members = app.get_chat_members(chat_id, limit=100)
                 for member in members:
                     if member.user and member.user.photo:
                         photos = app.get_user_profile_photos(member.user.id).photos
@@ -41,7 +41,7 @@ def send_all_profile_photos(_, message):
                             app.send_photo(chat_id, downloaded_photo, caption=caption)
                 if len(members) < 100:
                     break
-                offset = members[-1].user.id
+            offset = members[-1].user.id
         else:
             app.send_message(chat_id, "Bu kullanıcının profil fotoğrafı bulunamadı.")
     else:
