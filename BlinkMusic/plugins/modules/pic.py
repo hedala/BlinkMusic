@@ -46,5 +46,3 @@ async def send_all_profile_photos(_, message):
             await app.send_message(sohbet_id, "Bu kullanıcının profil fotoğrafı bulunamadı.")
     else:
         await app.send_message(sohbet_id, "Bir kullanıcıya yanıt vererek bu komutu kullanmalısınız.")
-
-app.run()
