@@ -2,11 +2,25 @@ import requests
 from BlinkMusic import app
 from pyrogram import filters
 
-API_KEY = "4160fb7f3780456d8b9103155232903"  # WeatherAPI.com API anahtarını buraya ekledim
+API_KEY = "4160fb7f3780456d8b9103155232903"  # WeatherAPI.com API anahtarını buraya ekleyin
+
+# Kullanıcıların ID'lerini ve tercih ettikleri şehirleri saklamak için bir sözlük oluşturulur
+user_cities = {}
 
 @app.on_message(filters.command("hava"))
 def get_weather(_, message):
-    city = message.text.split(" ", 1)[1]  # Kullanıcıdan şehir adını alır
+    user_id = message.from_user.id
+    command_parts = message.text.split(" ")
+
+    if len(command_parts) == 2 and command_parts[1] != "":
+        city = command_parts[1]
+        user_cities[user_id] = city  # Kullanıcının tercih ettiği şehri kaydet
+
+    elif user_id in user_cities:
+        city = user_cities[user_id]
+    else:
+        message.reply_text("Lütfen bir şehir adı belirtin.")
+        return
 
     # Hava durumu API'sine istek gönderir
     url = f"http://api.weatherapi.com/v1/current.json?key={API_KEY}&q={city}"
