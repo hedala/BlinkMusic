@@ -24,7 +24,7 @@ def get_weather(_, message):
         return
 
     # Hava durumu tahminleri için API'ye istek gönderir
-    url = f"http://api.weatherapi.com/v1/forecast.json?key={API_KEY}&q={city}&days=3"
+    url = f"http://api.weatherapi.com/v1/forecast.json?key={API_KEY}&q={city}&days=3&lang=tr"
     response = requests.get(url).json()
 
     if "error" not in response:
@@ -47,7 +47,7 @@ def get_weather(_, message):
 
         # Mesajı oluşturarak kullanıcıya yanıt verir
         reply_text = f"Hava durumu bilgileri {location} ({city}) için:\n\n"
-        reply_text += f"Aktüel: {current_weather}\n"
+        reply_text += f"Güncel: {current_weather}\n"
         reply_text += f"Sıcaklık: {current_temperature}°C\n"
         reply_text += f"Nem: {current_humidity}%\n\n"
         reply_text += "İleriye Dönük Tahminler:\n"
