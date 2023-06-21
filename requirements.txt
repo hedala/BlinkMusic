@@ -26,3 +26,4 @@ git+https://github.com/yt-dlp/yt-dlp
 numpy
 pytz
 cachetools==4.2.4
+youtube_dl
