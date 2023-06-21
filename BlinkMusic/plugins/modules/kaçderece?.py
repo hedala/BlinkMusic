@@ -51,15 +51,16 @@ def get_weather(_, message):
         last_updated_formatted = last_updated_datetime.strftime("%d.%m.%Y %H:%M")
 
         # Mesajı oluşturarak kullanıcıya yanıt verir
-        reply_text = f"Hava durumu bilgileri {location} ({city}) için:\n\n"
-        reply_text += f"Güncel: {current_weather}\n"
-        reply_text += f"Sıcaklık: {current_temperature}°C\n"
-        reply_text += f"Nem: {current_humidity}%\n"
-        reply_text += f"Son güncelleme zamanı: {last_updated_formatted}\n\n"
-        reply_text += "İleriye Dönük Tahminler:\n"
+        reply_text = f"<b>Hava Durumu Bilgileri</b>\n\n"
+        reply_text += f"<b>Şehir:</b> {location} ({city})\n"
+        reply_text += f"<b>Güncel Durum:</b> {current_weather}\n"
+        reply_text += f"<b>Sıcaklık:</b> {current_temperature}°C\n"
+        reply_text += f"<b>Nem:</b> {current_humidity}%\n"
+        reply_text += f"<b>Son Güncelleme:</b> {last_updated_formatted}\n\n"
+        reply_text += "<b>İleriye Dönük Tahminler:</b>\n"
         reply_text += "\n".join(forecast_info)
         
-        message.reply_text(reply_text)
+        message.reply_text(reply_text, parse_mode="HTML")
     else:
         error_message = response["error"]["message"]
-        message.reply_text(f"Hava durumu bilgileri alınamadı. Hata: {error_message}")
+        message.reply_text(f"<b>Hata:</b> Hava durumu bilgileri alınamadı. {error_message}", parse_mode="HTML")
