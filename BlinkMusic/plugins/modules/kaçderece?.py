@@ -66,4 +66,4 @@ async def get_weather(_, message):
     else:
         error_message = response["error"]["message"]
         await message.reply_text(f"<b>Hata:</b> Hava durumu bilgileri alınamadı. {error_message}", parse_mode="HTML")
-￼Enter
+        
