@@ -36,17 +36,6 @@ def get_weather(_, message):
         current_humidity = response["current"]["humidity"]
         last_updated = response["current"]["last_updated"]
 
-        # İleriye dönük tahminlerin alınması
-        forecast_data = response["forecast"]["forecastday"]
-        forecast_info = []
-
-        for forecast in forecast_data:
-            date = datetime.strptime(forecast["date"], "%Y-%m-%d").strftime("%d.%m.%Y")
-            weather = forecast["day"]["condition"]["text"]
-            max_temp = forecast["day"]["maxtemp_c"]
-            min_temp = forecast["day"]["mintemp_c"]
-            forecast_info.append(f"{date}\n☁️ {weather}\n🌡️ Max: {max_temp}°C, Min: {min_temp}°C")
-
         # Son güncelleme zamanını formatlar
         last_updated_datetime = datetime.strptime(last_updated, "%Y-%m-%d %H:%M")
         last_updated_formatted = last_updated_datetime.strftime("%d.%m.%Y %H:%M")
@@ -57,9 +46,7 @@ def get_weather(_, message):
         reply_text += f"<b>Sıcaklık:</b> {current_temperature}°C\n"
         reply_text += f"<b>Hissedilen Sıcaklık:</b> {feels_like}°C\n"
         reply_text += f"<b>Nem:</b> {current_humidity}%\n"
-        reply_text += f"<b>Son Güncelleme:</b> {last_updated_formatted}\n\n"
-        reply_text += "📆 <b>İleriye Dönük Tahminler:</b> 📆\n"
-        reply_text += "\n".join(forecast_info)
+        reply_text += f"<b>Son Güncelleme:</b> {last_updated_formatted}\n"
 
         message.reply_text(reply_text, parse_mode="HTML")
     else:
