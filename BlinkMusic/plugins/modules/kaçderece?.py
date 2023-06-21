@@ -32,6 +32,7 @@ def get_weather(_, message):
         location = response["location"]["name"]
         current_weather = response["current"]["condition"]["text"]
         current_temperature = response["current"]["temp_c"]
+        feels_like = response["current"]["feelslike_c"]
         current_humidity = response["current"]["humidity"]
         last_updated = response["current"]["last_updated"]
 
@@ -54,6 +55,7 @@ def get_weather(_, message):
         reply_text = f"🌍 <b>{city} için Hava Durumu Bilgileri</b> 🌍\n\n"
         reply_text += f"<b>Güncel Durum:</b> {current_weather}\n"
         reply_text += f"<b>Sıcaklık:</b> {current_temperature}°C\n"
+        reply_text += f"<b>Hissedilen Sıcaklık:</b> {feels_like}°C\n"
         reply_text += f"<b>Nem:</b> {current_humidity}%\n"
         reply_text += f"<b>Son Güncelleme:</b> {last_updated_formatted}\n\n"
         reply_text += "📆 <b>İleriye Dönük Tahminler:</b> 📆\n"
