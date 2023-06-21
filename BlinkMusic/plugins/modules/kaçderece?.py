@@ -33,6 +33,7 @@ def get_weather(_, message):
         current_weather = response["current"]["condition"]["text"]
         current_temperature = response["current"]["temp_c"]
         current_humidity = response["current"]["humidity"]
+        last_updated = response["current"]["last_updated"]
 
         # İleriye dönük tahminlerin alınması
         forecast_data = response["forecast"]["forecastday"]
@@ -45,11 +46,16 @@ def get_weather(_, message):
             min_temp = forecast["day"]["mintemp_c"]
             forecast_info.append(f"{date}: {weather}, Max: {max_temp}°C, Min: {min_temp}°C")
 
+        # Son güncelleme zamanını formatlar
+        last_updated_datetime = datetime.strptime(last_updated, "%Y-%m-%d %H:%M")
+        last_updated_formatted = last_updated_datetime.strftime("%d.%m.%Y %H:%M")
+
         # Mesajı oluşturarak kullanıcıya yanıt verir
         reply_text = f"Hava durumu bilgileri {location} ({city}) için:\n\n"
         reply_text += f"Güncel: {current_weather}\n"
         reply_text += f"Sıcaklık: {current_temperature}°C\n"
-        reply_text += f"Nem: {current_humidity}%\n\n"
+        reply_text += f"Nem: {current_humidity}%\n"
+        reply_text += f"Son güncelleme zamanı: {last_updated_formatted}\n\n"
         reply_text += "İleriye Dönük Tahminler:\n"
         reply_text += "\n".join(forecast_info)
         
