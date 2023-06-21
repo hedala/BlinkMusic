@@ -44,16 +44,12 @@ async def get_weather(_, message):
         # "Hava durumu bilgileri alınıyor..." mesajını gönderir
         loading_message = await message.reply_text("Hava durumu bilgileri alınıyor...")
 
-        # 0.7 saniyelik periyotlarla mesajı güncelleyerek hava durumu bilgilerini gönderir
-        await asyncio.sleep(4)  # 4 saniye bekle
-        await loading_message.edit_text("Hava durumu bilgileri alınıyor.")
-        await asyncio.sleep(0.7)
-        await loading_message.edit_text("Hava durumu bilgileri alınıyor..")
-        await asyncio.sleep(0.7)
-        await loading_message.edit_text("Hava durumu bilgileri alınıyor...")
-        await asyncio.sleep(0.7)
+        # 4 saniye boyunca yükleme hissiyle mesajı günceller
+        for _ in range(7):
+            await asyncio.sleep(0.57)
+            await loading_message.edit_text(loading_message.text + ".")
 
-        # Mesajı oluşturarak kullanıcıya yanıt verir
+        # Mesajı güncelleyerek hava durumu bilgilerini gönderir
         reply_text = f"🌍 <b>{city} için Hava Durumu Bilgileri</b> 🌍\n\n"
         reply_text += f"<b>Güncel Durum:</b> {current_weather}\n"
         reply_text += f"<b>Sıcaklık:</b> {current_temperature}°C\n"
