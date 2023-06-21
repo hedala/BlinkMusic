@@ -3,7 +3,7 @@ from datetime import datetime
 from BlinkMusic import app
 from pyrogram import filters
 
-API_KEY = "YOUR_API_KEY"  # WeatherAPI.com API anahtarını buraya ekleyin
+API_KEY = "4160fb7f3780456d8b9103155232903"  # WeatherAPI.com API anahtarını buraya ekleyin
 
 # Kullanıcıların ID'lerini ve tercih ettikleri şehirleri saklamak için bir sözlük oluşturulur
 user_cities = {}
