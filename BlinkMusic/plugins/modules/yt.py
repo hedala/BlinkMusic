@@ -25,4 +25,3 @@ def download_media_from_url(_, message):
     filename = download_media(url)
     text = f"İndirilen medyanın dosya adı: {filename}"
     message.reply_text(text)
-￼Enter
