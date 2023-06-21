@@ -3,7 +3,7 @@ from datetime import datetime
 from BlinkMusic import app
 from pyrogram import filters
 
-API_KEY = "4160fb7f3780456d8b9103155232903"  # WeatherAPI.com API anahtarını buraya ekleyin
+API_KEY = "API_KEY"  # WeatherAPI.com API anahtarını buraya ekleyin
 
 # Kullanıcıların ID'lerini ve tercih ettikleri şehirleri saklamak için bir sözlük oluşturulur
 user_cities = {}
@@ -44,15 +44,14 @@ def get_weather(_, message):
             weather = forecast["day"]["condition"]["text"]
             max_temp = forecast["day"]["maxtemp_c"]
             min_temp = forecast["day"]["mintemp_c"]
-            forecast_info.append(f"📅 {date}\n☁️ {weather}\n🌡️ Max: {max_temp}°C, Min: {min_temp}°C")
+            forecast_info.append(f"{date}\n☁️ {weather}\n🌡️ Max: {max_temp}°C, Min: {min_temp}°C")
 
         # Son güncelleme zamanını formatlar
         last_updated_datetime = datetime.strptime(last_updated, "%Y-%m-%d %H:%M")
         last_updated_formatted = last_updated_datetime.strftime("%d.%m.%Y %H:%M")
 
         # Mesajı oluşturarak kullanıcıya yanıt verir
-        reply_text = f"🌍 <b>Hava Durumu Bilgileri</b> 🌍\n\n"
-        reply_text += f"<b>Şehir:</b> {location} ({city})\n"
+        reply_text = f"🌍 <b>{city} için Hava Durumu Bilgileri</b> 🌍\n\n
         reply_text += f"<b>Güncel Durum:</b> {current_weather}\n"
         reply_text += f"<b>Sıcaklık:</b> {current_temperature}°C\n"
         reply_text += f"<b>Nem:</b> {current_humidity}%\n"
