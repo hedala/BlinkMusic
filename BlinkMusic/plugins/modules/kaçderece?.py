@@ -1,7 +1,8 @@
 import requests
-from datetime import datetime
+from datetime import datetime, timedelta
 from BlinkMusic import app
 from pyrogram import filters
+import asyncio
 
 API_KEY = "4160fb7f3780456d8b9103155232903"  # WeatherAPI.com API anahtarını buraya ekleyin
 
@@ -9,7 +10,7 @@ API_KEY = "4160fb7f3780456d8b9103155232903"  # WeatherAPI.com API anahtarını b
 user_cities = {}
 
 @app.on_message(filters.command("hava"))
-def get_weather(_, message):
+async def get_weather(_, message):
     user_id = message.from_user.id
     command_parts = message.text.split(" ")
 
@@ -20,7 +21,7 @@ def get_weather(_, message):
     elif user_id in user_cities:
         city = user_cities[user_id]
     else:
-        message.reply_text("Lütfen bir şehir adı belirtin.")
+        await message.reply_text("Lütfen bir şehir adı belirtin.")
         return
 
     # Hava durumu tahminleri için API'ye istek gönderir
@@ -40,6 +41,18 @@ def get_weather(_, message):
         last_updated_datetime = datetime.strptime(last_updated, "%Y-%m-%d %H:%M")
         last_updated_formatted = last_updated_datetime.strftime("%d.%m.%Y %H:%M")
 
+        # "Hava durumu bilgileri alınıyor..." mesajını gönderir
+        loading_message = await message.reply_text("Hava durumu bilgileri alınıyor...")
+
+        # 0.7 saniyelik periyotlarla mesajı güncelleyerek hava durumu bilgilerini gönderir
+        await asyncio.sleep(4)  # 4 saniye bekle
+        await loading_message.edit_text("Hava durumu bilgileri alınıyor.")
+        await asyncio.sleep(0.7)
+        await loading_message.edit_text("Hava durumu bilgileri alınıyor..")
+        await asyncio.sleep(0.7)
+        await loading_message.edit_text("Hava durumu bilgileri alınıyor...")
+        await asyncio.sleep(0.7)
+
         # Mesajı oluşturarak kullanıcıya yanıt verir
         reply_text = f"🌍 <b>{city} için Hava Durumu Bilgileri</b> 🌍\n\n"
         reply_text += f"<b>Güncel Durum:</b> {current_weather}\n"
@@ -48,7 +61,7 @@ def get_weather(_, message):
         reply_text += f"<b>Nem:</b> {current_humidity}%\n"
         reply_text += f"<b>Son Güncelleme:</b> {last_updated_formatted}\n"
 
-        message.reply_text(reply_text, parse_mode="HTML")
+        await loading_message.edit_text(reply_text, parse_mode="HTML")
     else:
         error_message = response["error"]["message"]
-        message.reply_text(f"<b>Hata:</b> Hava durumu bilgileri alınamadı. {error_message}", parse_mode="HTML")
+        await message.reply_text(f"<b>Hata:</b> Hava durumu bilgileri alınamadı. {error_message}", parse_mode="HTML")
