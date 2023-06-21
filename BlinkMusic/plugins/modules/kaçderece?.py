@@ -44,22 +44,22 @@ def get_weather(_, message):
             weather = forecast["day"]["condition"]["text"]
             max_temp = forecast["day"]["maxtemp_c"]
             min_temp = forecast["day"]["mintemp_c"]
-            forecast_info.append(f"{date}: {weather}, Max: {max_temp}°C, Min: {min_temp}°C")
+            forecast_info.append(f"📅 {date}\n☁️ {weather}\n🌡️ Max: {max_temp}°C, Min: {min_temp}°C")
 
         # Son güncelleme zamanını formatlar
         last_updated_datetime = datetime.strptime(last_updated, "%Y-%m-%d %H:%M")
         last_updated_formatted = last_updated_datetime.strftime("%d.%m.%Y %H:%M")
 
         # Mesajı oluşturarak kullanıcıya yanıt verir
-        reply_text = f"<b>Hava Durumu Bilgileri</b>\n\n"
+        reply_text = f"🌍 <b>Hava Durumu Bilgileri</b> 🌍\n\n"
         reply_text += f"<b>Şehir:</b> {location} ({city})\n"
         reply_text += f"<b>Güncel Durum:</b> {current_weather}\n"
         reply_text += f"<b>Sıcaklık:</b> {current_temperature}°C\n"
         reply_text += f"<b>Nem:</b> {current_humidity}%\n"
         reply_text += f"<b>Son Güncelleme:</b> {last_updated_formatted}\n\n"
-        reply_text += "<b>İleriye Dönük Tahminler:</b>\n"
+        reply_text += "📆 <b>İleriye Dönük Tahminler:</b> 📆\n"
         reply_text += "\n".join(forecast_info)
-        
+
         message.reply_text(reply_text, parse_mode="HTML")
     else:
         error_message = response["error"]["message"]
