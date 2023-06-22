@@ -11,46 +11,30 @@ def youtube_download(_, message):
     
     try:
         video = YouTube(url)
-        
-        # Formatları filtreleyin ve kullanıcıya mevcut formatları göstermek için bir liste oluşturun
         available_streams = video.streams.filter(progressive=True, file_extension="mp4").order_by("resolution").desc()
-        format_list = "\n".join([f"{i}. {stream.resolution}" for i, stream in enumerate(available_streams, start=1)])
+
+        # Kullanıcıya mevcut formatları göstermek için available_streams'ı kullanabilirsiniz
         
-        message.reply_text(f"Mevcut formatlar:\n{format_list}\n\nLütfen indirmek istediğiniz format numarasını seçin.")
+        selected_stream = available_streams.first()  # Kullanıcının seçtiği formatı alabilirsiniz
+
+        download_folder = "downloads"  # İndirilen videoların kaydedileceği klasör
         
-        # Kullanıcının seçtiği formatı almak için bir filtre oluşturun
-        def format_filter(m):
-            return m.from_user.id == message.from_user.id and m.text.isdigit()
-        
-        # Kullanıcının mesajını bekleyin ve seçtiği formatı alın
-        format_message = app.listen(format_filter)
-        user_choice = int(format_message.text)
-        selected_stream = available_streams[user_choice - 1]
-        
-        # İlerleme çubuğunu başlatın
-        progress_bar = tqdm(total=selected_stream.filesize, unit="B", unit_scale=True)
-        
-        # İndirme işlemi sırasında çağrılacak ilerleme geri çağırım fonksiyonu
-        def progress_callback(chunk, file_handle, bytes_remaining):
-            progress_bar.update(len(chunk))
-        
-        # Videoyu indirme
-        selected_stream.download(output_path="downloads", on_progress_callback=progress_callback)
-        
-        # İndirilen videoyu kaydetme
+        with tqdm(total=selected_stream.filesize, unit="B", unit_scale=True, desc="İndiriliyor") as progress_bar:
+            def on_progress_callback(chunk, file_handle, bytes_remaining):
+                progress_bar.update(selected_stream.filesize - bytes_remaining)
+                progress_bar.set_postfix({"Progress": f"{(1 - bytes_remaining / selected_stream.filesize) * 100:.2f}%"})
+
+            selected_stream.download(output_path=download_folder, on_progress_callback=on_progress_callback)
+
         new_filename = selected_stream.default_filename
-        user_filename = f"{message.from_user.id}_{new_filename}"
-        os.rename(f"downloads/{new_filename}", f"downloads/{user_filename}")
+        os.rename(os.path.join(download_folder, new_filename), os.path.join(download_folder, f"{message.from_user.id}_{new_filename}"))
 
         request = get(video.thumbnail_url)
-        thumb_file = f"downloads/{message.from_user.id}_{new_filename}.jpg"
+        thumb_file = os.path.join(download_folder, f"{message.from_user.id}_{new_filename}.jpg")
         with open(thumb_file, "wb") as file:
             file.write(request.content)
 
-        message.reply_video(user_filename, duration=video.length, thumb=thumb_file)
+        message.reply_video(os.path.join(download_folder, f"{message.from_user.id}_{new_filename}"), duration=video.length, thumb=thumb_file)
         message.reply_text("Video başarıyla indirildi.")
-        
-        # İndirme tamamlandığında ilerleme çubuğunu kapatın
-        progress_bar.close()
     except Exception as e:
         message.reply_text("Video indirme hatası: " + str(e))
