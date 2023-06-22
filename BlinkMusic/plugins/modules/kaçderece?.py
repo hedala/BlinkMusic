@@ -1,7 +1,7 @@
 import requests
 from datetime import datetime, timedelta
 from BlinkMusic import app
-from pyrogram import filters, InlineKeyboardButton, InlineKeyboardMarkup
+from pyrogram import filters
 import asyncio
 
 API_KEY = "4160fb7f3780456d8b9103155232903"  # WeatherAPI.com API anahtarını buraya ekleyin
@@ -54,12 +54,6 @@ async def get_weather(_, message):
 
         await asyncio.sleep(0.5)  # Toplamda 2 saniye bekleme süresi
 
-        # Güncelleme butonunu oluşturur
-        update_button = InlineKeyboardButton("Güncelle", callback_data="update_weather")
-
-        # İnline klavyeyi oluşturur
-        keyboard = InlineKeyboardMarkup([[update_button]])
-
         # Mesajı oluşturarak kullanıcıya yanıt verir
         reply_text = f"🌍 <b>{city} için Hava Durumu Bilgileri</b> 🌍\n\n"
         reply_text += f"<b>Güncel Durum:</b> {current_weather}\n"
@@ -68,13 +62,7 @@ async def get_weather(_, message):
         reply_text += f"<b>Nem:</b> {current_humidity}%\n"
         reply_text += f"<b>Son Güncelleme:</b> {last_updated_formatted}\n"
 
-        await loading_message.edit_text(reply_text, reply_markup=keyboard, parse_mode="HTML")
+        await loading_message.edit_text(reply_text, parse_mode="HTML")
     else:
         error_message = response["error"]["message"]
         await message.reply_text(f"<b>Hata:</b> Hava durumu bilgileri alınamadı. {error_message}", parse_mode="HTML")
-
-# Callback verilerini dinleyen bir fonksiyon tanımlar
-@app.on_callback_query()
-async def handle_callback(_, callback_query):
-    if callback_query.data == "update_weather":
-        await get_weather(_, callback_query.message)  # Hava durumunu güncellemek için `get_weather` işlevini tekrar çağırır
