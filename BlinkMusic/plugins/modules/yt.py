@@ -18,8 +18,13 @@ def youtube_download(_, message):
         
         message.reply_text(f"Mevcut formatlar:\n{format_list}\n\nLütfen indirmek istediğiniz format numarasını seçin.")
         
-        # Kullanıcının seçtiği formatı alın
-        user_choice = int(message.text.split(" ", 2)[2])
+        # Kullanıcının seçtiği formatı almak için bir filtre oluşturun
+        def format_filter(m):
+            return m.from_user.id == message.from_user.id and m.text.isdigit()
+        
+        # Kullanıcının mesajını bekleyin ve seçtiği formatı alın
+        format_message = app.listen(format_filter)
+        user_choice = int(format_message.text)
         selected_stream = available_streams[user_choice - 1]
         
         # İlerleme çubuğunu başlatın
