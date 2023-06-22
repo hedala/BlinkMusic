@@ -17,7 +17,7 @@ def youtube_download(_, message):
         # İndirilen videoyu kaydetme
         new_filename = video_stream.default_filename
         os.rename(new_filename, f"{message.from_user.id}_{new_filename}")
-        message.reply_document(f"{message.from_user.id}_{new_filename}")
+        message.reply_video(f"{message.from_user.id}_{new_filename}")
         message.reply_text("Video başarıyla indirildi.")
     except Exception as e:
         message.reply_text("Video indirme hatası: " + str(e))
