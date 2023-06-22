@@ -11,4 +11,3 @@ def show_coin_price(_, message):
         message.reply_text(f"{data['symbol']} fiyatı: {data['price']}")
     else:
         message.reply_text(f"{symbol} sembolü bulunamadı.")
-￼Enter
