@@ -1,23 +1,23 @@
 from BlinkMusic import app
 from pyrogram import filters
-import os
-from pytube import YouTube
+import youtube_dl
 
 @app.on_message(filters.command("yt"))
-def youtube_download(_, message):
-    url = message.text.split(" ", 1)[1]
-    
-    try:
-        video = YouTube(url)
-        video_stream = video.streams.get_highest_resolution()
-        
-        # Videoyu indirme
-        video_stream.download()
-        
-        # İndirilen videoyu kaydetme
-        new_filename = video_stream.default_filename
-        os.rename(new_filename, f"{message.from_user.id}_{new_filename}")
-        
-        message.reply_text("Video başarıyla indirildi.")
-    except Exception as e:
-        message.reply_text("Video indirme hatası: " + str(e))
+def youtube_video_indir(_, message):
+    # Mesaj metninden YouTube video URL'sini çıkarın
+    video_url = message.text.split(" ", 1)[1]
+
+    # YouTube videosunu MP4 formatında indirin
+    ydl_opts = {
+        'format': 'bestvideo[ext=mp4]+bestaudio[ext=m4a]/best[ext=mp4]/best',
+        'outtmpl': 'indirilenler/%(title)s.%(ext)s',
+    }
+    with youtube_dl.YoutubeDL(ydl_opts) as ydl:
+        info_dict = ydl.extract_info(video_url, download=False)
+        video_basligi = info_dict.get('title', 'video')
+        video_dosyaadi = ydl.prepare_filename(info_dict)
+
+        ydl.download([video_url])
+
+    # İndirilen video dosyasını kullanıcıya yanıt olarak gönderin
+    message.reply_document(video_dosyaadi, caption=f"İşte indirilen video: {video_basligi}")
