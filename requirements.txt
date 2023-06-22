@@ -27,3 +27,4 @@ numpy
 pytz
 cachetools==4.2.4
 youtube-dl
+pytube
