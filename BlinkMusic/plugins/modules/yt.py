@@ -35,7 +35,7 @@ def youtube_audio_download(_, message):
         audio_stream.download()
         
         # İndirilen ses parçasını kaydetme
-        new_filename = f"{message.from_user.id}_{audio_stream.default_filename}"
+        new_filename = f"{message.from_user.id}_{audio_stream.default_filename.split('.')[0]}.mp3"
         os.rename(audio_stream.default_filename, new_filename)
         
         message.reply_audio(new_filename)
