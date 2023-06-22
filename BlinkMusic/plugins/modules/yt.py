@@ -1,25 +1,23 @@
-import youtube_dl
 from BlinkMusic import app
 from pyrogram import filters
+import os
+from pytube import YouTube
 
 @app.on_message(filters.command("yt"))
-def download_youtube(_, message):
-    url = message.text.split(" ", 1)[1]  # Get the YouTube URL from the command message
+def youtube_download(_, message):
+    url = message.text.split(" ", 1)[1]
     
-    # Set the options for downloading the video in the desired format
-    ydl_opts = {
-        'format': 'bestvideo[ext=mp4]+bestaudio[ext=m4a]/best[ext=mp4]/best',  # Set the preferred format as MP4
-        'outtmpl': '/path/to/save/video/%(title)s.%(ext)s',  # Set the output file name and path
-    }
-    
-    with youtube_dl.YoutubeDL(ydl_opts) as ydl:
-        info_dict = ydl.extract_info(url, download=False)  # Get the video information
-        video_title = info_dict.get('title', None)  # Get the video title
+    try:
+        video = YouTube(url)
+        video_stream = video.streams.get_highest_resolution()
         
-        # Download the video
-        ydl.download([url])
+        # Videoyu indirme
+        video_stream.download()
         
-    if video_title:
-        message.reply_text(f"Video '{video_title}' has been downloaded.")
-    else:
-        message.reply_text("Video has been downloaded.")
+        # İndirilen videoyu kaydetme
+        new_filename = video_stream.default_filename
+        os.rename(new_filename, f"{message.from_user.id}_{new_filename}")
+        message.reply_document(f"{message.from_user.id}_{new_filename}")
+        message.reply_text("Video başarıyla indirildi.")
+    except Exception as e:
+        message.reply_text("Video indirme hatası: " + str(e))
