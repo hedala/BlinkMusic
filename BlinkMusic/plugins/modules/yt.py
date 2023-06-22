@@ -1,23 +1,25 @@
+import youtube_dl
 from BlinkMusic import app
 from pyrogram import filters
-import youtube_dl
 
 @app.on_message(filters.command("yt"))
-def youtube_video_indir(_, message):
-    # Mesaj metninden YouTube video URL'sini çıkarın
-    video_url = message.text.split(" ", 1)[1]
-
-    # YouTube videosunu MP4 formatında indirin
+def download_youtube(_, message):
+    url = message.text.split(" ", 1)[1]  # Get the YouTube URL from the command message
+    
+    # Set the options for downloading the video in the desired format
     ydl_opts = {
-        'format': 'bestvideo[ext=mp4]+bestaudio[ext=m4a]/best[ext=mp4]/best',
-        'outtmpl': 'indirilenler/%(title)s.%(ext)s',
+        'format': 'bestvideo[ext=mp4]+bestaudio[ext=m4a]/best[ext=mp4]/best',  # Set the preferred format as MP4
+        'outtmpl': '/path/to/save/video/%(title)s.%(ext)s',  # Set the output file name and path
     }
+    
     with youtube_dl.YoutubeDL(ydl_opts) as ydl:
-        info_dict = ydl.extract_info(video_url, download=False)
-        video_basligi = info_dict.get('title', 'video')
-        video_dosyaadi = ydl.prepare_filename(info_dict)
-
-        ydl.download([video_url])
-
-    # İndirilen video dosyasını kullanıcıya yanıt olarak gönderin
-    message.reply_document(video_dosyaadi, caption=f"İşte indirilen video: {video_basligi}")
+        info_dict = ydl.extract_info(url, download=False)  # Get the video information
+        video_title = info_dict.get('title', None)  # Get the video title
+        
+        # Download the video
+        ydl.download([url])
+        
+    if video_title:
+        message.reply_text(f"Video '{video_title}' has been downloaded.")
+    else:
+        message.reply_text("Video has been downloaded.")
