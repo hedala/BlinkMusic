@@ -19,12 +19,16 @@ def youtube_download(_, message):
 
         download_folder = "downloads"  # İndirilen videoların kaydedileceği klasör
         
-        with tqdm(total=selected_stream.filesize, unit="B", unit_scale=True, desc="İndiriliyor") as progress_bar:
-            def on_progress_callback(chunk, file_handle, bytes_remaining):
-                progress_bar.update(selected_stream.filesize - bytes_remaining)
-                progress_bar.set_postfix({"Progress": f"{(1 - bytes_remaining / selected_stream.filesize) * 100:.2f}%"})
+        video.register_on_progress_callback(lambda stream, chunk, bytes_remaining: progress_callback(chunk, bytes_remaining))
 
-            selected_stream.download(output_path=download_folder, on_progress_callback=on_progress_callback)
+        def progress_callback(chunk, bytes_remaining):
+            file_size = selected_stream.filesize
+            bytes_downloaded = file_size - bytes_remaining
+            progress = bytes_downloaded / file_size * 100
+            progress_bar.update(bytes_downloaded - progress_bar.n)
+
+        with tqdm(total=selected_stream.filesize, unit="B", unit_scale=True, desc="İndiriliyor") as progress_bar:
+            selected_stream.download(output_path=download_folder)
 
         new_filename = selected_stream.default_filename
         os.rename(os.path.join(download_folder, new_filename), os.path.join(download_folder, f"{message.from_user.id}_{new_filename}"))
