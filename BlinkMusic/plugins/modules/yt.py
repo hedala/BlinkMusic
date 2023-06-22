@@ -1,6 +1,7 @@
+from BlinkMusic import app
+from pyrogram import filters
 import os
 from pytube import YouTube
-
 
 @app.on_message(filters.command("yt"))
 def youtube_download(_, message):
