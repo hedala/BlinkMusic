@@ -19,4 +19,3 @@ def yt(_, message):
     app.send_video(chat_id=message.chat.id, video="./downloads/" + video.default_filename)
     os.remove("./downloads/" + video.default_filename)
 
-app.run()
