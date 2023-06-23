@@ -22,6 +22,8 @@ async def search_gif(_, message):
                     if 'media' in result and len(result['media']) > 0:
                         gif_url = result['media'][0]['tinygif']['url']
                         await app.send_animation(message.chat.id, gif_url)
+                    else:
+                        await message.reply_text("GIF bulunamadı.")
             else:
                 await message.reply_text("GIF bulunamadı.")
         else:
