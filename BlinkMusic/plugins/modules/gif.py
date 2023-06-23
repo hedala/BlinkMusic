@@ -21,9 +21,10 @@ async def search_gif(_, message):
                 media_group = []
                 for result in data['results']:
                     gif_url = result['media_formats']['tinygif']['url']
-                    media_group.append(gif_url)
+                    media_group.append(InputMediaVideo(gif_url))
                 await message.reply_media_group(media_group)
             else:
                 await message.reply_text("GIF bulunamadı.")
         else:
-            await message.reply_text("GIF URL'si alınamadı.")
+            await message.reply_text("GIF URL'si alınamadı."
+                                     
