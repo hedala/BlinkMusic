@@ -7,7 +7,7 @@ async def search_gif(_, message):
     query = " ".join(message.command[1:])  # Alınan komut argümanlarını birleştirerek sorgu oluşturuyoruz
     
     apikey = "AIzaSyBuGpE8dH_kR5s2yzp3yusdUiOhmaHs8_4"
-    lmt = 1
+    lmt = 10
     ckey = "vercel_app"
 
     url = f"https://tenor.googleapis.com/v2/search?q={query}&key={apikey}&client_key={ckey}&limit={lmt}"
