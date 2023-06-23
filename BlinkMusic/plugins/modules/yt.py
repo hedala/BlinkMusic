@@ -1,5 +1,6 @@
 from pytube import YouTube
 import os
+from BlinkMusic import app
 from pyrogram import filters
 
 @app.on_message(filters.command("yt") & filters.private)
