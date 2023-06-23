@@ -1,5 +1,6 @@
 from BlinkMusic import app
 from pyrogram import filters
+from pyrogram.types import InputMediaVideo
 import httpx
 
 @app.on_message(filters.command("gif"))
@@ -26,4 +27,4 @@ async def search_gif(_, message):
             else:
                 await message.reply_text("GIF bulunamadı.")
         else:
-            await message.reply_text("GIF URL'si alınamadı.")
+            await message.reply_text("GIF URL'si alınamadı."
