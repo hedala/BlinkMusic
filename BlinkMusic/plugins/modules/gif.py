@@ -21,7 +21,7 @@ async def search_gif(_, message):
             if 'results' in data and len(data['results']) > 0:
                 media_group = []
                 for result in data['results']:
-                    gif_url = result['media'][0]['mp4']['url']
+                    gif_url = result['media_formats'][0]['mp4']['url']
                     media_group.append(InputMediaVideo(gif_url))
                 await message.reply_media_group(media_group)
             else:
