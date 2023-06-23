@@ -18,8 +18,9 @@ async def search_gif(_, message):
         if response.status_code == 200:
             data = response.json()
             if 'results' in data and len(data['results']) > 0:
-                gif_url = data['results'][0]['media_formats']['tinygif']['url']
-                await app.send_animation(message.chat.id, gif_url)
+                for result in data['results']:
+                    gif_url = result['media'][0]['tinygif']['url']
+                    await app.send_animation(message.chat.id, gif_url)
             else:
                 await message.reply_text("GIF bulunamadı.")
         else:
