@@ -15,12 +15,13 @@ async def search_gif(_, message):
     async with httpx.AsyncClient() as client:
         response = await client.get(url)
 
-        if response.status_code == 200:
+    if response.status_code == 200:
             data = response.json()
             if 'results' in data and len(data['results']) > 0:
                 for result in data['results']:
-                    gif_url = result['media'][0]['tinygif']['url']
-                    await app.send_animation(message.chat.id, gif_url)
+                    if 'media' in result and len(result['media']) > 0:
+                        gif_url = result['media'][0]['tinygif']['url']
+                        await app.send_animation(message.chat.id, gif_url)
             else:
                 await message.reply_text("GIF bulunamadı.")
         else:
