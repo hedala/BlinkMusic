@@ -26,5 +26,4 @@ async def search_gif(_, message):
             else:
                 await message.reply_text("GIF bulunamadı.")
         else:
-            await message.reply_text("GIF URL'si alınamadı."
-                                     
+            await message.reply_text("GIF URL'si alınamadı.")
