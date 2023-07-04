@@ -27,11 +27,9 @@ def download_music(_, message):
                     for chunk in r.iter_content(chunk_size=1024):
                         f.write(chunk)
 
-                # İndirme başarılı olduğunda kullanıcıya geri bildirim gönderiyoruz
-                message.reply_text(f"**{title}** adlı şarkı {artist} tarafından indirildi.")
-                # İndirilen müziği göndermek için aşağıdaki satırı da ekleyebilirsiniz
-                # message.reply_audio(f"{title}.mp3")
-                
+                # İndirme başarılı olduğunda kullanıcıya müziği gönderiyoruz
+                message.reply_audio(f"{title}.mp3", caption=f"{title} - {artist}")
+
                 # İndirilen müziği silmek için aşağıdaki satırı ekleyebilirsiniz
                 # os.remove(f"{title}.mp3")
             else:
