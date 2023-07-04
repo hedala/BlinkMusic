@@ -5,9 +5,7 @@ import yt_dlp
 from pyrogram import filters
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, Message
 from youtube_search import YoutubeSearch
-
 from BlinkMusic
-
 
 @app.on_message(filters.command(["song", "vsong", "video", "music"]))
 async def song(_, message: Message):
