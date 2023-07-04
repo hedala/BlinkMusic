@@ -6,7 +6,7 @@ from pyrogram import filters
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, Message
 from youtube_search import YoutubeSearch
 
-from BlinkMusic import BOT_MENTION, BOT_USERNAME, LOGGER, app
+from BlinkMusic
 
 
 @app.on_message(filters.command(["song", "vsong", "video", "music"]))
