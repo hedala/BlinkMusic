@@ -28,7 +28,9 @@ def download_music(_, message):
                         f.write(chunk)
 
                 # İndirme başarılı olduğunda kullanıcıya müziği gönderiyoruz
-                message.reply_audio(f"{title}.mp3", caption=f"{title} - {artist}")
+                # Değiştirdiğimiz kısım: Tam parçayı göndermek için URL'i değiştiriyoruz
+                audio_url = track["link"]
+                message.reply_audio(audio_url, caption=f"{title} - {artist}")
 
                 # İndirilen müziği silmek için aşağıdaki satırı ekleyebilirsiniz
                 # os.remove(f"{title}.mp3")
