@@ -4,12 +4,11 @@ from pyrogram import filters
 import requests
 
 def get_weather_info(city):
-    url = f"https://wttr.in/{city}?qT0m&format=%C"
+    url = f"https://wttr.in/{city}?qT0m"
     response = requests.get(url)
     if response.status_code == 200:
         weather_info = response.text.strip()
-        current_time = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-        return f"Hava Durumu (Son Güncelleme: {current_time}):\n\n{weather_info}"
+        return f"Hava Durumu (Son Güncelleme Zamanı: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}):\n\n{weather_info}"
     return "Hava durumu bilgisi alınamadı."
 
 @app.on_message(filters.command("hv"))
