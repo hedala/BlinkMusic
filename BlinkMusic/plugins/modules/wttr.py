@@ -3,7 +3,7 @@ from pyrogram import filters
 import requests
 
 def get_weather_info(city):
-    url = f"https://wttr.in/{city}?qT0"
+    url = f"https://wttr.in/{city}?qmT0"
     response = requests.get(url)
     if response.status_code == 200:
         return response.text
