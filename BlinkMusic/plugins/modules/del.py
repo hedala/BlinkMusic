@@ -2,7 +2,7 @@ from BlinkMusic import app
 from pyrogram import filters
 
 
-@app.on_message(filters.command("sil") & filters.group)
+@app.on_message(filters.command("del") & filters.group)
 def delete_messages(_, message):
     if message.reply_to_message:
         chat_id = message.chat.id
