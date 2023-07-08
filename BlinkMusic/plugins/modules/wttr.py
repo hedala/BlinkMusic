@@ -4,7 +4,7 @@ from pyrogram import filters
 
 
 def get_weather(city):
-    url = f"https://wttr.in/{city.replace(' ', '+')}?format=3"
+    url = f"https://wttr.in/{city.replace(' ', '+')}?qT0"
     response = requests.get(url)
     if response.status_code == 200:
         return response.text
