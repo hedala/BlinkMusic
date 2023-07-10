@@ -1,22 +1,25 @@
 from BlinkMusic import app
 from pyrogram import filters
 
+
 @app.on_message(filters.command("pic"))
-def send_profile_photo(_, message):
-    reply = message.reply_to_message
-    if reply:
-        user_id = reply.from_user.id
-        chat_id = message.chat.id
-        member = app.get_chat_member(chat_id, user_id)
-        if member and member.user and member.user.photo:
-            photo = member.user.photo.big_file_id
-            downloaded_photo = app.download_media(photo)
-            caption = f"{reply.from_user.first_name}'ın profil fotoğrafı:"
-            app.send_photo(chat_id, downloaded_photo, caption=caption)
-        else:
-            app.send_message(chat_id, "Bu kullanıcının profil fotoğrafı bulunamadı.")
+def get_profile_photo(_, message):
+    user = message.from_user
+    if user.photo:
+        photo = user.photo.big_file_id
+        app.download_media(photo, file_name="profile_photo.jpg")
+        message.reply_photo("profile_photo.jpg")
     else:
-        app.send_message(chat_id, "Bir kullanıcıya yanıt vererek bu komutu kullanmalısınız.")
+        message.reply_text("Profil fotoğrafı bulunamadı.")
 
 
-        app.send_message(chat_id, "Bir kullanıcıya yanıt vererek bu komutu kullanmalısınız.")
+@app.on_message(filters.command("picall"))
+def get_all_profile_photos(_, message):
+    user = message.from_user
+    if user.photos:
+        photos = user.photos
+        for index, photo in enumerate(photos.total_count):
+            app.download_media(photo.big_file_id, file_name=f"profile_photo_{index}.jpg")
+            message.reply_photo(f"profile_photo_{index}.jpg")
+    else:
+        message.reply_text("Profil fotoğrafı bulunamadı.")
