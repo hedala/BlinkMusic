@@ -1,41 +1,38 @@
-from pyrogram import Client, filters
 from BlinkMusic import app
-
-def get_profile_photo(app, user_id):
-    # A list of ProfilePhoto
-    photos = app.get_user_profile_photos(user_id, limit=1)
-    if len(photos.photos) > 0:
-        photo = photos.photos[0]
-        photo_path = app.download_media(photo.file_id)
-        return photo_path
-    else:
-        return None
-
-def get_all_profile_photos(app, user_id):
-    photos = app.get_user_profile_photos(user_id, limit=10)
-    photo_paths = []
-    for photo in photos.photos:
-        photo_path = app.download_media(photo.file_id)
-        photo_paths.append(photo_path)
-    return photo_paths
+from pyrogram import filters
 
 @app.on_message(filters.command("pic"))
-def pic(_, message):
-    user_id = message.from_user.id
-    photo_path = get_profile_photo(app, user_id)
-    if photo_path is not None:
-        with open(photo_path, 'rb') as photo:
-            message.reply_photo(photo)
+def send_profile_photo(_, message):
+    reply = message.reply_to_message
+    if reply:
+        user_id = reply.from_user.id
+        chat_id = message.chat.id
+        member = app.get_chat_member(chat_id, user_id)
+        if member and member.user and member.user.photo:
+            photo = member.user.photo.big_file_id
+            downloaded_photo = app.download_media(photo)
+            caption = f"{reply.from_user.first_name}'ın profil fotoğrafı:"
+            app.send_photo(chat_id, downloaded_photo, caption=caption)
+        else:
+            app.send_message(chat_id, "Bu kullanıcının profil fotoğrafı bulunamadı.")
     else:
-        message.reply("Profil fotoğrafı bulunamadı.")
+        app.send_message(chat_id, "Bir kullanıcıya yanıt vererek bu komutu kullanmalısınız.")
 
 @app.on_message(filters.command("picall"))
-def picall(_, message):
-    user_id = message.from_user.id
-    photo_paths = get_all_profile_photos(app, user_id)
-    for photo_path in photo_paths:
-        if photo_path is not None:
-            with open(photo_path, 'rb') as photo:
-                message.reply_photo(photo)
+def send_all_profile_photos(_, message):
+    reply = message.reply_to_message
+    if reply:
+        user_id = reply.from_user.id
+        chat_id = message.chat.id
+        member = app.get_chat_member(chat_id, user_id)
+        if member and member.user and member.user.photos:
+            photos = member.user.photos
+            for photo in photos:
+                file_id = photo.big_file_id
+                downloaded_photo = app.download_media(file_id)
+                caption = f"{reply.from_user.first_name}'ın profil fotoğrafı:"
+                app.send_photo(chat_id, downloaded_photo, caption=caption)
         else:
-            message.reply("Profil fotoğrafları bulunamadı.")
+            app.send_message(chat_id, "Bu kullanıcının profil fotoğrafı bulunamadı.")
+    else:
+        app.send_message(chat_id, "Bir kullanıcıya yanıt vererek bu komutu kullanmalısınız.")
