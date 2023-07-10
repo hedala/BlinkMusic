@@ -27,8 +27,8 @@ def send_all_profile_photos(_, message):
         member = app.get_chat_member(chat_id, user_id)
         if member and member.user:
             photos = app.get_profile_photos(member.user.id)
-            if photos.total_count > 0:
-                for photo in photos.photos:
+            if photos:
+                for photo in photos:
                     file_id = photo.file_id
                     downloaded_photo = app.download_media(file_id)
                     caption = f"{reply.from_user.first_name}'ın profil fotoğrafı:"
