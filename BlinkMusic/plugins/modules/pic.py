@@ -28,11 +28,11 @@ def send_all_profile_photos(_, message):
         if member and member.user:
             photos = app.get_profile_photos(member.user.id)
             if photos:
+                media_group = []
                 for photo in photos:
                     file_id = photo.file_id
-                    downloaded_photo = app.download_media(file_id)
-                    caption = f"{reply.from_user.first_name}'ın profil fotoğrafı:"
-                    app.send_photo(chat_id, downloaded_photo, caption=caption)
+                    media_group.append(app.build_file_id(file_id))
+                app.send_media_group(chat_id, media_group)
             else:
                 app.send_message(chat_id, "Bu kullanıcının profil fotoğrafı bulunamadı.")
         else:
