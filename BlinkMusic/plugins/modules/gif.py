@@ -5,7 +5,7 @@ import random
 
 # Tenor API'den GIF'leri almak için bir fonksiyon
 def get_gifs_from_tenor(keyword):
-    api_key = "AIzaSyBuGpE8dH_kR5s2yzp3yusdUiOhmaHs8_4"
+    api_key = "TENOR_API_KEY"  # API anahtarınızı buraya ekleyin
     url = f"https://api.tenor.com/v1/search?q={keyword}&key={api_key}"
     response = requests.get(url)
     data = response.json()
@@ -28,5 +28,3 @@ def send_gifs(_, message):
             message.reply_animation(gif_url)
     else:
         message.reply_text("GIF bulunamadı.")
-
-app.run()
