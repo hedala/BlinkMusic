@@ -9,4 +9,6 @@
 
 ## Deploy on Heroku
  
-[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/hedala/BlinkMusic) Sana ait repo ile deploy et.
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/hedala/BlinkMusic) 
+
+#  Sana ait repo ile deploy et.
