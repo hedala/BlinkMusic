@@ -42,7 +42,7 @@ async def get_weather(_, message):
         last_updated_formatted = last_updated_datetime.strftime("%d.%m.%Y %H:%M")
 
         # Mesajı oluşturarak kullanıcıya yanıt verir
-        reply_text = f"🌍 <b>{city} için Hava Durumu Bilgileri</b> 🌍\n\n"
+        reply_text = f"**🌍 <b>{city} için Hava Durumu Bilgileri</b> 🌍\n\n**"
         reply_text += f"<b>Güncel Durum:</b> {current_weather}\n"
         reply_text += f"<b>Sıcaklık:</b> {current_temperature}°C\n"
         reply_text += f"<b>Hissedilen Sıcaklık:</b> {feels_like}°C\n"
