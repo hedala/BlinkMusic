@@ -9,12 +9,16 @@ def get_gifs_from_tenor(keyword):
     url = f"https://api.tenor.com/v1/search?q={keyword}&key={api_key}"
     response = requests.get(url)
     data = response.json()
-    gifs = data["results"]
-    gif_urls = []
-    for gif in gifs:
-        gif_url = gif["media"][0]["gif"]["url"]
-        gif_urls.append(gif_url)
-    return gif_urls
+    print(data)  # API yanıtını kontrol etmek için
+    if "results" in data:
+        gifs = data["results"]
+        gif_urls = []
+        for gif in gifs:
+            gif_url = gif["media"][0]["gif"]["url"]
+            gif_urls.append(gif_url)
+        return gif_urls
+    else:
+        return None
 
 @app.on_message(filters.command("gif"))
 def send_gifs(_, message):
@@ -28,3 +32,6 @@ def send_gifs(_, message):
             message.reply_animation(gif_url)
     else:
         message.reply_text("GIF bulunamadı.")
+
+# app.run() satırını kaldırdık
+
