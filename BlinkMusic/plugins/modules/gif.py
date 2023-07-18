@@ -16,7 +16,10 @@ async def search_gif_command(_, message):
 
         if response.status_code == 200:
             data = response.json()
-            gif_url = data['results'][0]['media_formats']['tinygif']['url']
-            await message.reply_text(f"Here's a GIF for you: {gif_url}")
+            results = data['results']
+            
+            for result in results:
+                gif_url = result['media_formats']['tinygif']['url']
+                await message.reply_text(f"Here's a GIF for you: {gif_url}")
         else:
-            await message.reply_text("Failed to fetch the GIF URL.")
+            await message.reply_text("Failed to fetch the GIF URLs.")
