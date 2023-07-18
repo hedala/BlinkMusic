@@ -1,37 +1,21 @@
 from BlinkMusic import app
 from pyrogram import filters
-import requests
-import random
-
-# Tenor API'den GIF'leri almak için bir fonksiyon
-def get_gifs_from_tenor(keyword):
-    api_key = "AIzaSyBuGpE8dH_kR5s2yzp3yusdUiOhmaHs8_4"  # API anahtarınızı buraya ekleyin
-    url = f"https://api.tenor.com/v1/search?q={keyword}&key={api_key}"
-    response = requests.get(url)
-    data = response.json()
-    print(data)  # API yanıtını kontrol etmek için
-    if "results" in data:
-        gifs = data["results"]
-        gif_urls = []
-        for gif in gifs:
-            gif_url = gif["media"][0]["gif"]["url"]
-            gif_urls.append(gif_url)
-        return gif_urls
-    else:
-        return None
 
 @app.on_message(filters.command("gif"))
-def send_gifs(_, message):
-    keyword = message.text.split("/gif ", 1)[1]
-    gif_urls = get_gifs_from_tenor(keyword)
-    if gif_urls:
-        random.shuffle(gif_urls)
-        num_gifs_to_send = 3  # İstediğiniz sayıda GIF göndermek için değiştirilebilir
-        gifs_to_send = gif_urls[:num_gifs_to_send]
-        for gif_url in gifs_to_send:
-            message.reply_animation(gif_url)
-    else:
-        message.reply_text("GIF bulunamadı.")
+async def search_gif_command(_, message):
+    query = message.text.split(" ", 1)[1]
+    apikey = "AIzaSyBuGpE8dH_kR5s2yzp3yusdUiOhmaHs8_4"
+    lmt = 5
+    ckey = "vercel_app"
 
-# app.run() satırını kaldırdık
+    url = f"https://tenor.googleapis.com/v2/search?q={query}&key={apikey}&client_key={ckey}&limit={lmt}"
 
+    async with httpx.AsyncClient() as client:
+        response = await client.get(url)
+
+        if response.status_code == 200:
+            data = response.json()
+            gif_url = data['results'][0]['media_formats']['tinygif']['url']
+            await message.reply_text(f"Here's a GIF for you: {gif_url}")
+        else:
+            await message.reply_text("Failed to fetch the GIF URL.")
