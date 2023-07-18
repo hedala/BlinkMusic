@@ -20,6 +20,7 @@ async def search_gif_command(_, message):
             data = response.json()
             results = data['results']
             
+            gif_count = 0  # Gönderilen GIF sayısını izlemek için sayaç
             for result in results:
                 gif_url = result['media_formats']['tinygif']['url']
                 response = await client.get(gif_url)
@@ -29,8 +30,12 @@ async def search_gif_command(_, message):
                     gif_file = io.BytesIO(gif_data)
                     gif_file.name = "animation.gif"
                     await app.send_document(message.chat.id, document=gif_file)
-                    break  # Sadece ilk GIF'ı gönderdikten sonra döngüden çık
-            else:
+                    gif_count += 1
+                    if gif_count >= lmt:
+                        break  # İstenen miktarda GIF gönderildi, döngüden çık
+                else:
+                    await message.reply_text("GIF indirilemedi.")
+            if gif_count == 0:
                 await message.reply_text("GIF bulunamadı.")
         else:
             await message.reply_text("GIF URL'si alınamadı.")
