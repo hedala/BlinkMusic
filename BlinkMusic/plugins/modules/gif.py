@@ -20,6 +20,6 @@ async def search_gif_command(_, message):
             
             for result in results:
                 gif_url = result['media_formats']['tinygif']['url']
-                await message.reply_text(f"Here's a GIF for you: {gif_url}")
+                await message.reply_text(gif_url)
         else:
             await message.reply_text("Failed to fetch the GIF URLs.")
