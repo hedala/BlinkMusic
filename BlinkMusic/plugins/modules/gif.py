@@ -27,7 +27,7 @@ async def search_gif_command(_, message):
                 if response.status_code == 200:
                     gif_data = response.content
                     gif_image = Image.open(io.BytesIO(gif_data))
-                    await app.send_animation(message.chat.id, animation=gif_image)
+                    await app.send_media(message.chat.id, media=gif_image)
                     break  # Sadece ilk GIF'ı gönderdikten sonra döngüden çık
             else:
                 await message.reply_text("GIF bulunamadı.")
