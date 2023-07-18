@@ -1,4 +1,6 @@
 import httpx
+import io
+from PIL import Image
 from BlinkMusic import app
 from pyrogram import filters
 
@@ -20,6 +22,14 @@ async def search_gif_command(_, message):
             
             for result in results:
                 gif_url = result['media_formats']['tinygif']['url']
-                await message.reply_text(gif_url)
+                response = await client.get(gif_url)
+                
+                if response.status_code == 200:
+                    gif_data = response.content
+                    gif_image = Image.open(io.BytesIO(gif_data))
+                    await app.send_animation(message.chat.id, animation=gif_image)
+                    break  # Sadece ilk GIF'ı gönderdikten sonra döngüden çık
+            else:
+                await message.reply_text("GIF bulunamadı.")
         else:
-            await message.reply_text("Failed to fetch the GIF URLs.")
+            await message.reply_text("GIF URL'si alınamadı.")
