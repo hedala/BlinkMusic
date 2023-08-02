@@ -3,7 +3,7 @@ import io
 from BlinkMusic import app
 from pyrogram import filters
 
-@app.on_message(filters.command("giff"))
+@app.on_message(filters.command("gif"))
 async def search_gif_command(_, message):
     try:
         query = message.text.split(" ", 1)[1]
@@ -38,10 +38,10 @@ async def search_gif_command(_, message):
 
                 if gif_count >= lmt:
                     break
+
+            if gif_count == 0:
+                await message.reply_text("GIF bulunamadı.")
         except httpx.HTTPStatusError:
             await message.reply_text("GIF indirilemedi.")
         except Exception:
             await message.reply_text("Bir hata oluştu.")
-        finally:
-            if gif_count == 0:
-                await message.reply_text("GIF bulunamadı.")
