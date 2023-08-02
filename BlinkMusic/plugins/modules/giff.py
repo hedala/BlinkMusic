@@ -1,5 +1,6 @@
 import httpx
 import io
+from BlinkMusic import app
 from pyrogram import filters
 
 @app.on_message(filters.command("giff"))
