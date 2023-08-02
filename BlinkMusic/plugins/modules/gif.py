@@ -8,7 +8,7 @@ from pyrogram import filters
 async def search_gif_command(_, message):
     query = message.text.split(" ", 1)[1]
     apikey = "AIzaSyBuGpE8dH_kR5s2yzp3yusdUiOhmaHs8_4"
-    lmt = 5
+    lmt = 20
     ckey = "vercel_app"
 
     url = f"https://tenor.googleapis.com/v2/search?q={query}&key={apikey}&client_key={ckey}&limit={lmt}"
