@@ -3,7 +3,8 @@ import io
 from BlinkMusic import app
 from pyrogram import filters
 
-@app.on_message(filters.command("gif"))
+@app.on_message(filters.command("giff
+"))
 async def search_gif_command(_, message):
     try:
         query = message.text.split(" ", 1)[1]
